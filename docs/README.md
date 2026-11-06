@@ -26,6 +26,7 @@ Operatör robotu kablolu kumandayla sürer. Bırakma kararını robot kendisi ve
 | [maliyet.md](maliyet.md) | Malzeme listesi, fiyatlar, satın alma takibi | Aleyna |
 | [takvim.md](takvim.md) | 12 aylık plan, kilometre taşları, riskler ve B planları | Herkes |
 | [kararlar.md](kararlar.md) | Alınan kararlar ve nedenleri | Bir şeyi değiştirmeden önce |
+| [sadelestirme-onerisi.md](sadelestirme-onerisi.md) | Rafa kaldırılan sade deney tasarımı (uygulanmadı) | Zaman daralırsa |
 | [kaynakca.md](kaynakca.md) | Literatür ve teknik belgeler | Yazım sırasında |
 | [tubitak/](tubitak/) | 2209-A başvuru metinleri ve rehber | Başvuru süreci |
 

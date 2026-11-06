@@ -65,6 +65,21 @@ Her önemli karar buraya bir satır olarak eklenir. Amaç, altı ay sonra "bunu 
 |---|---|---|---|
 | K-28 | 6 Kas 2026 | İş bölümü [ekip.md](ekip.md)'deki gibi; başvurudakiyle aynı | Tek iş bölümü, karışıklık yok; sonuç raporu başvuruyla tutarlı olur. |
 
+## Başvuru metni düzeltmeleri
+
+| No | Tarih | Karar | Gerekçe | Değerlendirilen alternatifler |
+|---|---|---|---|---|
+| K-32 | 6 Kas 2026 | PHY veri hızı üç protokolde aynı değere sabitlenir ve her koşuda kaydedilir | ESP-NOW varsayılanı 1 Mbit/s, mesh 802.11n hızları kullanır; sabitlenmezse menzil ve kapasite farkı protokolden değil hızdan gelir. | Varsayılan hızlarda bırakmak (karıştırıcı değişken) |
+| K-33 | 6 Kas 2026 | Kapasite taraması ~1,4 kat adımlarla artar; üst sınır pilotta, tek atlamada da PDR düşecek şekilde seçilir. 1A'da mesh üst düğümleri sabitlenir. Görüntü kıyası 360p/480p ile sınırlı | 32→1024 ikiye katlama kaba ve tavana takılıyordu; 720p bu aralığa girmiyordu. Sabit üst düğüm olmadan mesh'te atlama sayısı denetlenemez. | İkiye katlama (6 seviye), sabit 1024 kbit/s tavan |
+| K-34 | 6 Kas 2026 | S★ (ideal yerleşim) çıkarıldı; yerine "aynı ortamda hedefe bağlantıyla ulaşan koşularda gözlenen en az röle sayısı" referansı | Tek referans noktalı sinyal haritası, rota üzerindeki iki nokta arasındaki bağlantıyı vermez; S★ bu veriyle hesaplanamaz. | Çok referanslı sinyal haritası (ek iş) |
+| K-35 | 6 Kas 2026 | TYBS'de protokoller P1/P2/P3 olarak yeniden adlandırıldı (P3 → P2, P5 → P3). Ham ESP-NOW zinciri de üst düğümü (k−1) bırakmada öğrenir; SBZ'nin farkı k−2 bilgisi, yeniden gönderim ve düğüm atlama | Eski tanımda keşifsiz bağlanma hem P3'te hem P5'in eklediği özellik olarak görünüyordu. Etiketlerdeki boşluklar eski sürümden kalmaydı. | Eski numaralar |
+| K-36 | 6 Kas 2026 | AS1–AS2 birincil, AS3–AS4 ikincil. Hipotezler AS sırasına göre H1–H5; H4 (etkileşim: eğilim kuralının üstünlüğü mesh'te daha büyük) eklendi; H1'e p95 RTT ödünleşimi eklendi; H5 "6 atlamada tek atlamanın yarısının altı" | AS3'ün hipotezi yoktu; eski H1 ve H2 tasarım ya da literatür gereği zaten doğru çıkacaktı. Önceliklendirme zaman daralırsa ikincilleri bırakmayı meşru kılar. | Eski H1–H4 |
+| K-37 | 6 Kas 2026 | Analiz: genelleştirilmiş karma model (süre log, sayım Poisson, başarı binom), her hipoteze bir birincil ölçüt, Holm düzeltmesi, her gün bir tam blok | 5 tekrarla normallik sınamak anlamsızdı; sayım ve evet/hayır ölçütleri doğrusal modele uymaz; gün etkisi koşullarla karışabiliyordu. | Parametrik olmayan testler |
+| K-38 | 6 Kas 2026 | 1B'de röle aralığı k−2 bağlantısına izin verecek şekilde seçilir | Aksi hâlde SBZ'nin düğüm atlama özelliği sınanamaz. | Yalnızca komşu sinyal seviyesine göre aralık |
+| K-39 | 6 Kas 2026 | Mekanizma kabul ölçütü: 100 bırakmanın en az 95'i başarılı | "Hiç takılmadan" ölçütünü tutturmak neredeyse imkânsızdı. | 100/100 |
+| K-40 | 6 Kas 2026 | Öncelikli alan: Evet; birincil Afet yönetimi teknolojileri, ikincil Robotik-mekatronik. 1.1'e Türkiye bağlamı paragrafı eklendi | Problemin kendisi afet alanına ait. "Yeni nesil haberleşme" 5G/6G çağrışımı yapar, 2,4 GHz Wi-Fi için zorlama görünür. Bilgi notu ilişkinin 1.1'de açıklanmasını istiyor. | Hayır; Yeni nesil haberleşme (40) |
+| K-41 | 6 Kas 2026 | Sade tasarım ([sadelestirme-onerisi.md](sadelestirme-onerisi.md)) **uygulanmadı**; başvuru mevcut tasarımla yapılıyor | Son güne 5 gün kala yeniden yapılandırma yeni tutarsızlık riski taşıyor; mevcut tasarım aşamalı ve kırılgan değil. | 2 protokol × 3 kural × 2 ortam × 8 tekrar |
+
 ## Yeni karar eklerken
 
 ```markdown
