@@ -1,21 +1,24 @@
 # TÜBİTAK 2209-A (2026) — Sıfırdan Başvuru Yapma Rehberi
 
 > **Kimler için?** TÜBİTAK'a daha önce proje başvurusu yapmamış ön lisans ve lisans öğrencileri için.
->
+
 > **Bu rehber neyi anlatıyor?** Başvuru öncesinde hangi bilgilerin hazırlanacağını, TÜBİTAK Yönetim Bilgi Sistemi (TYBS) ekranlarında nereye ne yazılacağını, kayıt–önizleme–onay aşamalarını ve sonrasında kimin ne yapacağını.
->
-> **Hazırlanma tarihi:** 31 Ekim 2026. Kaynaklar: TÜBİTAK'ın 2026 resmî çağrısı, 2026 Başvuru İçeriği Bilgi Notu ve 31 Ekim 2026 tarihli TYBS ekran görüntüleri.
+
+> **Hazırlanma tarihi:** 31 Ekim 2026. **Son güncelleme:** 6 Kasım 2026. Kaynaklar: TÜBİTAK'ın 2026 resmî çağrısı, 2026 Başvuru İçeriği Bilgi Notu ve 31 Ekim ile 6 Kasım 2026 tarihli TYBS ekran görüntüleri.
 
 ## 0. Önce bu üç bilgiyi öğrenin
 
 1. **Son başvuru ve akademik danışman onayı:** **11 Kasım 2026, saat 17.30 (Türkiye saati)**. Yalnızca formu kaydetmek yetmez; öğrencinin son onayı ve akademik danışmanın onayı süresinde tamamlanmalıdır.
+
 2. **Üniversite yetkilisinin e-imzası:** **16–23 Kasım 2026**. Danışman onayından sonra başvuru üniversite yetkilisinin imzasına gider. Başvuru bu imzadan sonra geçerli sayılır.
+
 3. **Araştırma önerisini Word/PDF olarak yüklemiyorsunuz.** TYBS'deki araştırma önerisi alanlarını dolduruyorsunuz; sistem başvuru metnini otomatik oluşturuyor. Sitedeki **Save/Kaydet**, **Preview Application/Başvuruyu Önizle** ve **Proje Önerisini Önizle** düğmelerinin görevi farklıdır.
 
-**Başvuru sitesi:** <https://tybs.tubitak.gov.tr/>  
+**Başvuru sitesi:** <https://tybs.tubitak.gov.tr/>
+
 **Resmî 2209-A sayfası:** <https://tubitak.gov.tr/tr/burslar/lisans-onlisans/destek-programlari/2209-universite-ogrencileri-arastirma-projeleri-destekleme-programi>
 
-> **Kapsam notu:** Gönderilen ekran görüntüleri özellikle **Araştırma Önerisi**, **Kaynaklar**, **ÜYZ Taahhütnamesi** ve **Başvuru Ek Belgeleri** bölümlerini ayrıntılı gösteriyor. **Kişisel Bilgiler, Danışman Bilgileri, Proje Ortağı Bilgileri, Bütçe, Araştırma Projesi Bilgileri, Banka Bilgileri ve genel Taahhütname** ekranlarının iç alanları gönderilmedi. Bu bölümlerde yalnızca güvenle açıklanabilen işlemleri tarif ediyoruz; ekranda görüntülenen kesin alan adlarını ve zorunluluk işaretlerini esas alın.
+**Kapsam notu:** 6 Kasım'da eklenen görüntüler sayesinde **Danışman Bilgileri**, **Proje Ortağı Öğrenci Bilgileri**, **Bütçe** ve **Araştırma Projesi Bilgileri** ekranlarının görünen alanları da ayrıntılandırılmıştır. Önceki görüntüler **Araştırma Önerisi**, **Kaynaklar**, **ÜYZ Taahhütnamesi** ve **Başvuru Ek Belgeleri** bölümlerini kapsamaktadır. **Kişisel Bilgiler, Banka Bilgileri ve genel Taahhütname** ekranlarının tüm ayrıntıları hâlâ görünmediği için bu kısımlarda sistemin güncel alanlarını esas alın. Ekran görüntüleri sayfanın yalnızca görünen kısmını kanıtlar; aşağıda görünmeyen alanlar varmış gibi anlatılmaz.
 
 ---
 
@@ -26,12 +29,24 @@ Aşağıdaki listeyi mümkünse danışman hocanızla birlikte hazırlayın. Bun
 ### 1.1. Öğrenci ve ekip bilgileri
 
 - [ ] Proje yürütücüsünü seçtik. **Yürütücü:** Başvuruyu kendi hesabından gönderen ve projeden sorumlu olan öğrencidir; akademik danışman değildir.
+
 - [ ] Proje ortaklarını belirledik. Başvuru **tek kişiyle** yapılabilir; yürütücüye ek olarak **en fazla 4 öğrenci ortak** olabilir.
+
 - [ ] Yürütücünün ve varsa ortakların öğrenci/üniversite/bölüm bilgilerini kontrol ettik.
+
 - [ ] İletişim e-postaları ve telefonlar güncel.
+
 - [ ] Yürütücünün **kendi adına** açılmış banka hesabının IBAN'ını hazırladık. Başkasının IBAN'ı kullanılamaz.
+
 - [ ] Üniversitede akademik danışmanlık yapacak hocayla görüştük ve onayını aldık.
-- [ ] Danışmanın adı, ünvanı, kurumu/bölümü ve güncel iletişim bilgileri doğrulandı.
+
+- [ ] Danışmanın adı, unvanı, kurumu/bölümü ve güncel iletişim bilgileri doğrulandı.
+
+- [ ] Danışmanın **T.C. kimlik numarasını** yalnızca resmî TYBS aramasında kullanmak üzere kendisinden güvenli biçimde edindik.
+
+- [ ] Eklenecek öğrenci ortakların **ARBİS kaydı** olduğunu ve T.C. kimlik numarası / uygun 11 haneli YKN / Mavi Kart numarası bilgilerinin hazır olduğunu kontrol ettik.
+
+- [ ] Öğrenci ortak veya danışmana ait kimlik numaralarını paylaşılan proje metnine, bu rehbere veya herkese açık bir dosyaya yazmıyoruz.
 
 **Önemli koşullar:** Öğrencilerin TÜBİTAK ARBİS bilgileri güncel olmalıdır. Açık öğretim ve hazırlık sınıfı öğrencileri yürütücü veya ortak olamaz. Aynı çağrı döneminde birden fazla 2209-A/2209-B projesinde yürütücü/ortak olunamaz; destek süren bir 2209-A/2209-B projesinde görev alanlar için de çağrıda kısıt vardır. Akademik danışman aynı dönemde en fazla 5 adet 2209-A projesinde görev alabilir. Kişisel uygunluğunuzu resmî çağrı metninden kontrol edin.
 
@@ -41,7 +56,11 @@ Başvurudan önce aşağıdaki tabloyu bir Word/Markdown/not dosyasında kendini
 
 | Hazırlanacak bilgi | Kendinize sorun | Hazırlayacağınız şey |
 |---|---|---|
-| Proje başlığı | Ne yapıyoruz? | Açık, bilimsel ve tanımlayıcı kısa bir başlık |
+| Proje başlığı | Ne yapıyoruz? | Açık ve bilimsel başlık (**en çok 495 karakter**) |
+| Proje özeti | Bilimsel nitelik, yöntem, yönetim ve yaygın etki nedir? | **25–450 kelimelik** özet |
+| Anahtar kelimeler | Projeyi hangi kavramlar temsil eder? | Virgülle ayrılmış **3–5 anahtar kelime** |
+| Bilimsel ve teknolojik faaliyet alanı | Hangi uzmanlar projeyi değerlendirmeli? | Projeyle gerçekten uyumlu alan seçimi |
+| Öncelikli alan durumu | Resmî öncelikli alanlarla gerçekten örtüşüyor mu? | Gerekçeli **Evet/Hayır** kararı |
 | Problem | Neden bu araştırmaya ihtiyaç var? | 1–2 paragraf |
 | Literatürdeki eksiklik | Daha önce ne yapılmış, ne eksik kalmış? | Gerçek yayınlara atıflı açıklama |
 | Araştırma sorusu | Tam olarak neyi test edeceğiz? | 1 net soru; varsa hipotez |
@@ -69,20 +88,26 @@ Başvurudan önce aşağıdaki tabloyu bir Word/Markdown/not dosyasında kendini
 | [Örneğin gerekli bir hizmet alımı] | ... | ... TL | ... TL | ... |
 | **TOPLAM** | | | **... TL** | **12.000 TL'yi aşmamalı** |
 
-Örnek kalemler, otomatik olarak uygun kabul edilecek anlamına gelmez. Her satın alma için araştırma amacıyla bağlantılı gerekçe yazın. **Başvuru kapandıktan sonra talep edilen bütçe tutarı değiştirilemez.**
+Örnek kalemler, otomatik olarak uygun kabul edilecek anlamına gelmez. Her satın alma için araştırma amacıyla bağlantılı gerekçeyi **kendi hazırlık çizelgenizde** tutun. Ancak aşağıdaki **EKRAN 04 – Bütçe** görüntüsünde TYBS'nin tek tek ürün/adet/birim fiyat/gerekçe istemediği, yalnızca **dört gider kategorisi için toplam TL tutarı** istediği görülüyor. Bu ayrıntılı hazırlık çizelgesini doğrudan sisteme satır satır gireceğinizi varsaymayın. **Başvuru kapandıktan sonra talep edilen bütçe tutarı değiştirilemez.**
 
 ### 1.4. Kaynakça dosyası
 
 - [ ] En az birkaç **gerçek, doğrulanmış** akademik/kurumsal kaynak belirledik.
+
 - [ ] Kaynakların yazar, başlık, yayın yılı, dergi/kurum ve varsa DOI bilgisini kaydettik.
+
 - [ ] Metinde geçen her atfın kaynakçada, kaynakçadaki her kaynağın da metin içinde karşılığı bulunuyor.
+
 - [ ] Üretken yapay zekânın önerdiği kaynakları otomatik olarak doğru kabul etmedik; asıllarını kontrol ettik.
 
 ### 1.5. Hesaplar
 
 1. <https://arbis.tubitak.gov.tr/> sayfasına gidin. Yürütücü ve ilgili ekip üyeleri ARBİS kaydını/kişisel bilgilerini kontrol etsin.
+
 2. Akademik danışman da **YÖKSİS ve ARBİS** bilgilerinin güncel olduğundan emin olsun; TYBS danışman bilgilerini bu sistemler üzerinden doğrulayabilir.
+
 3. <https://tybs.tubitak.gov.tr/> sayfasını açın. Yürütücü öğrenci olarak giriş yapın; sistemin sunduğu kimlik doğrulama adımlarını izleyin.
+
 4. 2026 yılı **2209-A Üniversite Öğrencileri Araştırma Projeleri Destekleme Programı** başvurusu oluşturma ekranına ilerleyin. Başvurunun **2209-B değil, 2209-A** olduğundan emin olun.
 
 ---
@@ -94,10 +119,10 @@ Aşağıdaki **Ekran 01–12** numaraları rehberin takip sırasıdır. TYBS'nin
 | No. | Soldaki TYBS menü adı | Önceden ne hazır olmalı? | Bu aşamanın çıktısı |
 |---:|---|---|---|
 | 01 | Kişisel Bilgiler | Öğrenim ve iletişim bilgileri | Yürütücü bilgileri doğru |
-| 02 | Danışman Bilgileri | Danışmanın güncel bilgileri ve ön onayı | Danışman seçildi |
-| 03 | Proje Ortağı Öğrenci Bilgileri | Varsa diğer öğrencilerin bilgileri | Ekip doğru tanımlandı |
-| 04 | Bütçe | Gider listesi, tutarlar, gerekçeler | Gerçekçi ve uygun maliyet planı |
-| 05 | Araştırma Projesi Bilgileri | Başlık, konu/alan, süre, özet vb. | Projenin temel tanımı |
+| 02 | Danışman Bilgileri | Danışmanın kimlik bilgisi, ARBİS/YÖK kaydı ve ön onayı | **ID Number → Kişi Getir**, bilgiler kontrol edildi |
+| 03 | Proje Ortağı Öğrenci Bilgileri | Varsa öğrencilerin kimlik bilgisi ve ARBİS kaydı | **Öğrenci Bilgileri / Ekle**, ortak yoksa boş kaydet |
+| 04 | Bütçe | Dört kategoriye ayrılmış toplam TL tutarları | **Makine/teçhizat, hizmet, sarf, ulaşım** tutarları kaydedildi |
+| 05 | Araştırma Projesi Bilgileri | Başlık, özet, 3–5 anahtar kelime, faaliyet alanı | **Başlık + özet + alan/öncelik bilgileri** girildi |
 | 06 | Araştırma Önerisi | Bilimsel nitelik, yöntem, takvim, risk, çıktılar | Esas bilimsel metin |
 | 07 | Kaynaklar | Tam bibliyografik bilgiler | Kaynakça ve metin içi atıflar uyumlu |
 | 08 | Üretken Yapay Zekâ (ÜYZ) Kaynakça Taahhütnamesi | Kaynakların kontrolü ve ÜYZ kullanım beyanı | Doğru beyanlar |
@@ -115,10 +140,15 @@ Aşağıdaki **Ekran 01–12** numaraları rehberin takip sırasıdır. TYBS'nin
 **Tıklanacak yer:** Soldaki menü > **Kişisel Bilgiler**.
 
 1. Sistemin getirdiği kimlik ve öğrenim bilgilerini okuyun.
+
 2. Üniversitenin, bölümün, öğrenim durumunun ve iletişim bilgilerinin güncel olduğundan emin olun.
+
 3. Yanlış veya eski bilgi varsa ilgili alanın düzenleme imkânını kullanın; dış sistemden geliyorsa ARBİS/öğrenci işleri gibi kaynakta düzeltilmesi gerekebilir.
+
 4. Sistem doldurulmasını istediği zorunlu alanları (`*`) tamamlayın.
+
 5. Sağ alttan **Save/Kaydet** ile kaydedin.
+
 6. Sol menüdeki durumun uygun hale geldiğini kontrol edin.
 
 **Sonuç:** Başvuruyu yapacak öğrencinin bilgileri eksiksiz ve doğru. Bu adıma başka bir öğrencinin bilgilerini yazmayın.
@@ -127,57 +157,149 @@ Aşağıdaki **Ekran 01–12** numaraları rehberin takip sırasıdır. TYBS'nin
 
 **Tıklanacak yer:** Soldaki menü > **Danışman Bilgileri**.
 
-1. Önceden görüştüğünüz akademik danışmanın bilgilerini ekrandaki arama/seçim alanlarından bulun.
-2. Adı, kurumu, birimi ve varsa unvanını kontrol edin; aynı isimli başka akademisyeni seçmeyin.
-3. Danışman görünmüyorsa yanlış isimle birini seçmek yerine hocanızdan **YÖKSİS/ARBİS kaydını** kontrol etmesini isteyin.
-4. Ekrandaki zorunlu alanları tamamlayıp **Save/Kaydet** düğmesine basın.
-5. Hocanıza başvurunun sonunda ayrıca **elektronik danışman onayı** vereceğini önceden söyleyin.
+Bu sayfanın başlığı **AKADEMİK DANIŞMANA AİT BİLGİLER**. Yeni görüntüde üstte **ID Number** giriş kutusu, yanında **Kişi Getir** düğmesi bulunuyor. Altında sistemin getireceği alanlar sıralanıyor:
 
-**Önemli:** Başvuruya danışman adı yazmak, danışmanın sistemi onayladığı anlamına gelmez. Bu ayrı bir son aşamadır.
+- **Adı / Soyadı**
+- **E-posta Adresi / Cep Telefonu**
+- **Görev Unvanı / Akademik Unvanı**
+- **Danışmanın Okulu / Veri Kaynağı**
+
+**Adım adım:**
+
+1. Danışmanlığı kabul etmiş akademisyenin **T.C. kimlik numarasını** doğrudan TYBS'deki **ID Number** kutusuna girin. Kimlik numarasını herkese açık notlara veya proje metnine eklemeyin.
+2. Sağdaki **Kişi Getir** düğmesine basın.
+3. Ekranın altına otomatik getirilen **ad, soyad, iletişim, unvan, kurum ve veri kaynağı** bilgilerinin doğru kişiyle eşleştiğini kontrol edin.
+4. Bilgiler boş kalıyorsa veya yanlışsa başka bir danışmanı rastgele seçmeyin. Hocanızın **ARBİS/YÖK kayıtlarının** güncelliğini kontrol etmesini isteyin. Gerekirse kurum veya TÜBİTAK destek kanallarına başvurun.
+5. Sağ alttan **Save/Kaydet** düğmesine basın. Menüdeki bölümün durumunu yeniden kontrol edin.
+6. Danışmanınıza bu kaydın yalnızca **danışmanı tanımladığını**, başvurunun sonunda ayrıca **elektronik danışman onayı** vereceğini hatırlatın.
+
+> **Ekranın kendi açıklaması:** “Bu bilgiler ARBİS/YÖK kayıtlarından alınmaktadır. Bilgilerinizin güncel olduğundan emin olunuz.” Bu nedenle ekranda kişinin bilgileri otomatik geliyorsa elle uydurma bilgi yazmayın.
+
+**Önemli:** “Kişi Getir” işlemi **danışman onayı değildir**. Öğrencinin son başvurusu ile akademik danışmanın onayı ayrı aşamalardır.
 
 ## EKRAN 03 — Proje Ortağı Öğrenci Bilgileri
 
 **Tıklanacak yer:** Soldaki menü > **Proje Ortağı Öğrenci Bilgileri**.
 
-1. Proje yalnızca yürütücü tarafından yapılacaksa sistemde ortak eklemek zorunda olup olmadığınızı kontrol edin; başvuru için ortak şart değildir.
-2. Ekip varsa her bir ortağı sistemin sunduğu **Ekle/Add** işlemiyle ayrı ayrı tanımlayın.
-3. Her ortak için sistemin istediği kimlik/öğrenim bilgilerini doğru girin.
-4. Yürütücü dışında **en fazla 4 proje ortağı** bulunabilir.
-5. Yanlışlıkla iki kez eklenen kişileri kaldırın, kaydedin ve ekip listesini yeniden okuyun.
+Ekranda **PROJEDE GÖREV ALACAK DİĞER ÖĞRENCİLERE AİT KİŞİSEL BİLGİLER** başlığı, **Öğrenci Bilgileri** düğmesi ve eklenen kişilerin listesi bulunuyor.
 
-**Sonuç:** Projenin gerçek ekibi tanımlanmış olmalı. Danışman hocayı öğrenci proje ortağı olarak eklemeyin.
+### Projede yürütücü dışında öğrenci yoksa
+
+1. Bu sayfada **başka öğrenci eklemek zorunda değilsiniz**.
+2. Ekrandaki “Projede görev alacak başka öğrenci yoksa aşağıdaki alanları boş bırakıp, 'Kaydet' düğmesine basarak ilerlemelisiniz.” uyarısını izleyin.
+3. Liste boşken sağ alttaki **Save/Kaydet** düğmesine basıp diğer bölüme geçin.
+
+### Projede başka öğrenciler varsa
+
+1. Ekleyeceğiniz öğrencinin **ARBİS kaydı** bulunduğundan emin olun.
+2. Sağdaki **Öğrenci Bilgileri** düğmesine tıklayın. Açılan ekrandaki kimlik bilgisi/arama alanlarını kullanın; yeni görüntü arama penceresinin içini göstermediğinden alan adları değişebilir.
+3. İstenen kimlik bilgisini girin. Ekrandaki açıklamaya göre **T.C. kimlik numarası**, uygun **11 haneli Yabancı Kimlik Numarası (YKN)** veya **Mavi Kart Numarası** bulunan adaylar eklenebilir.
+4. Bulunan kişinin gerçekten proje ekibindeki öğrenci olduğunu kontrol edin.
+5. Öğrenci bilgilerinin girişini bitirdikten sonra **Ekle** düğmesine basın. **Sadece kişi aramak, öğrenciyi listeye eklemiş olmak anlamına gelmez.**
+6. Eklenen kişinin listede **kimlik numarası, ad, soyad ve işlemler** sütunları altında göründüğünü kontrol edin.
+7. Diğer öğrenciler için işlemleri tekrarlayın. **Yürütücüye ek en fazla 4 öğrenci** eklenebilir; daha fazlasında sistem hata verir.
+8. Yanlış veya mükerrer eklenen kişiler varsa listeden düzeltin/kaldırın. Son olarak sağ alttaki **Save/Kaydet** düğmesine basın.
+
+**Sonuç:** Tek başına yürütülüyorsa boş liste **normaldir**; ekipli projede ise yalnızca gerçek öğrenci ortakları listelenmelidir. Akademik danışmanı bu listeye öğrenci olarak eklemeyin.
 
 ## EKRAN 04 — Bütçe
 
 **Tıklanacak yer:** Soldaki menü > **Bütçe**.
 
-1. Önceden hazırladığınız gider tablosunu açın.
-2. Sistem hangi gider türlerini sunuyorsa her uygun harcamayı doğru kategori altında ekleyin.
-3. Miktar/adet, birim tutar ve gerekçe gibi ekranda istenen bilgileri girin.
-4. Her kalemin **hangi araştırma faaliyetinde kullanılacağını** somut olarak belirtin.
-5. Toplam bütçeyi hesaplayın; **12.000 TL sınırını aşmayın**.
-6. Destek dışındaki kalemleri eklemediğinizi kontrol edin: kongre/konferans katılımı, yayın/patent, konaklama, yemek/gündelik vb.
-7. **Save/Kaydet** düğmesine basın ve ekranda kayıtların gerçekten göründüğünden emin olun.
+**ÖNEMLİ DÜZELTME:** Bu sayfada önceki rehberde varsayıldığı gibi “yeni harcama ekle”, ürün adı, miktar, birim fiyat veya gerekçe kutuları **görünmüyor**. Yeni ekran görüntüsünde **dört sabit kategori için birer TL toplam tutar alanı** var. Ürün bazlı maliyet çizelgenizi **hazırlık aşamasında** tutun; TYBS'ye bu ekranda **kategori toplamlarını** yazın.
 
-**Yanlış örnek:** “Bilgisayar malzemesi — 5.000 TL — proje için.”  
-**Daha iyi anlatım:** “X deneylerinin yürütülmesi için gerekli olan [belirli teknik özellikteki ürün/hizmet]; mevcut altyapıyla karşılanamayan [belirli ihtiyaç] için kullanılacak.”
+| TYBS'de görünen alan | Buraya ne girilecek? |
+|---|---|
+| **Makine Teçhizat Giderleri** | Bu gruptaki cihaz/donanım alımlarının toplamı (TL) |
+| **Hizmet Alımı Giderleri** | Proje için uygun hizmet alımlarının toplamı (TL) |
+| **Sarf Malzemesi Gideri** | Proje kapsamında kullanılacak sarf malzemelerinin toplamı (TL) |
+| **Ulaşım Giderleri** | Destek kapsamına uygun ulaşım giderlerinin toplamı (TL) |
 
-> Markaları ya da şirket adlarını başvuruda **öne çıkaran** anlatımdan kaçının; teknik ihtiyacı ve nesnel özellikleri açıklayın.
+**Adım adım:**
+
+1. Önceden oluşturduğunuz ayrıntılı maliyet tablosundaki her harcamayı **uygun kategoriyle** eşleştirin.
+2. Her kategorinin **toplam TL tutarını** hesaplayın.
+3. Sırasıyla dört **Talep Edilen Destek Tutarı (TL)** (yıldızlı/zorunlu) kutusuna toplamları yazın. Belli bir kategoride harcama planlamıyorsanız **0** yazın.
+4. Dört değerin toplamını kontrol edin: **Toplam en fazla 12.000 TL** olmalı.
+5. **Hiç destek talep etmeyecekseniz** sayfanın altındaki **Destek istemiyorum** kutusunu kullanın; tüm tutarların 0 olması ve işaretleme tutarlılığını kontrol edin. Destek talep ederken bu kutuyu işaretlemeyin.
+6. Sağ alttaki **Save/Kaydet** düğmesine basın. Kaydetme sonrasında tutarların korunduğunu tekrar kontrol edin.
+
+> **Ekran uyarısı:** “Gider kalemlerinizi sadece bu ekranda belirtiniz. Gider kalemlerinin toplamı sıfır olarak kaydedilebileceği için toplam miktarlarını doğru girdiğinizden emin olunuz. Destek istenmediği durumlarda sıfır olarak giriş yapılabilir.”
+
+**Örnek:** Makine-teçhizat **7.000 TL**, hizmet alımı **2.000 TL**, sarf **2.000 TL**, ulaşım **1.000 TL** ⇒ **toplam 12.000 TL**. Bu yalnızca alanların nasıl toplanacağını gösterir; kendi projenize uygun harcamaları yazın.
+
+**Gerekçelendirme:** Ayrıntılı ürün listesi ve ihtiyaç açıklamalarını önceki hazırlık çizelgesinde tutmaya devam edin. Bunları bu sayfada görünmeyen alanlara yazmaya çalışmayın. Başvuru sisteminin başka bölümünde veya resmî belgelerde isteniyorsa orada sağlamak üzere hazır bulundurun. Kongre/konferans, yayın/patent, konaklama, gündelik gibi destek dışı giderleri bütçeye eklemeyin.
 
 ## EKRAN 05 — Araştırma Projesi Bilgileri
 
 **Tıklanacak yer:** Soldaki menü > **Araştırma Projesi Bilgileri**.
 
-Bu ekranın alt alanları gönderilen görüntülerde görünmediğinden **ekranınızda gördüğünüz gerçek alan adlarını** izleyin. Genellikle projeyi tanımlayan bilgiler burada istenir.
+Bu bölüm uzun bir sayfa; yeni ekran görüntülerinde **başvuru sahibi ve üniversite bilgileri**, **proje başlığı**, **proje özeti**, **anahtar kelimeler**, **bilimsel ve teknolojik faaliyet alanları** ile **öncelikli alan** seçimi görünüyor. Sırayla aşağı kaydırarak doldurun.
 
-1. **Proje başlığı** isteniyorsa projenin amacını açıklayan, anlaşılır ve bilimsel bir başlık yazın.
-2. **Proje süresi** isteniyorsa iş takvimiyle uyumlu ay sayısını seçin (en fazla 12 ay).
-3. **Araştırma/bilim alanı** seçimi isteniyorsa danışmanınızla uygun alanı doğrulayın; sırf daha popüler görünüyor diye ilgisiz alan seçmeyin.
-4. **Özet** alanı varsa **25–450 kelime** aralığında, bilimsel nitelik + yöntem + proje yönetimi + yaygın etkiyi kapsayan özgün bir özet girin. Özeti proje metninin geri kalanını yazdıktan sonra tamamlamak daha kolaydır.
-5. Sistem başlık, anahtar kelime, disiplin/alt alan veya başka zorunlu bilgi istiyorsa her birini doğru doldurun.
-6. **Save/Kaydet** düğmesine basın.
+### 05-A — Başvuru sahibi ve kuruluş yetkilisi bilgilerini kontrol edin
 
-**Özet için basit sıra:** (i) Problem ve neden önemli olduğu, (ii) önerilen yaklaşım, (iii) nasıl test edileceği, (iv) çalışma süresi/planı, (v) beklenen araştırma çıktısı. Henüz yapılmamış deneyi yapılmış ve başarıya ulaşmış gibi anlatmayın.
+1. Üstteki **BAŞVURU YAPAN KİŞİYE VE PROJEYE AİT BİLGİLER** bölümünü açın.
+2. Sayfadaki **Institution Official Information** (Kuruluş Yetkilisi Bilgileri) tablosunu kontrol edin. Bu tabloda **Name, surname, Institution, Title, Email** sütunları bulunuyor. Burası üniversitenizin sistemde tanımlı yetkili kişisini gösterir; genel öğrenci ortakları listesi değildir.
+3. Devamında görünen kendi **öğrenim düzeyi, üniversite, fakülte, bölüm, sınıf, kayıt tarihi ve öğrencilik durumu** gibi bilgilerin doğru olduğundan emin olun. Bu bilgiler TYBS/YÖK kayıtlarından gelebilir.
+4. Ekranda bir **Update** düğmesi de bulunuyor; bunun hangi kayıtları ne şekilde değiştirdiği bu görüntülerden kesinleşmiyor. Kurum/öğrencilik verilerinde hata varsa rastgele değişiklik yapmayın; öğrenci işleri veya ilgili kurum yetkilisiyle doğrulayın.
+5. **Kuruluş yetkilisi tablosunda hiç yetkili görünmüyorsa** bunu son güne bırakmayın: Ekranın açıklamasına göre yetkili sisteme tanımlanmadan **akademik danışman onay veremez**. Üniversitenizin rektörlük makamına/ilgili birimine başvurun. TYBS'nin uyarısına göre yetkili tanımlama talebi **Rektör/Rektör Yardımcısı tarafından `bideb.eimza@tubitak.gov.tr`** adresine e-posta gönderilerek yapılmalıdır.
+
+> **Başvuru akışı hakkında ekranın uyarısı:** Başvuru sahibi ve akademik danışman onayından sonra bilgiler **salt okunur** hâlde, öğrencinin YÖK kaydında bağlı olduğu üniversitenin **tanımlı kuruluş yetkilisinin imzasına** gider. Belirlenen sürede imzalanmayan başvurular geçersiz sayılabilir. Dolayısıyla yalnızca başvuru ve danışman kaydı yeterli değildir.
+
+### 05-B — Proje Başlığı (zorunlu)
+
+1. **Proje Başlığı** (zorunlu, yıldızlı) kutusunu bulun.
+2. Projenizi **ne yaptığınızı ve neyi araştırdığınızı açıkça anlatan** Türkçe, bilimsel bir başlıkla tanımlayın.
+3. Kutunun altındaki sınır **en fazla 495 karakter**. Kelime sayısı ile karıştırmayın.
+4. Çok genel (“Yapay Zekâ Projesi”) veya sonuç kesinmiş gibi iddia eden başlıklardan kaçının.
+
+### 05-C — Proje Özeti (zorunlu)
+
+1. **Proje Özeti** (zorunlu, yıldızlı) başlıklı geniş metin editörüne tıklayın.
+2. **En az 25, en fazla 450 kelimelik** bir metin hazırlayın. Karakter sayısı değil **kelime** sayısıdır.
+3. Üstteki mavi açıklamada istenen **dört boyutu** kapsayın:
+   - **(1) Bilimsel nitelik:** Problem, araştırma sorusu, amaç ve özgün değer.
+   - **(2) Yöntem:** Veri, çalışma yaklaşımı, temel deney/karşılaştırma ve değerlendirme.
+   - **(3) Proje yönetimi:** İş adımları, süre, sorumluluklar ve yapılabilirlik.
+   - **(4) Yaygın etki:** Beklenen araştırma çıktıları, yararlanıcılar ve katkı.
+4. Metni akıcı paragraflar halinde yazın. Henüz yapılmamış bir deneyi başarıyla bitmiş gibi anlatmayın.
+5. Metin editöründeki biçimlendirme araçlarını gerektiğinde kullanın; dışarıdan yapıştırma sonrasında önizlemeyi kontrol edin.
+
+**Özet için uygulanabilir iskelet:** (i) Problem ve bilimsel ihtiyaç → (ii) araştırma sorusu ve hedef → (iii) yöntem ve değerlendirme ölçütleri → (iv) çalışma planı → (v) beklenen çıktılar ve yarar.
+
+### 05-D — Anahtar Kelimeler (zorunlu)
+
+1. **Anahtar Kelimeler** (zorunlu, yıldızlı) kutusunu bulun.
+2. Projeyi tanımlayan **en az 3, en fazla 5 anahtar kelime/terim** yazın.
+3. Her anahtar kelimeyi **virgülle ayırın**. Ekran özellikle virgül kullanılmasını istiyor.
+4. Başlık ve bilimsel içeriğinizle doğrudan bağlantılı, genel değil **ayırt edici** terimler seçin.
+
+**Yalnızca biçim örneği:** `Gömülü Sistemler, Robotik, Kablosuz Haberleşme, Ağ Performansı` (Bu kelimeler yalnızca ilgili araştırma konularında kullanılmalıdır.)
+
+### 05-E — Bilimsel ve Teknolojik Faaliyet Alanları
+
+1. **Bilimsel ve Teknolojik Faaliyet Alanları** başlığına gelin.
+2. Sağdaki **Add Scientific and Technological Fields** düğmesine tıklayın.
+3. Açılan seçim alanından projenizin **gerçek bilimsel alanını** seçin ve sistemin istediği şekilde ekleyin. Düğmenin açtığı pencerenin içi görüntülerde bulunmadığından oradaki alt alan adları kesin değildir.
+4. Eklenen alanın listede göründüğünü doğrulayın.
+
+**Neden kritik?** Mavi uyarı, **bilimsel değerlendirmeyi yapacak dış danışmanların seçtiğiniz alan esas alınarak belirlendiğini** söylüyor. Bu nedenle yalnızca kulağa güçlü geldiği için yanlış bir alan seçmek başvurunun uzmanlığı açısından sorun yaratabilir. Uygun alanı akademik danışmanınızla netleştirin.
+
+### 05-F — Öncelikli Alanlar
+
+1. **ÖNCELİKLİ ALANLAR** bölümünü bulun.
+2. **“Proje Konunuz Öncelikli Alanlar kapsamında mı?”** sorusuna **Evet** veya **Hayır** seçin.
+3. Yalnızca projeniz gerçekten resmî öncelikli alanlardan birine giriyorsa **Evet** deyin. Emin değilseniz danışmanınızla resmî alan açıklamalarını kontrol edin; sırf avantaj sağlar diye “Evet” işaretlemeyin.
+4. Seçiminize göre ek sorular açılırsa bunları doldurun. Yeni görüntüler, bu seçimlerden sonra hangi ek alanların açıldığını göstermiyor.
+
+### 05-G — Kaydet ve kontrol et
+
+1. Sayfanın kalan kısmında varsa başka zorunlu alanları doldurun; özellikle başlık ve özetin kaybolmadığını kontrol edin.
+2. Sağ alttaki **Save/Kaydet** düğmesine basın.
+3. Sayfayı yeniden açtığınızda **başlık, özet, anahtar kelimeler ve bilimsel alanların** korunduğunu kontrol edin.
+4. Başvuru sonunda **Preview Application / Başvuruyu Önizle** üzerinden bu bilgilerin çıktıya doğru geçtiğini doğrulayın.
+
+**Not:** Önceki rehberde “proje süresi isteniyorsa” ifadesi vardı. Yeni paylaşılan sayfa kesitlerinde **proje süresi giriş alanı görünmüyor**. Süreyi **Araştırma Önerisi > Çalışma Takvimi** ile tutarlı planlamaya devam edin; sürenin nereden seçileceğini yalnızca bu kesitlerden kesin olarak söyleyemeyiz.
 
 ---
 
@@ -194,11 +316,17 @@ Bu ekranda tek bir büyük kutu yok: aşağı doğru ilerledikçe **1.1, 1.2, 2,
 **Bu kutuya şu sırayla yazın:**
 
 1. Hangi probleme odaklanıyorsunuz?
+
 2. Bu problem neden önemli? Kim, hangi koşullarda etkileniyor?
+
 3. İlgili çalışmalar/literatür neler söylüyor? En azından konuyla doğrudan bağlantılı gerçek çalışmalara metin içinde atıf yapın.
+
 4. Bilinen yöntemlerin hangi yönü eksik veya hangi soruya yanıt verilmiyor?
+
 5. **Sizin araştırmanız tam olarak neyi araştıracak/karşılaştıracak/test edecek?**
+
 6. Araştırma sorusunu açıkça yazın; varsa test edilebilir hipotez belirtin.
+
 7. 12. Kalkınma Planı / 2030 Sanayi ve Teknoloji Stratejisi öncelikleriyle **gerçek bir ilişki varsa** neden ilişkili olduğunu açıklayın. Yoksa uydurma bağlantı kurmayın.
 
 **Yazım iskeleti (köşeli alanlar doldurulmalı):**
@@ -211,17 +339,22 @@ Bu ekranda tek bir büyük kutu yok: aşağı doğru ilerledikçe **1.1, 1.2, 2,
 
 **Asgari uzunluk: 350 karakter.**
 
-**Amaç** = Projenin genel olarak araştırmak/ortaya koymak istediği şey.  
+**Amaç** = Projenin genel olarak araştırmak/ortaya koymak istediği şey.
+
 **Hedef** = O amaca ulaşılıp ulaşılmadığını ölçmeyi sağlayan somut sonuçlar.
 
 **Yazma sırası:**
 
 1. “Bu projenin amacı…” diye başlayan bir amaç cümlesi yazın.
+
 2. Amaca ulaşmak için 3–5 somut hedef koyun.
+
 3. Her hedefte **nasıl doğrulanacağını** söyleyin (ör. hata oranı, karşılaştırma, anket puanı, performans, zaman, doğruluk, kullanılabilirlik).
+
 4. Hedeflerin proje süresi, veri ve bütçeyle erişilebilir olduğundan emin olun.
 
-**Kötü hedef:** “Yapay zekâ alanını geliştirmek.”  
+**Kötü hedef:** “Yapay zekâ alanını geliştirmek.”
+
 **Ölçülebilir hedef:** “Üç yöntemi aynı test kümesinde F1 puanı, yanlış pozitif oranı ve çalışma süresi bakımından karşılaştırmak.”
 
 ### 06-C — 2. Yöntem
@@ -233,14 +366,23 @@ Bu ekranda tek bir büyük kutu yok: aşağı doğru ilerledikçe **1.1, 1.2, 2,
 İdeal sıralama:
 
 1. **Araştırma tasarımı:** Deneysel çalışma mı, karşılaştırmalı analiz mi, saha çalışması mı, simülasyon mu?
+
 2. **Veri/örneklem:** Veri nereden gelecek? Açık veri mi, katılımcı verisi mi, sensör mü? Kaç örnek/senaryo planlanıyor?
+
 3. **Uygulama aşamaları:** Ön işleme → yöntem/model/algoritma → deney → değerlendirme.
+
 4. **Değişkenler:** Hangi faktörleri değiştireceksiniz (bağımsız değişken)? Hangi çıktıları ölçeceksiniz (bağımlı değişken)? Konuya uygun değilse açıklayın.
+
 5. **Karşılaştırma/baseline:** Sonucun iyi olduğuna neye göre karar vereceksiniz? Mevcut yöntem, sabit eşik, kontrol grubu vb.
+
 6. **Ölçütler ve analiz:** F1, hata oranı, gecikme, bellek, duyarlılık, istatistiksel test gibi konuya uygun ölçümleri belirtin.
+
 7. **Tekrarlanabilirlik:** Deney koşulları, tekrar sayısı, yazılım/sürüm ve veri bölme planını mümkün olduğunca açık yazın.
+
 8. **İlgili bilimsel dayanak:** Uygun kaynaklara atıf yapın.
+
 9. **Çalışma takvimi ilişkisi:** Hangi yöntem adımının hangi iş paketinde yürütüleceğini belirtin.
+
 10. Ön çalışma yapıldıysa **gerçek** sonuçlarını yazın; yapmadıysanız sonuç uydurmayın.
 
 **Kontrol:** 1.2'deki her ölçülebilir hedefi yöntem bölümünde test eden bir süreç bulunmalıdır.
@@ -250,17 +392,25 @@ Bu ekranda tek bir büyük kutu yok: aşağı doğru ilerledikçe **1.1, 1.2, 2,
 Görüntüde **3.1 Çalışma Takvimi** altında şu sütunlar var:
 
 - **Proje Süresi (Ay)**
+
 - **Faaliyetler**
+
 - **Kim(ler) Tarafından Gerçekleştirileceği**
+
 - **Başarı Ölçütü ve Araştırmanın Başarısına Katkısı**
 
 **Nasıl doldurulur?**
 
 1. **3.1'in hemen üzerindeki kırmızı `+ Add`** düğmesine tıklayın.
+
 2. Açılan satır/formda iş paketinin ay aralığını girin.
+
 3. Yapılacak işi **bir çıktı verecek kadar somut** tanımlayın.
+
 4. Hangi öğrenci(ler)in yapacağını belirtin. Danışmanın rolünü sistemin gerektirdiği biçimde açıklayın; gerçekte çalışmayacak kişiyi işi yapacakmış gibi yazmayın.
+
 5. Başarı ölçütünü sayıyla veya denetlenebilir bir açıklamayla yazın; araştırmaya katkı payını belirtin.
+
 6. Kaydedin; tüm iş paketleri için `+ Add` işlemini tekrarlayın.
 
 **Örnek 6 aylık çalışma çizelgesi (tamamen örnektir):**
@@ -280,13 +430,17 @@ Görüntüde **3.1 Çalışma Takvimi** altında şu sütunlar var:
 Görüntüde **3.2 Risk Yönetimi** altında şu sütunlar var:
 
 - **En Önemli Riskler**
+
 - **Alınacak Tedbirler (B Planı)**
 
 **Nasıl doldurulur?**
 
 1. **3.2'nin üzerindeki kırmızı `+ Add`** düğmesine tıklayın.
+
 2. Projenin yapılmasını gerçekçi biçimde aksatabilecek bir risk yazın.
+
 3. Aynı satırda, o sorun gerçekleşirse ne yapacağınızı **B planı** olarak yazın.
+
 4. En önemli 2–4 riski aynı şekilde ekleyin.
 
 | Örnek risk | Makul B planı |
@@ -302,11 +456,15 @@ Görüntüde **3.2 Risk Yönetimi** altında şu sütunlar var:
 Görüntüde **3.3 Araştırma Olanakları** altında şu sütunlar var:
 
 - **Kuruluşta Bulunan Altyapı/Ekipman Türü – Modeli (Laboratuvar, Araç, Makine-Teçhizat vb.)**
+
 - **Projede Kullanım Amacı**
 
 1. **3.3'ün üzerindeki kırmızı `+ Add`** düğmesine tıklayın.
+
 2. Üniversitenin veya projenin yürütüleceği kurumun **şu anda mevcut** olan kaynaklarını girin.
+
 3. Her ekipman için kullanım amacını belirtin.
+
 4. Gerçekte erişiminiz olmayan laboratuvar veya sunucuları varmış gibi göstermeyin.
 
 | Mevcut olanak (örnek) | Projede kullanılma amacı |
@@ -321,18 +479,24 @@ Görüntüde **3.3 Araştırma Olanakları** altında şu sütunlar var:
 
 Görüntüde üç kategori ve sağlarında metin kutuları bulunuyor. Beklenmeyen bir sonucu garanti vermeden, **gerçekçi çıktı hedefi** açıklayın.
 
-**Kategori 1 — Bilimsel/Akademik Çıktılar:** Ulusal/uluslararası makale, bildiri, kitap bölümü gibi olası çıktılar.  
+**Kategori 1 — Bilimsel/Akademik Çıktılar:** Ulusal/uluslararası makale, bildiri, kitap bölümü gibi olası çıktılar.
+
 Örnek: “Karşılaştırmalı deney sonuçlarının akademik bildiri hazırlığına uygun biçimde raporlanması.” Bir makalenin kesin kabul edileceğini yazmayın.
 
-**Kategori 2 — Ekonomik/Ticari/Sosyal Çıktılar:** Prototip, yazılım, veri seti, toplumsal yarar, uygulama kapasitesi gibi sonuçlar.  
+**Kategori 2 — Ekonomik/Ticari/Sosyal Çıktılar:** Prototip, yazılım, veri seti, toplumsal yarar, uygulama kapasitesi gibi sonuçlar.
+
 Örnek: “Öğrencilerin tekrar edebileceği bir deney protokolü ve çalışan prototipin oluşturulması.”
 
-**Kategori 3 — Yeni Proje(ler) Oluşturulmasına Yönelik Çıktılar:** Bu çalışmanın devamı olabilecek gerçekçi araştırma soruları/proje fikri.  
+**Kategori 3 — Yeni Proje(ler) Oluşturulmasına Yönelik Çıktılar:** Bu çalışmanın devamı olabilecek gerçekçi araştırma soruları/proje fikri.
+
 Örnek: “Elde edilen bulgulara göre daha büyük veri kümelerinde doğrulanmaya yönelik yeni bir araştırma önerisinin çerçevesinin çıkarılması.”
 
 1. Her kategori için projenizle ilişkili beklenen çıktıyı düşünün.
+
 2. Sağdaki kutuya tıklayın; düzenleme için gerekiyorsa satırın sonundaki **kalem simgesini** kullanın.
+
 3. Çıktıları nicel ya da doğrulanabilir ifadelerle yazın.
+
 4. Gerçekçi olmayan veya projenizle ilgisiz yayın/patent vaatlerinde bulunmayın.
 
 ### 06-H — 5. Belirtmek İstediğiniz Diğer Konular
@@ -340,7 +504,9 @@ Görüntüde üç kategori ve sağlarında metin kutuları bulunuyor. Beklenmeye
 Görüntüde geniş bir metin kutusu var. Buraya yalnızca **değerlendirmeye yardımcı olan** ek bilgiler (örneğin açıklayıcı küçük tablo, grafik, ön çalışmanın doğrulanmış sonucu, deney akışı) eklenebilir.
 
 - Yeni bir proje tanımı yazıp önceki bölümleri tekrar etmeyin.
+
 - İlişkili ve yararlı ek bilgi yoksa, **zorunluluk işareti yoksa** boş bırakabilirsiniz.
+
 - “Eklemek istediğiniz diğer konular” alanını bütün kaynakçanın veya esas yöntemin yerine kullanmayın.
 
 ### 06-I — 6. Ekler
@@ -348,14 +514,19 @@ Görüntüde geniş bir metin kutusu var. Buraya yalnızca **değerlendirmeye ya
 Bu ek bölüm, başvurudaki bilimsel metni destekleyen **ölçek, anket veya başka yardımcı materyallere** yer vermek içindir.
 
 - İlgili materyal varsa başlıkları ve gerekli açıklamaları ekleyin.
+
 - Ekleri ana yöntem yerine kullanmayın; yöntem açıklaması yukarıdaki **2. Yöntem** kutusunda bulunmalı.
+
 - Yardımcı ekiniz yoksa ekranın zorunlu alan denetimine göre boş kalabilir.
 
 ### 06-J — Kaydet ve önizle
 
 1. Araştırma Önerisi ekranının sağ altındaki **Save** düğmesine basın.
+
 2. **Kaynaklar** ekranında bulunan **Preview Research Proposal / Proje Önerisini Önizle** seçeneğine veya sistemde buna karşılık gelen önizleme düğmesine tıklayın.
+
 3. Oluşturulan dosyada **özetin, 1.1'in, 1.2'nin, yöntemin, iş takviminin, risklerin, olanakların ve tabloların** yer aldığını kontrol edin.
+
 4. Tablolar sayfa dışına taşıyor, görüntüler görünmüyor veya metin kayboluyorsa kaynağa geri dönüp düzenleyin ve **yeniden önizleyin**.
 
 **Biçimlendirme ipuçları:** Resimleri metin editöründeki resim simgesiyle, tabloları tablo aracıyla, maddeleri liste aracıyla ekleyin. Görseller için `.jpg`, `.jpeg` veya `.png` tercih edin. Başka bir programdan biçimlendirilmiş metin yapıştırıldığında önizleme bozulursa biçimleri temizleyip editör araçlarıyla yeniden verin.
@@ -366,19 +537,26 @@ Bu ek bölüm, başvurudaki bilimsel metni destekleyen **ölçek, anket veya ba�
 
 **Tıklanacak yer:** Soldaki menü > **Kaynaklar**.
 
-Görüntüde **Kaynakça \*** adlı geniş bir alan ve altında **Number the Bibliography** ile **Preview Research Proposal** düğmeleri var. Ekran görüntüsünde en fazla **32.000 karakter** yazılabildiği belirtiliyor.
+Görüntüde **Kaynakça** (zorunlu, yıldızlı) adlı geniş bir alan ve altında **Number the Bibliography** ile **Preview Research Proposal** düğmeleri var. Ekran görüntüsünde en fazla **32.000 karakter** yazılabildiği belirtiliyor.
 
 1. Hazırladığınız **doğrulanmış** kaynakça metnini açın.
+
 2. Kaynakları yazar soyadına göre alfabetik sıralayın.
+
 3. Her makalenin başlık/yazar/yıl/dergi/sayı/sayfa bilgilerini; **DOI'si varsa DOI'yi** ekleyin.
-4. Kaynakçayı **Kaynakça \*** alanına yapıştırın.
+
+4. Kaynakçayı **Kaynakça** (zorunlu, yıldızlı) alanına yapıştırın.
+
 5. İsterseniz **Number the Bibliography** düğmesini kullanmadan önce kaynağın sıralanma/atıf düzenini kontrol edin; otomatik numaralandırma sonrasında metin içi atıf uyumunu yeniden gözden geçirin.
+
 6. **Save/Kaydet** ile kaydedin.
+
 7. **Preview Research Proposal** ile oluşturulan araştırma önerisini kontrol edin.
 
 **Kural:** Kaynakçada yer alan **her kaynak** başvuru metninde de atıf almalıdır. Metinde kullanılan atıfların kaynakçada karşılığı bulunmalıdır. Sahte makale, yanlış DOI ve uydurulmuş yazar kullanmayın.
 
-**Çok kısa örnek gösterim (gerçek kaynakla değiştirilmelidir):**  
+**Çok kısa örnek gösterim (gerçek kaynakla değiştirilmelidir):**
+
 `[Yazar Soyadı], [Adının baş harfi]. [Yıl]. “[Makale başlığı]”, [Dergi], [Cilt]([Sayı]), [Sayfalar]. DOI: [Gerçek DOI]`
 
 Resmî biçimlendirme örnekleri: <https://tubitak.gov.tr/tr/destekler/akademik/bibliyografik-verilerin-duzenlenmesi>
@@ -390,10 +568,15 @@ Resmî biçimlendirme örnekleri: <https://tubitak.gov.tr/tr/destekler/akademik/
 Görüntüde **4 onay kutusu** bulunuyor. İlk üçü kaynakların ve yapay zekâ ile üretilmiş yanlış/uydurma referansların sorumluluğuyla ilgilidir. Dördüncü kutu **“kabul, beyan ve taahhüt ederim”** ifadesidir.
 
 1. Metnin tamamını **dikkatle okuyun**.
+
 2. Öneri metnindeki **tüm atıfların kaynakça listesinde yer aldığını** ve listedeki kaynakların tamamına metinde atıf yapıldığını doğrulayın.
+
 3. ÜYZ'nin ürettiği/önerdiği kaynakların gerçekliğini **tek tek** doğrulayın.
+
 4. Kullanılan ÜYZ araçlarını ve kullanım amaçlarını, sistem ayrıca soruyorsa **gerçeğe uygun** beyan edin; kullanılmadıysa kullanılmadığını belirtin.
+
 5. Yalnızca maddelerde yazan beyanlar gerçeği yansıtıyorsa ilgili kutuları işaretleyin.
+
 6. **Save/Kaydet** düğmesine basın.
 
 **Önemli ayrım:** Bu sayfa yalnızca bir “AI kullandım/kullanmadım” kutusu değildir; bilimsel kaynakların doğru olduğuna ilişkin taahhüt içerir. TÜBİTAK ÜYZ rehberi, ÜYZ'nin **önemli ölçüde** kullanıldığı durumlarda şeffaf beyanı zorunlu tutar; doğruluk ve özgünlük sorumluluğu öğrenci ve danışmandadır. Gizli/kişisel verileri yetkisiz biçimde ÜYZ araçlarına vermeyin.
@@ -407,10 +590,15 @@ Resmî rehber: <https://tubitak.gov.tr/tr/kurumsal/hakkimizda/uretken-yapay-zeka
 Görüntüde **Etik Kurulu Onay Belgesi** için bir dosya yükleme alanı bulunuyor.
 
 1. Projenizin etik kurul izni gerektirip gerektirmediğini **danışmanınızla** değerlendirin. Özellikle insan katılımcı, kişisel/özel nitelikli veri, anket/mülakat, sağlık verisi veya benzeri çalışmalar dikkat gerektirir; bu örnekler otomatik karar değildir.
+
 2. **Etik kurul belgesi bütün başvurularda zorunlu değildir.** Ekrandaki açıklamada, başvuru anında belgeye sahip olmayan ve çalışması için izin gereken projelerin, desteklenmeleri halinde belirtilen aşamada belge yükleyebileceği yazıyor.
+
 3. Belgeniz varsa sistemin istediği dosya biçiminde **Select File / Dosya Seç** ile yükleyin.
+
 4. Belge yüklediyseniz gerçekten açıldığını ve doğru dosya olduğunu kontrol edin.
+
 5. Başka belge alanı çıkarsa ekrandaki açıklamaları izleyin. Gerekli olmayan belgeyi sırf kutu var diye yüklemeyin.
+
 6. **Save/Kaydet** düğmesine basın.
 
 **Sonraki aşama uyarısı:** TÜBİTAK değerlendirmesi sonunda çalışmanızın etik kurul onayına tabi olduğu belirlenirse **Etik Kurul Onay Belgesi veya Muafiyet Belgesi** istenebilir; bildirilen süre içinde sunulmazsa destek yürürlüğe alınamayabilir.
@@ -420,9 +608,13 @@ Görüntüde **Etik Kurulu Onay Belgesi** için bir dosya yükleme alanı bulunu
 **Tıklanacak yer:** Soldaki menü > **Başvuru Sahibi Banka Bilgileri**.
 
 1. Proje yürütücüsü öğrencinin **kendi adına kayıtlı** banka hesabını açın.
+
 2. Ekranda istenen banka/hizmet bilgilerini kontrol ederek girin.
+
 3. **IBAN'ı bankacılık uygulamanızdan kopyalayın**; tek tek yazarken karakter hatası yapmamaya çalışın.
+
 4. IBAN sahibinin başvuruyu yapan **yürütücü öğrenci** olduğundan emin olun. Anne-baba, arkadaş, proje ortağı veya danışmanın hesabını yazmayın.
+
 5. **Save/Kaydet** düğmesine basın.
 
 **Not:** Banka bilgilerini bu rehbere veya herkese açık bir dosyaya yazmayın; yalnızca resmî başvuru sistemine girin.
@@ -432,8 +624,11 @@ Görüntüde **Etik Kurulu Onay Belgesi** için bir dosya yükleme alanı bulunu
 **Tıklanacak yer:** Soldaki menü > **Taahhütname**.
 
 1. Başvuruya ilişkin hükümleri sonuna kadar okuyun.
+
 2. Projenin özgünlüğü, bilgilerin doğruluğu ve sorumluluklarla ilgili beyanları kontrol edin.
+
 3. Yalnızca hepsi doğruysa gerekli onay kutularını işaretleyin.
+
 4. **Save/Kaydet** ile kaydedin.
 
 **Önemli:** Kutuları okuyup anlamadan rastgele işaretlemeyin. Bu metinler hukuki/akademik sorumluluk doğurabilir.
@@ -445,27 +640,44 @@ Bu adım **başvurunun gerçekten tamamlanması için kritik aşamadır.** Solda
 ### 12.1. Öğrenci son kontrolünü yapsın
 
 1. Sayfanın sağ üstündeki **Preview Application / Başvuruyu Önizle** düğmesini kullanın.
+
 2. Ayrıca **Kaynaklar > Preview Research Proposal** düğmesiyle araştırma önerisini açın.
+
 3. Açılan belgelerde Türkçe karakterler, tablolar, kaynaklar, iş takvimi, bütçe, danışman, ortaklar ve proje başlığını tek tek kontrol edin.
+
 4. Aşağıdaki **Son gönderim kontrol listesi**ndeki işaretlenmeyen maddeleri düzeltin.
+
 5. Ekranda bulunan gerçek **başvuruyu tamamla/son onay/onaya gönder** işlemini yapın. **Bu düğme gönderilen ekran görüntülerinde görünmediği için ismini veya yerini kesin olarak belirtemiyoruz.** Sadece **Save**'e basmış olmanız yeterli değildir.
+
 6. İşlemden sonra sistemde başvurunun gönderildiğine ilişkin bir durum/mesaj göründüğünü kontrol edin.
 
 ### 12.2. Danışman hocanız onay versin
 
 1. **Yürütücü öğrencinin son onayından sonra** sistem akademik danışmana inceleme ve onay için bildirim gönderir.
+
 2. Hocanız, TYBS hesabına girerek başvuruyu inceler.
+
 3. Uygunsa elektronik olarak **onaylar**. Uygun değilse size **düzeltme için iade** edebilir.
+
 4. İade edilirse siz düzenleme yapıp **yeniden danışmanın onayına** gönderirsiniz.
+
 5. **11 Kasım 2026 saat 17.30'a kadar** danışman onayı da tamamlanmalıdır. Hocanızla son günü beklemeden konuşun.
 
 ### 12.3. Üniversite yetkilisinin e-imzasını takip edin
 
 1. Danışman onayı sonrası başvuru üniversitenizin yetkili imza sürecine gider.
-2. **16–23 Kasım 2026** döneminde kuruluş yetkilisinin e-imzası tamamlanmalıdır.
-3. Bu imza öğrencinin veya danışmanın kendiliğinden yerine getireceği bir işlem değildir; üniversitenizdeki yetkili süreç üzerinden yürütülür.
-4. Danışmanınız ve üniversitenizin ilgili birimiyle durumunu takip edin.
-5. **Kuruluş yetkilisinin e-imzası tamamlandığında** başvuru geçerli kabul edilir.
+
+2. **Araştırma Projesi Bilgileri > Institution Official Information** tablosunda üniversiteniz adına **tanımlı bir kuruluş yetkilisi** bulunduğunu daha başvuru aşamasında kontrol edin. Sistem uyarısına göre yetkili tanımlanmadan **danışman onay veremez**.
+
+3. Yetkili eksikse üniversitenizin rektörlük makamına/ilgili birimine başvurun. Sistem, **Rektör veya Rektör Yardımcısının `bideb.eimza@tubitak.gov.tr` adresine e-posta göndermesini** söylüyor.
+
+4. **16–23 Kasım 2026** döneminde kuruluş yetkilisinin e-imzası tamamlanmalıdır.
+
+5. Bu imza öğrencinin veya danışmanın kendiliğinden yerine getireceği bir işlem değildir; üniversitenizdeki yetkili süreç üzerinden yürütülür.
+
+6. Danışmanınız ve üniversitenizin ilgili birimiyle durumunu takip edin.
+
+7. **Kuruluş yetkilisinin e-imzası tamamlandığında** başvuru geçerli kabul edilir.
 
 ---
 
@@ -474,42 +686,87 @@ Bu adım **başvurunun gerçekten tamamlanması için kritik aşamadır.** Solda
 ### Kişi ve ekip
 
 - [ ] Başvuru **2209-A / 2026** için açıldı.
+
 - [ ] Yürütücünün kişisel ve öğrenim bilgileri doğru.
+
 - [ ] Danışman önceden başvuruyu kabul etti; YÖKSİS/ARBİS bilgileri güncel.
-- [ ] Proje ortakları (varsa) doğru eklendi; yürütücü dışındaki ortak sayısı 4'ü geçmiyor.
+
+- [ ] Danışmanın **ID Number → Kişi Getir** ile çağrılan ARBİS/YÖK bilgileri doğru.
+
+- [ ] Ortak yoksa bölüm **boş bırakılarak kaydedildi**; ortak varsa **Öğrenci Bilgileri → Ekle** adımları tamamlandı.
+
+- [ ] Proje ortakları (varsa) doğru eklendi; **ARBİS kayıtları** var ve yürütücü dışındaki ortak sayısı **4'ü geçmiyor**.
+
 - [ ] Aynı dönem/halen desteklenen projeler ve diğer başvuru şartları açısından uygunuz.
 
 ### Proje metni
 
-- [ ] Başlık açık, Türkçe ve bilimsel.
+- [ ] Üniversite, fakülte, bölüm, sınıf ve öğrencilik durumu ekranda doğru.
+
+- [ ] **Institution Official Information** tablosunda üniversitenin kuruluş yetkilisi tanımlı.
+
+- [ ] Başlık açık, Türkçe, bilimsel ve **en fazla 495 karakter**.
+
+- [ ] Anahtar kelimeler **3–5 adet** ve **virgülle ayrılmış**.
+
+- [ ] **Bilimsel ve Teknolojik Faaliyet Alanları** projenin gerçek alanıyla uyumlu olarak eklendi.
+
+- [ ] Öncelikli alan **Evet/Hayır** seçimi gerçek duruma uygun.
+
 - [ ] Özet **25–450 kelime** aralığında ve dört değerlendirme boyutunu kapsıyor.
+
 - [ ] **1.1 en az 350 karakter** ve gerçek literatür atıfları içeriyor.
+
 - [ ] **1.2 en az 350 karakter** ve ölçülebilir hedefler içeriyor.
+
 - [ ] **2. Yöntem en az 350 karakter** ve tekrar edilebilir bir araştırma tasarımı içeriyor.
+
 - [ ] En az 1 iş paketi var; katkı yüzdeleri **toplam %100**.
+
 - [ ] İş paketleri, proje süresi (en fazla 12 ay) ve yöntem uyumlu.
+
 - [ ] Ana riskler ve amaçtan sapmayan B planları yazıldı.
+
 - [ ] Mevcut araştırma olanakları doğru belirtildi.
+
 - [ ] Yaygın etki/çıktılar üç kategoride gerçekçi biçimde açıklandı.
+
 - [ ] Kullanılmış bütün kaynaklar gerçek ve doğrulanmış; DOI'ler kontrol edildi.
+
 - [ ] Kaynakçadaki her kaynağın metin içi atfı var.
+
 - [ ] Yapay zekâ kullanımına ilişkin beyanlar gerçeğe uygun.
 
 ### Bütçe ve belge
 
-- [ ] Bütçe kalemleri gerekçeli, destek kapsamına uygun ve **en çok 12.000 TL**.
+- [ ] Bütçe ekranındaki **dört gider kategorisinin** (makine-teçhizat, hizmet, sarf, ulaşım) toplamı **en çok 12.000 TL**.
+
+- [ ] Harcama olmayan kategorilere **0** girildi; destek talep edilmiyorsa **Destek istemiyorum** seçeneği uygun şekilde kullanıldı.
+
+- [ ] Ayrıntılı ürün/adet/fiyat/gerekçeler **hazırlık çizelgesinde** bulunuyor; TYBS'nin kategori-toplam alanlarıyla karıştırılmadı.
+
 - [ ] Etik kurul gerekliliği danışmanla değerlendirildi; varsa mevcut belge doğru yüklendi.
+
 - [ ] IBAN **yürütücünün kendisine ait**.
+
 - [ ] Gerekli taahhütler gerçekten okunup onaylandı.
 
 ### Teknik kontrol ve onay
 
 - [ ] **Save/Kaydet** işlemleri yapıldı; sayfalar yeniden açılınca içerikler duruyor.
+
 - [ ] **Preview Research Proposal** ile proje önerisi önizlendi.
+
 - [ ] **Preview Application** ile tüm başvuru kontrol edildi.
+
 - [ ] Önizleme boş değil; görseller, Türkçe karakterler ve tablolar doğru.
+
 - [ ] Yürütücü **son onay/onaya gönderme** işlemini yaptı.
+
 - [ ] Akademik danışman **11 Kasım 2026 17.30'dan önce** onay verdi.
+
+- [ ] Üniversitenin kuruluş yetkilisi sistemde tanımlı; eksikse yetkili birime zamanında bildirildi.
+
 - [ ] Kuruluş yetkilisinin **16–23 Kasım 2026** e-imzası takip edildi ve tamamlandı.
 
 ---
@@ -519,6 +776,18 @@ Bu adım **başvurunun gerçekten tamamlanması için kritik aşamadır.** Solda
 ### “Save'e bastım ama solda hâlâ × var.”
 
 İlgili bölümü yeniden açın. Zorunlu `*` alanı, eksik kayıt, eklenip kaydedilmemiş satır veya kabul edilmemiş taahhüt olabilir. Tamamlanmamış bölümün içindeki açıklamaya bakın. Özellikle **Danışman Onay** işlemi sıradaki aşamaya geçmeden etkinleşmeyebilir.
+
+### “Proje ortağım yok; Ekle düğmesine basmam gerekiyor mu?”
+
+Hayır. **Proje Ortağı Öğrenci Bilgileri** ekranındaki yönergeye göre başka öğrenci yoksa listeyi boş bırakıp **Save/Kaydet** ile ilerleyebilirsiniz. Ekip varsa **Öğrenci Bilgileri** düğmesinden arayıp **Ekle** işlemini tamamlayın; yalnızca arama yapmak yeterli değildir.
+
+### “Bütçede ürünün adını ve adetini nereye yazacağım?”
+
+Yeni görüntüde **Bütçe** ekranı yalnızca dört gider kategorisinin **toplam TL tutarlarını** istiyor. Ayrıntılı ürün ve gerekçe çizelgenizi dışarıda hazırlayın; TYBS'nin bu sayfasına ayrı ürün satırları eklenebildiğini varsaymayın. Harcama olmayan kategoriler **0** olarak kaydedilebilir.
+
+### “Danışman bilgilerini girdiğim hâlde danışman onay veremiyor.”
+
+**Danışman Bilgileri** ekranında **ID Number → Kişi Getir** ile doğru kişinin çağrıldığını doğrulayın. Ayrıca **Araştırma Projesi Bilgileri** ekranındaki **Institution Official Information** tablosunda üniversite kuruluş yetkilisi tanımlı olmalıdır. TYBS'nin uyarısına göre yetkili tanımlanmadan akademik danışman onay veremez. Böyle bir durumda üniversitenizin yetkili birimine başvurun.
 
 ### “350 yazıyor, 350 kelime mi?”
 
@@ -558,7 +827,7 @@ Hayır. Süreç: **Tüm alanları doldur → kaydet → önizle → öğrencinin
 
 **1. oturum — Hazırlık:** Konu, danışman, ekip, kaynakça, bütçe taslağı ve iş paketlerini bitirin. ARBİS bilgilerini kontrol edin.
 
-**2. oturum — TYBS ilk 5 ekran:** Yürütücü bilgileri, danışman, proje ortakları, bütçe ve araştırma projesi bilgilerini doldurun. Her ekranda kaydedin.
+**2. oturum — TYBS ilk 5 ekran:** Yürütücü bilgilerini kontrol edin; danışman için **ID Number → Kişi Getir** yapın; varsa öğrenci ortaklarını **Öğrenci Bilgileri → Ekle** ile tanımlayın. Bütçede **dört kategorinin TL toplamlarını** yazın. Araştırma projesi ekranında **kuruluş yetkilisini kontrol edip** başlığı, özeti, anahtar kelimeleri, bilimsel faaliyet alanını ve öncelikli alan seçimini tamamlayın. Her ekranda kaydedin.
 
 **3. oturum — Araştırma Önerisi:** 1.1, 1.2, yöntem, iş paketleri, riskler, olanaklar, yaygın etki ve gerekirse ekleri girin. Son olarak özet metnini gözden geçirin.
 
@@ -566,7 +835,7 @@ Hayır. Süreç: **Tüm alanları doldur → kaydet → önizle → öğrencinin
 
 **5. oturum — Önizleme, öğrenci onayı ve danışman:** Her şeyi önizleyin; hataları düzeltip son onaya gönderin. Danışmanın onay verdiğini **sistemde doğrulayın**.
 
-**6. oturum — Kuruluş e-imzası:** 16–23 Kasım döneminde üniversite yetkilisinin e-imzasını takip edin.
+**6. oturum — Kuruluş e-imzası:** Kuruluş yetkilisinin TYBS'de **önceden tanımlı** olduğunu teyit edin; 16–23 Kasım döneminde üniversite yetkilisinin e-imzasını takip edin.
 
 > **Pratik öneri:** Bilimsel metinleri TYBS dışında da saklayın (ör. `proje_ozeti.md`, `yontem.md`, `kaynakca.md`). Böylece tarayıcı kapanırsa veya kayıt sorunu olursa yazdıklarınızı kaybetmezsiniz. Fakat **başvurunun resmî kaydı TYBS'dedir**; yerel dosya tek başına başvuru sayılmaz.
 
@@ -577,54 +846,95 @@ Hayır. Süreç: **Tüm alanları doldur → kaydet → önizle → öğrencinin
 Aşağıdaki bağlantılar 31 Ekim 2026 itibarıyla TÜBİTAK'ın 2026 yılı 2209-A başvurusu için yayımladığı kaynaklardır:
 
 1. **Başvuru sistemi (TYBS):** <https://tybs.tubitak.gov.tr/>
+
 2. **ARBİS / Araştırmacı Bilgi Sistemi:** <https://arbis.tubitak.gov.tr/>
+
 3. **2209-A program sayfası:** <https://tubitak.gov.tr/tr/burslar/lisans-onlisans/destek-programlari/2209-universite-ogrencileri-arastirma-projeleri-destekleme-programi>
+
 4. **2026 çağrı duyurusu (PDF):** <https://tubitak.gov.tr/sites/default/files/2026-10/2209-A_2026_Yili_Cagri_Duyurusu.pdf>
+
 5. **2026 Başvuru İçeriği Bilgi Notu (PDF):** <https://tubitak.gov.tr/sites/default/files/2026-10/2209-A_Basvuru_Icerigi_Bilgi_Notu.pdf>
+
 6. **Bibliyografik verilerin düzenlenmesi:** <https://tubitak.gov.tr/tr/destekler/akademik/bibliyografik-verilerin-duzenlenmesi>
+
 7. **ÜYZ'nin sorumlu ve güvenilir kullanımı rehberi:** <https://tubitak.gov.tr/tr/kurumsal/hakkimizda/uretken-yapay-zeka-rehberi>
+
 8. **TÜBİTAK e-imza sistemi (kuruluş yetkilisi için):** <https://e-imza.tubitak.gov.tr/>
 
-**TÜBİTAK 2209-A iletişim:** `bideb2209a@tubitak.gov.tr` — Sorun bildirirken başvuru dönemi, ilgili ekran, hata metni, tarih/saat ve kişisel veriler gizlenmiş ekran görüntüsünü ekleyin. Şifrenizi ya da hassas kimlik/banka bilgilerinizi e-postayla göndermeyin.
+**TÜBİTAK 2209-A iletişim:** `bideb2209a\@tubitak.gov.tr` — Sorun bildirirken başvuru dönemi, ilgili ekran, hata metni, tarih/saat ve kişisel veriler gizlenmiş ekran görüntüsünü ekleyin. Şifrenizi ya da hassas kimlik/banka bilgilerinizi e-postayla göndermeyin.
 
 ---
 
 ## 7. Son söz: öğrencinin aklında kalması gereken şema
 
 ```text
+
 Konu + Danışman + Ekip + Bütçe + Literatür + Metinleri hazırla
+
                        |
+
                        v
+
              ARBİS bilgilerini kontrol et
+
                        |
+
                        v
+
               TYBS'de 2209-A aç
+
                        |
+
                        v
+
 Ekran 01-05: kişi / danışman / ortak / bütçe / proje bilgileri
+
                        |
+
                        v
+
 Ekran 06-07: araştırma önerisi + kaynakça
+
                        |
+
                        v
+
 Ekran 08-11: ÜYZ ve diğer taahhütler + ekler + banka
+
                        |
+
                        v
+
               Kaydet + iki önizlemeyi kontrol et
+
                        |
+
                        v
+
                   Öğrenci SON ONAYI
+
                        |
+
                        v
+
             AKADEMİK DANIŞMAN ONAYI
+
                 (11 Kasım 17.30'a dek)
+
                        |
+
                        v
+
               KURULUŞ YETKİLİSİ E-İMZA
+
                     (16-23 Kasım)
+
                        |
+
                        v
+
                Başvuru geçerli hale gelir
+
 ```
 
 **Hatırlatma:** Bu belge açıklayıcı bir öğrenci rehberidir. **Bağlayıcı olan TÜBİTAK'ın güncel çağrı duyurusu, başvuru sistemi uyarıları ve resmî mevzuattır.**
