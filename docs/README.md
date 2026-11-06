@@ -7,9 +7,13 @@
 Kapalı ve engelli ortamlarda (koridor, bodrum, tünel) robotun kablosuz bağlantısı kısa mesafede kopar. Bunun bilinen bir çözümü, robotun ilerlerken arkasına **röle düğümleri bırakarak** çok atlamalı bir ağ kurmasıdır. Bu yaklaşıma *breadcrumbing* denir. Bu projede ucuz Wi-Fi kartlarıyla (XIAO ESP32-C3, düğüm başına ~650 TL) bu zinciri kuruyoruz ve iki soruyu ölçüyoruz:
 
 1. **Röle ne zaman bırakılmalı?** Üç kural karşılaştırılıyor: sabit mesafe, sinyal eşiği, sinyal eğilimi.
-2. **Röleler birbirine nasıl bağlanmalı?** Üç ağ yaklaşımı karşılaştırılıyor: hazır ESP-WIFI-MESH, ham ESP-NOW zinciri ve bizim protokolümüz **SBZ (Sıra Bilen Zincir)**.
+2. **Röleler birbirine nasıl bağlanmalı?** İki ağ yaklaşımı karşılaştırılıyor: hazır ESP-WIFI-MESH ve bizim protokolümüz **SBZ (Sıra Bilen Zincir)**.
 
-Operatör robotu kablolu kumandayla sürer. Bırakma kararını robot kendisi verir ve arkasındaki revolver tipi tabladan düğümü yere bırakır. En fazla 5 röle kullanılır, deneyler 3 ortamda yapılır, her koşul 5 kez tekrarlanır.
+Çıkış noktamız şu: bağlantı en çok **röle bırakma anında** kopar. Yeni röle ağa katılana kadar veri akışı kesilir. Bu yüzden kuralın ve protokolün birbirini telafi edip etmediğine de bakıyoruz.
+
+Operatör robotu kablolu kumandayla sürer. Bırakma kararını robot kendisi verir ve arkasındaki revolver tipi tabladan düğümü yere bırakır. En fazla 5 röle kullanılır. Kural ayarları düz bir koridorda yapılır, deneyler 2 test ortamında (L koridor, bodrum) yürütülür. Robotlu koşullar 8 kez tekrarlanır; toplam yaklaşık 120 koşu var.
+
+> 6 Kasım'da tasarım sadeleştirildi ([kararlar.md](kararlar.md) K-42). Bütün belgeler ve [TYBS metni](tubitak/TYBS_Basvuru_Metinleri.md) yeni tasarıma göre güncel.
 
 ## Dosyalar
 
@@ -26,7 +30,7 @@ Operatör robotu kablolu kumandayla sürer. Bırakma kararını robot kendisi ve
 | [maliyet.md](maliyet.md) | Malzeme listesi, fiyatlar, satın alma takibi | Aleyna |
 | [takvim.md](takvim.md) | 12 aylık plan, kilometre taşları, riskler ve B planları | Herkes |
 | [kararlar.md](kararlar.md) | Alınan kararlar ve nedenleri | Bir şeyi değiştirmeden önce |
-| [sadelestirme-onerisi.md](sadelestirme-onerisi.md) | Rafa kaldırılan sade deney tasarımı (uygulanmadı) | Zaman daralırsa |
+| [sadelestirme-onerisi.md](sadelestirme-onerisi.md) | Uygulanan sade tasarımın gerekçesi ve eski tasarımla farkı | Tasarımın neden böyle olduğunu merak edince |
 | [kaynakca.md](kaynakca.md) | Literatür ve teknik belgeler | Yazım sırasında |
 | [tubitak/](tubitak/) | 2209-A başvuru metinleri ve rehber | Başvuru süreci |
 
@@ -34,7 +38,7 @@ Operatör robotu kablolu kumandayla sürer. Bırakma kararını robot kendisi ve
 
 | Adım | Durum |
 |---|---|
-| Deney tasarımı | ✅ Tamamlandı (v2.1) |
+| Deney tasarımı | ✅ Tamamlandı (v3.0, sade tasarım) |
 | Bütçe | ✅ 12.000 TL, kalemler belli |
 | TÜBİTAK 2209-A başvurusu | ⏳ Son gün 11 Kasım 2026, 17.30 |
 | Malzeme alımı | ⬜ Başlamadı (önce 2 kartla ön test) |
@@ -65,11 +69,11 @@ Operatör robotu kablolu kumandayla sürer. Bırakma kararını robot kendisi ve
 | **Kesinti** | 500 ms'den uzun süre hiç paket gelmemesi |
 | **ESP-NOW** | Espressif'in Wi-Fi radyosu üzerinde çalışan, bağlantı kurmadan doğrudan çerçeve gönderen yöntemi. Tek başına çok atlama yapmaz |
 | **ESP-WIFI-MESH** | Espressif'in hazır mesh ağı: düğümler ebeveynlerini kendileri seçer, ağı kendileri onarır |
-| **SBZ** | Sıra Bilen Zincir, bizim protokolümüz. Robot bıraktığı röleye "üstün şu, onun üstü şu" der; keşif beklenmez |
-| **Bypass** | SBZ'de üst düğüm bozulunca paketi bir üstteki düğüme atlatmak |
+| **SBZ** | Sıra Bilen Zincir, bizim protokolümüz. Robot bıraktığı röleye "üstün şu" der; keşif beklenmez |
 | **Bekleme modu** | Tamburdaki rölenin açık olup ağa katılmaması; "aktif ol" komutunu beklemesi |
 | **EWMA** | Üstel ağırlıklı hareketli ortalama: yeni ölçüme daha çok ağırlık veren yumuşatma |
-| **S★** | İdeal yerleşim: rotayı en az röleyle kapsayan, sonradan hesaplanan konumlar. Kuralların ne kadar iyi olduğunu buna göre ölçeriz |
+| **Bırakma anı kesintisi** | Ana ölçütümüz: her bırakmanın 5 s öncesi ile 10 s sonrası arasındaki toplam kesinti süresi |
+| **K / O1 / O2** | K = düz koridor, yalnızca kalibrasyon (bütün kural ayarları burada). O1 = L dönüşlü koridor, O2 = beton bodrum; test ortamları |
 | **Pilot** | Ana deneyden önceki deneme ve ayar bulma aşaması. Verisi hipotez testinde kullanılmaz |
 | **Dondurma** | Ayarların ana deneyden önce yazılıp bir daha değiştirilmemesi |
 | **Karma etkili model** | Farklı günlerde yapılan koşuların "gün etkisini" hesaba katan istatistik modeli |

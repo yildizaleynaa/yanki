@@ -6,8 +6,8 @@
 
 | Kişi | Rol | Ana sorumluluk | Yedeği |
 |---|---|---|---|
-| **Aleyna** | Proje yürütücüsü | Koordinasyon; **SBZ protokolü** (ham ESP-NOW zinciri dâhil); ayar belgesi; istatistiksel analiz; kod ve veri setinin yayımlanması | Hatice (analiz) |
-| **Hatice** | Ortak | **ESP-WIFI-MESH** uygulaması ve bekleme modu; **bırakma kuralları** (S1–S3); sinyal haritası ve pilot; ideal yerleşim (S★); analiz | Aleyna (ağ yazılımı) |
+| **Aleyna** | Proje yürütücüsü | Koordinasyon; **SBZ protokolü**; ayar belgesi; istatistiksel analiz; kod ve veri setinin yayımlanması | Hatice (analiz) |
+| **Hatice** | Ortak | **ESP-WIFI-MESH** uygulaması ve bekleme modu; **bırakma kuralları** (S1–S3); kalibrasyon ve pilot; analiz | Aleyna (ağ yazılımı) |
 | **Hacer** | Ortak | **Bırakıcı robot** (2WD şasi tasarımı, ESP32-S3 sürüş kartı, motorlar ve enkoderler, güç sistemi, kumanda); mekanizmanın elektroniği, montajı ve kabul testi | Mustafa (mekanizma) |
 | **Mustafa** | Ortak | **Ölçüm altyapısı** (merkez düğüm kaydı, RTT, koşu betikleri); bırakma mekanizması ve düğüm kutularının **3D tasarımı ve baskısı** | Hacer (montaj) |
 
@@ -19,9 +19,9 @@
 |---|---|---|---|---|---|
 | **İP1** Ön test ve ölçüm altyapısı | 1–2 | ESP-NOW ön testleri, ortak paket biçimi | ESP-WIFI-MESH ön testi (router'sız kök) | Robot şasisi, sürüş testleri | Paket kaydı ve koşu betikleri |
 | **İP2** Protokoller ve mekanizma | 3–4 | SBZ protokolü | ESP-WIFI-MESH uygulaması, bekleme modu | Mekanizma elektroniği, montaj, kabul testi | Mekanizma ve düğüm kutularının 3D tasarımı ve baskısı |
-| **İP3** Kurallar ve pilot | 5 | Ayar belgesi | Kurallar, sinyal haritası, S★ | Kuralların robota entegrasyonu | Pilotta kayıt |
-| **İP4** Statik deneyler | 6–7 | Koşu yürütme | Koşu yürütme | — | Koşu yürütme, kayıt kontrolü |
-| **İP5** Robotlu deneyler | 8–10 | Merkez kaydı | Robot sürüşü ve bırakma | Robot sürüşü ve bırakma | Ağ izleme |
+| **İP3** Kurallar ve kalibrasyon | 5 | Ayar belgesi | Kurallar, kalibrasyon yürüyüşü, kapasite taraması | Kuralların robota entegrasyonu | Pilotta kayıt |
+| **İP4** Statik deneyler | 6 | Koşu yürütme | Koşu yürütme | — | Koşu yürütme, kayıt kontrolü |
+| **İP5** Robotlu deneyler | 7–10 | Merkez kaydı | Robot sürüşü ve bırakma | Robot sürüşü ve bırakma | Ağ izleme |
 | **İP6** Analiz ve yayın | 11–12 | Analiz; kod ve veri yayını | Analiz | Donanım belgeleri | 3D baskı dosyaları |
 
 ## Arayüzler: kim kime ne teslim eder
@@ -35,7 +35,7 @@ Ekipteki işler birbirine bağlı. Bu sınırlar baştan net olursa beklemeler a
 | Hacer ↔ Mustafa | — | Şasi ve tabla birlikte tasarlanır: motor, teker, pil ve kart yerleşimi; tablanın bağlantı noktaları | İP1 sonu |
 | Mustafa | Hacer | Basılmış şasi (İP1), tabla, taban ve düğüm kutuları (İP2 ortası) | İP1 / İP2 |
 | Hacer | Hatice | Robotun UART üzerinden mesafe göndermesi ve `BIRAK` komutunu alması | İP2 sonu |
-| Hatice | Aleyna | Pilot eğrileri ve önerilen ayarlar | İP3 sonu |
+| Hatice | Aleyna | Kalibrasyon eğrileri ve önerilen ayarlar | İP3 sonu |
 
 ## Karar verme
 

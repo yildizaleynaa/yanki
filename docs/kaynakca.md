@@ -84,7 +84,7 @@ Chung, T. H., Orekhov, V., & Maio, A. (2023). *Into the robotic depths: Analysis
 Li, J., Blake, C., De Couto, D. S. J., Lee, H. I., & Morris, R. (2001). *Capacity of ad hoc wireless networks*. MobiCom '01, 61–69. ACM. https://doi.org/10.1145/381677.381684
 
 - **Ne yapıyor?** Aynı kanalı paylaşan 802.11 düğümleri birbiriyle yarıştığı için zincirde atlama arttıkça verimin düştüğünü gösteriyor.
-- **Bizim için:** H2'nin dayanağı.
+- **Bizim için:** Röle eklemenin bedeli; gereksiz her röle verimi düşürür (TYBS 1.1).
 
 ### A12. CERBERUS teknik raporu — bırakma kararını insan verdi ★
 
@@ -103,8 +103,8 @@ Tam metinden doğrulanan bilgiler (6 Kasım 2026):
 | No | Belge | Kullanım |
 |---|---|---|
 | B1 | [Seeed Studio — XIAO ESP32-C3 başlangıç rehberi](https://wiki.seeedstudio.com/XIAO_ESP32C3_Getting_Started/) | Kart, anten, pil bağlantısı, pinler |
-| B2 | [Espressif — Wi-Fi sürücüsü (ESP32-C3)](https://docs.espressif.com/projects/esp-idf/en/v5.5.6/esp32c3/api-guides/wifi.html) | Kanal, verici gücü, Wi-Fi aç/kapa (1B arıza), RSSI. Not: AP+STA iki ayrı radyo demek değildir. |
-| B3 | [Espressif — ESP-NOW (ESP32-C3)](https://docs.espressif.com/projects/esp-idf/en/v5.5.6/esp32c3/api-reference/network/esp_now.html) | Eş tanımlama, gönderme/alma callback'leri, 250 B sınırı. ESP-NOW tek başına çok atlama yapmaz. |
+| B2 | [Espressif — Wi-Fi sürücüsü (ESP32-C3)](https://docs.espressif.com/projects/esp-idf/en/v5.5.6/esp32c3/api-guides/wifi.html) | Kanal, verici gücü, PHY hızı (`esp_wifi_config_80211_tx_rate`), RSSI. Not: AP+STA iki ayrı radyo demek değildir. |
+| B3 | [Espressif — ESP-NOW (ESP32-C3)](https://docs.espressif.com/projects/esp-idf/en/v5.5.6/esp32c3/api-reference/network/esp_now.html) | Eş tanımlama, gönderme/alma callback'leri, 250 B sınırı, varsayılan hız 1 Mbps ve eş başına hız (`esp_now_set_peer_rate_config`). Gönderim callback'i yalnızca MAC katmanında teslimi bildirir. ESP-NOW tek başına çok atlama yapmaz. |
 | B4 | [Espressif — ESP-WIFI-MESH API rehberi](https://docs.espressif.com/projects/esp-idf/en/release-v5.4/esp32c3/api-guides/esp-wifi-mesh.html) | Kök, ebeveyn, katmanlar, ağ onarımı |
 | B5 | [Espressif — ESP-WIFI-MESH programlama](https://docs.espressif.com/projects/esp-idf/en/latest/esp32c3/api-reference/network/esp-wifi-mesh.html) | `esp_mesh_*` arayüzleri, sabit kök. Mesh açıkken Wi-Fi'ı ayrıca yönetmek çakışma yaratır. |
 | B6 | [Espressif — ESP-FAQ: Wi-Fi Mesh](https://github.com/espressif/esp-faq/blob/master/docs/en/application-solution/wifi-mesh-development-framework.rst) | Router'lı ve router'sız senaryolar. Sürüm davranışını kanıtlamaz; ön test şart. |
@@ -117,11 +117,17 @@ Tam metinden doğrulanan bilgiler (6 Kasım 2026):
 | C1 | Almes, G., Kalidindi, S., Zekauskas, M., & Morton, A. (2016). *A one-way loss metric for IP performance metrics (IPPM)*. RFC 7680. https://doi.org/10.17487/RFC7680 | Paket kaybı tanımı. ESP-NOW için `seq` üzerinden **uyarlanır**; RFC'ye tam uyum iddia edilmez. |
 | C2 | Demichelis, C., & Chimento, P. (2002). *IP packet delay variation metric for IPPM*. RFC 3393. https://doi.org/10.17487/RFC3393 | Jitter tanımı. Saatler eş zamanlı olmadığı için tek yönlü gecikme yerine RTT. |
 
+## E. Politika belgeleri
+
+| No | Belge | Ne için? |
+|---|---|---|
+| E1 | Strateji ve Bütçe Başkanlığı (2023). *On İkinci Kalkınma Planı (2024–2028)*. [PDF](https://www.sbb.gov.tr/wp-content/uploads/2023/11/On-Ikinci-Kalkinma-Plani_2024-2028_17112023.pdf) | Bölüm 3.4.1 Afet Yönetimi. **Madde 840:** "Afet risklerinin azaltılması ve afet sonrası müdahalenin daha hızlı ve etkin yapılmasını sağlayacak yeni teknik ve teknolojilerin geliştirilmesine yönelik Ar-Ge çalışmaları artırılacaktır." Madde 834: müdahale kapasitesi, 834.1: afette kesintisiz haberleşme. Öncelikli alan (Afet yönetimi) gerekçesi. 6 Kasım 2026'da PDF'ten doğrulandı. |
+
 ## D. Hangi konuda hangi kaynak?
 
 | Konu | Kaynaklar |
 |---|---|
-| Problem ve motivasyon | A10, A8, A12 |
+| Problem ve motivasyon | A10, A8, A12, E1 |
 | Literatürdeki boşluk | A7, A1, A12 |
 | Ucuz donanımın gerekçesi | A12 (ticari düğüm: 245 g, robot başına 4), B1 |
 | Atlama sayısı ve verim | A11 |
@@ -136,7 +142,7 @@ Tam metinden doğrulanan bilgiler (6 Kasım 2026):
 
 ## Yazarken dikkat
 
-- Bu kaynaklar üç protokol ile üç kuralın **aynı deneyde** daha önce karşılaştırıldığını göstermez; biz de öyle iddia etmeyiz.
-- ESP-WIFI-MESH, ham ESP-NOW zinciri ve SBZ aynı radyonun farklı ağ yöntemleridir; farklı radyo teknolojileri gibi sunulmaz.
+- Bu kaynaklar iki protokol ile üç kuralın **aynı deneyde** daha önce karşılaştırıldığını göstermez; biz de öyle iddia etmeyiz.
+- ESP-WIFI-MESH ve SBZ aynı radyonun farklı ağ yöntemleridir; farklı radyo teknolojileri gibi sunulmaz.
 - S3'ün EWMA/eğim yöntemi bizim tasarımımızdır; literatürdeki GPR/MPC yöntemleriyle eşitlenmez.
 - Kaynakçadaki her yayına metinde gerçekten atıf yapılır; sayı artırmak için kaynak eklenmez.

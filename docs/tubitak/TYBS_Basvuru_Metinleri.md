@@ -1,11 +1,21 @@
 # TYBS Başvuru Metinleri — TÜBİTAK 2209-A (2026)
 
 **Tarih:** 6 Kasım 2026 · **Son gün:** 11 Kasım 2026, 17.30 (yürütücünün son onayı + danışman onayı)  
-**Dayanak:** [Güncel başvuru rehberi](TUBITAK_2209A_2026_Basvuru_Rehberi.md) · [Protokoller ve stratejiler](../protokoller_ve_stratejiler.md) · [Deney planı](../deney_plani.md) · [Maliyet](../maliyet.md) · [Kaynakça notları](../kaynakca.md) · [Bırakma mekanizması](../birakma_mekanizmasi.md)
+**Dayanak:** [Güncel başvuru rehberi](TUBITAK_2209A_2026_Basvuru_Rehberi.md) · [Sadeleştirme önerisi](../sadelestirme-onerisi.md) · [Protokoller ve stratejiler](../protokoller_ve_stratejiler.md) · [Deney planı](../deney_plani.md) · [Maliyet](../maliyet.md) · [Kaynakça notları](../kaynakca.md) · [Bırakma mekanizması](../birakma_mekanizmasi.md)
 
 Dosya, TYBS ekran sırasını izler. ` ```text ` blokları **olduğu gibi** kopyalanıp ilgili kutuya yapıştırılır. Blok dışındaki notlar ekip içindir, TYBS'ye yazılmaz. Sınırların kontrolü dosyanın sonunda.
 
-> **Numaralandırma notu (6 Kasım düzeltmesi):** TYBS metninde protokoller **P1/P2/P3** olarak numaralandı. İç belgelerdeki **P3** (ham ESP-NOW) burada **P2**, **P5** (SBZ) burada **P3**. Hipotezler de araştırma sorularının sırasına göre yeniden numaralandı: eski H1 → H1, eski H3 → H2, eski H4 → H3, eski H2 → H5; **H4 (protokol × kural etkileşimi) yeni**. S★ yerine "en iyi gözlenen yerleşim" kullanılıyor. Rafa kaldırılan sade tasarım: [sadelestirme-onerisi.md](../sadelestirme-onerisi.md).
+> **Sade tasarım uygulandı (6 Kasım 2026).** Bu metin [sadelestirme-onerisi.md](../sadelestirme-onerisi.md)'deki tasarımla yazıldı:
+> - **2 protokol:** P1 ESP-WIFI-MESH, P2 SBZ (keşifsiz bağlanma + sınırlı yeniden gönderim)
+> - **3 bırakma kuralı:** Ayarlar yalnızca düz koridorda (kalibrasyon ortamı K) yapılır.
+> - **2 test ortamı:** O1 L koridor, O2 bodrum
+> - **Tekrar:** Robotlu koşullarda 8, statik koşullarda 5. Toplam yaklaşık 120 koşu.
+> - **Hipotez:** 3
+> - **Ana ölçüt:** bırakma anı kesintisi
+>
+> Çıkarılanlar: ham ESP-NOW zinciri, kapasite eğrisi, arıza testi, SBZ'nin düğüm atlama özelliği, S★.
+>
+> İç belgeler (protokoller_ve_stratejiler, deney_plani v3.0, olcum_ve_analiz, takvim, deney_ayarlari, ekip, sistem) de bu tasarıma göre güncellendi. Numaralar her yerde aynı: P1/P2, S1–S3, K/O1/O2, H1–H3.
 
 ---
 
@@ -13,8 +23,8 @@ Dosya, TYBS ekran sırasını izler. ` ```text ` blokları **olduğu gibi** kopy
 
 | Kişi | Rol | Sorumluluk |
 |---|---|---|
-| **Aleyna** | Yürütücü | Proje koordinasyonu; SBZ protokolünün tasarımı ve geliştirilmesi (ham ESP-NOW zinciri dâhil); ayar belgesi; istatistiksel analiz; kod ve veri setinin yayımlanması |
-| **Hatice** | Ortak | ESP-WIFI-MESH uygulaması ve bekleme modu; yerleştirme kuralları; sinyal haritası ve pilot; analiz |
+| **Aleyna** | Yürütücü | Proje koordinasyonu; SBZ protokolünün tasarımı ve geliştirilmesi; ayar belgesi; istatistiksel analiz; kod ve veri setinin yayımlanması |
+| **Hatice** | Ortak | ESP-WIFI-MESH uygulaması ve bekleme modu; yerleştirme kuralları; kalibrasyon ve pilot; analiz |
 | **Hacer** | Ortak | Bırakıcı robot (2WD şasi, sürüş kartı, motorlar ve enkoderler, güç sistemi, kumanda); mekanizmanın elektroniği, montajı ve kabul testi |
 | **Mustafa** | Ortak | Ölçüm altyapısı (merkez düğüm kaydı, RTT, koşu betikleri); bırakma mekanizması ve düğüm kutularının 3D tasarımı ve baskısı |
 
@@ -77,15 +87,17 @@ Proje, kapalı ve engelli ortamlarda çalışan arama-kurtarma robotlarının ha
 ### Proje özeti (sınır 25–450 kelime)
 
 ```text
-Maden, tünel, göçük altındaki yapılar ve bodrum katları gibi kapalı ve engelli ortamlarda görev yapan robotların kablosuz bağlantısı beton, metal ve köşeler nedeniyle kısa mesafede kopabilmekte; robot hem kumandayı hem de görüntü ve veri akışını kaybetmektedir. Bu sorunun bilinen bir çözümü, robotun ilerlerken arkasına röle düğümleri bırakarak çok atlamalı bir ağ kurmasıdır (breadcrumbing). DARPA Yeraltı Yarışması'nı kazanan ekip bu yöntemi ticari mesh radyolarıyla uygulamış, ancak düğümlerin nereye ve ne zaman bırakılacağına insan operatör karar vermiştir. Bırakma kurallarının düşük maliyetli donanımda, kontrollü ve tekrarlı deneylerle karşılaştırılması ise eksik kalmıştır. Bu projede, ESP32-C3 Wi-Fi mikrodenetleyicileriyle kurulan röle zincirlerinin kapalı ortamlarda bağlantıyı ne kadar uzağa ve hangi kalitede taşıyabildiği ile bırakma kuralının ve ağ protokolünün bu başarıya etkisi araştırılacaktır.
+Maden, tünel, göçük altındaki yapılar ve bodrum katları gibi kapalı ve engelli ortamlarda görev yapan robotların kablosuz bağlantısı beton, metal ve köşeler nedeniyle kısa mesafede kopabilmektedir. Bu sorunun bilinen bir çözümü, robotun ilerlerken arkasına röle düğümleri bırakarak çok atlamalı bir ağ kurmasıdır (breadcrumbing). DARPA Yeraltı Yarışması'nı kazanan ekip bu yöntemi ticari mesh radyolarıyla uygulamış, ancak düğümlerin nereye ve ne zaman bırakılacağına insan operatör karar vermiştir. Bırakma kurallarının düşük maliyetli donanımda, kontrollü ve tekrarlı deneylerle karşılaştırılması ise eksik kalmıştır.
 
-Operatörün kablolu kumandayla sürdüğü iki tekerlekli, diferansiyel sürüşlü bir robot, step motorla dönen revolver tipi bir mekanizmayla en fazla beş röle düğümünü zemine bırakacaktır. Bırakma kararı üç kuraldan biriyle otomatik olarak verilecektir: sabit mesafe, sinyal gücü (RSSI) eşiği ve sinyal eğilimine dayalı öngörü. Ağ tarafında kendini kuran hazır ESP-WIFI-MESH protokolü, sade bir ESP-NOW zinciri ve bu projede geliştirilecek Sıra Bilen Zincir (SBZ) protokolü karşılaştırılacaktır. SBZ, robotun bıraktığı her röleye üst düğümlerini bildirerek ağ keşfi beklemeden bağlanmayı, sınırlı yeniden gönderimi ve arızalanan düğümün atlanmasını sağlar.
+Projenin çıkış noktası, bağlantının en çok röle bırakma anında kopmasıdır: robot menzil sınırındayken yeni röle yere düşer ve ağa katılana kadar veri akışı kesilebilir. Bu kesintiyi rölenin ne zaman bırakıldığı (bırakma kuralı) ve ağa ne kadar hızlı katıldığı (ağ protokolü) belirler. Projede ESP32-C3 Wi-Fi mikrodenetleyicileriyle kurulan röle zincirlerinde bu iki etken ve etkileşimleri araştırılacaktır.
 
-Deneyler üç aşamada yürütülecektir. Kalibrasyon ve pilot aşamasında ortamların sinyal haritası çıkarılacak, deney ayarları önceden yazılmış kurallarla belirlenip dondurulacaktır. Statik zincir aşamasında protokoller sabit röle konumlarında kapasite, gecikme, yeni röleye bağlanma ve arıza sonrası toparlanma bakımından karşılaştırılacaktır. Dinamik aşamada robot, düz koridor, L dönüşlü koridor ve betonu yoğun bodrum ortamlarında bırakma kurallarını uygulayacaktır. Her koşul beş kez tekrarlanacak (yaklaşık 180 koşu); kamera trafiği hızı ayarlanabilen sentetik paket akışıyla temsil edilecektir. Paket teslim oranı, goodput, gidiş-dönüş gecikmesi, kesinti sayısı ve süresi, kullanılan röle sayısı ve ulaşılan mesafe ölçülecek; sonuçlar gün etkisini hesaba katan karma etkili modellerle, etki büyüklüğü ve %95 güven aralığıyla raporlanacaktır.
+Operatörün kablolu kumandayla sürdüğü iki tekerlekli bir robot, revolver tipi bir mekanizmayla en fazla beş röle düğümünü zemine bırakacaktır. Bırakma kararı üç kuraldan biriyle otomatik olarak verilecektir: sabit mesafe, sinyal gücü (RSSI) eşiği ve sinyal eğilimine dayalı öngörü. Kural ayarları yalnızca bir kalibrasyon ortamında belirlenecek ve ortamın önceden bilinmediği gerçek görevleri taklit etmek için test ortamlarında değiştirilmeyecektir. Ağ tarafında kendini kuran hazır ESP-WIFI-MESH protokolü ile bu projede geliştirilecek Sıra Bilen Zincir (SBZ) protokolü karşılaştırılacaktır. SBZ, robotun bıraktığı her röleye üst düğümünü bildirerek ağ keşfi beklemeden bağlanmayı ve sınırlı yeniden gönderimi sağlar.
 
-Proje, yürütücü ve üç ortaktan oluşan dört kişilik öğrenci ekibi tarafından 12 ayda altı iş paketiyle yürütülecektir. Ölçüm altyapısı ve analiz, ağ protokolleri, robot ve bırakma mekanizması ile yerleştirme kuralları farklı ekip üyelerinin sorumluluğundadır. Statik deneyler robottan bağımsız planlandığından mekanik gecikmeler ağ deneylerini durdurmaz; mekanizma çalışmazsa düğümler aynı karar kuralıyla elle bırakılır.
+Deneyler üç aşamada yürütülecektir. Kalibrasyon aşamasında düz bir koridorda sinyal eğrileri çıkarılacak, ayarlar önceden yazılmış kurallarla belirlenip dondurulacaktır. Statik aşamada iki protokol sabit röle konumlarında yeni röleye bağlanma süresi ve veri kalitesi bakımından karşılaştırılacaktır. Robotlu aşamada iki protokol ve üç kural, L dönüşlü koridor ve betonu yoğun bodrum ortamlarında sekizer kez denenecektir (96 koşu; toplam yaklaşık 120 koşu). Kamera trafiği sentetik paket akışıyla temsil edilecektir. Ana ölçüt bırakma anı kesintisidir; ayrıca paket teslim oranı, goodput, gidiş-dönüş gecikmesi, toplam kesinti süresi, kullanılan röle sayısı ve ulaşılan mesafe ölçülecek, sonuçlar karma etkili modellerle, etki büyüklüğü ve %95 güven aralığıyla raporlanacaktır.
 
-Beklenen çıktılar; düğüm başına yaklaşık 650 TL malzeme maliyetli bir breadcrumbing prototipi, açık kaynak SBZ protokolü ve deney yazılımları, açık veri seti ve bir bildiri taslağıdır. Sonuçlar, altyapısız ortamlarda çalışan düşük bütçeli robot ekiplerine hangi koşulda hangi bırakma kuralının ve ağ protokolünün tercih edilmesi gerektiğine dair ölçülmüş bir dayanak sunacaktır.
+Proje, dört kişilik öğrenci ekibi tarafından 12 ayda altı iş paketiyle yürütülecektir. Statik deneyler robottan bağımsız olduğundan mekanik gecikmeler ağ deneylerini durdurmaz; mekanizma çalışmazsa düğümler aynı karar kuralıyla elle bırakılır.
+
+Beklenen çıktılar; düğüm başına yaklaşık 650 TL malzeme maliyetli bir breadcrumbing prototipi, açık kaynak SBZ protokolü ve deney yazılımları, açık veri seti ve bir bildiri taslağıdır. Sonuçlar, afet ve keşif görevlerinde çalışan düşük bütçeli robot ekiplerine hangi koşulda hangi bırakma kuralının ve ağ protokolünün tercih edilmesi gerektiğine dair ölçülmüş bir dayanak sunacaktır.
 ```
 
 ---
@@ -97,84 +109,84 @@ Beklenen çıktılar; düğüm başına yaklaşık 650 TL malzeme maliyetli bir 
 ```text
 Maden, tünel, göçük altındaki yapılar ve bodrum katları gibi kapalı ve engelli ortamlarda insanlı müdahale risklidir; bu nedenle arama-kurtarma ve keşif görevlerinde uzaktan kumandalı ya da otonom robotlar giderek daha çok kullanılmaktadır. Bu ortamlarda robotun temel darboğazı haberleşmedir: beton, metal ve köşeler kablosuz sinyali hızla zayıflatır; robot görüş hattından çıktığında bağlantı kısa mesafede kopabilir ve robot hem kumandayı hem de görüntü ve veri akışını kaybeder. DARPA Yeraltı Yarışması'nın düzenleyicileri de haberleşmeyi yeraltı ortamlarında ekiplerin karşılaştığı temel teknik zorluklardan biri olarak raporlamıştır (Chung vd., 2023).
 
-Bu sorun Türkiye için özellikle önemlidir. 6 Şubat 2023 Kahramanmaraş depremleri göçük altındaki yapılarda, Soma (2014) ve Amasra (2022) maden kazaları ise yeraltında arama-kurtarma ihtiyacını açıkça göstermiştir. Bu ortamlarda çalışan robotların haberleşmesini düşük maliyetle sürdürmeyi amaçlayan proje, TÜBİTAK öncelikli alanlarından Afet Yönetimi Teknolojileri ile doğrudan, Robotik-Mekatronik ve Nesnelerin İnterneti alanlarıyla dolaylı olarak ilişkilidir. Projenin bu alana katkısı, harcanabilir ve düşük maliyetli düğümlerle kurulan röle zincirlerinin hangi koşulda yeterli olduğuna dair ölçülmüş veri sağlamasıdır.
+Bu sorun Türkiye için özellikle önemlidir. 6 Şubat 2023 Kahramanmaraş depremleri göçük altındaki yapılarda, Soma (2014) ve Amasra (2022) maden kazaları ise yeraltında arama-kurtarma ihtiyacını açıkça göstermiştir. Bu ortamlarda çalışan robotların haberleşmesini düşük maliyetle sürdürmeyi amaçlayan proje, TÜBİTAK öncelikli alanlarından Afet Yönetimi Teknolojileri ile doğrudan, Robotik-Mekatronik ve Nesnelerin İnterneti alanlarıyla dolaylı olarak ilişkilidir. On İkinci Kalkınma Planı da afet sonrası müdahalenin daha hızlı ve etkin yapılmasını sağlayacak yeni teknik ve teknolojilere yönelik Ar-Ge çalışmalarının artırılmasını hedeflemektedir (Strateji ve Bütçe Başkanlığı, 2023, md. 840). Projenin bu alana katkısı, harcanabilir ve düşük maliyetli düğümlerle kurulan röle zincirlerinin hangi koşulda yeterli olduğuna dair ölçülmüş veri sağlamasıdır.
 
 Bu soruna yaygın bir çözüm, robotun ilerlerken arkasına röle düğümleri bırakarak çok atlamalı bir ağ kurmasıdır; yaklaşım literatürde "breadcrumbing" olarak anılır. Görüş hattı olmayan ortamlarda insansız kara aracının arkasına radyo rölesi bırakan sistemler (Pezeshkian vd., 2007) ve bırakma kararını RSSI ile video veri hızından tahmin edilen bağlantı kalitesine dayandıran yöntemler (Pezeshkian vd., 2012) önerilmiştir. Hareketli röle robotlarının Wi-Fi sinyal modeline göre konumlandırılması (Gao vd., 2017), bağlantı ölçümleriyle doğrusal röle ağlarının kurulması (Kim vd., 2013) ve çok atlamalı röle robotlarının sinyali zayıflatan binalarda yerleştirilmesi (Imaizumi vd., 2013) de incelenmiştir. Bağlantı farkındalıklı yerleştirmeyi mesafe temelli yerleştirmeyle karşılaştıran CARA algoritması (Abu-Aisheh vd., 2022) ve iç mekânda RSSI'yi Gauss süreç regresyonuyla öngörerek bağlantıyı koruyan model öngörülü kontrol yaklaşımı (Kim vd., 2026) bu alandaki güncel örneklerdir. DARPA Yeraltı Yarışması'nı kazanan CERBERUS ekibi de robotların taşıyıp bıraktığı Wi-Fi düğümleriyle ağını genişletmiştir (Tranzatto vd., 2022a).
 
-Bununla birlikte, bırakma kararının nasıl verileceği açık bir sorudur. Kazanan ekip, kablosuz yayılımın yeraltında öngörülemez olması nedeniyle düğüm bırakmayı otomatikleştirmemiş; final etabında düğümlerin nereye ve ne zaman bırakılacağına insan operatör karar vermiştir. Aynı ekibin değerlendirmesinde, yarışmadaki başka bir ekibin mesafe, görüş hattı ve RSSI'yi birleştiren bir maliyet fonksiyonu kullandığı aktarılmaktadır (Tranzatto vd., 2022b). Otomatik bırakmanın uygulanabilir olduğu daha önce gösterilmiş olsa da (Pezeshkian vd., 2012), farklı bırakma kurallarından hangisinin hangi ortamda daha az röleyle daha kesintisiz bağlantı sağladığı, aynı donanım üzerinde kontrollü ve tekrarlı deneylerle yeterince karşılaştırılmamıştır. Bırakma kuralı tek başına da belirleyici değildir: düğümler arasındaki ağ protokolü, yeni bırakılan rölenin ağa ne kadar hızlı katıldığını ve bir röle bozulduğunda bağlantının ne kadar sürede toparlandığını belirler. Ayrıca aynı kanalı paylaşan 802.11 düğümleri birbiriyle yarıştığı için çok atlamalı zincirlerde atlama sayısı arttıkça verim düşer (Li vd., 2001); yani röle eklemek sorunu kendiliğinden çözmez.
+Bununla birlikte, bırakma kararının nasıl verileceği açık bir sorudur. Kazanan ekip, kablosuz yayılımın yeraltında öngörülemez olması nedeniyle düğüm bırakmayı otomatikleştirmemiş; final etabında düğümlerin nereye ve ne zaman bırakılacağına insan operatör karar vermiştir. Aynı ekibin değerlendirmesinde, yarışmadaki başka bir ekibin mesafe, görüş hattı ve RSSI'yi birleştiren bir maliyet fonksiyonu kullandığı aktarılmaktadır (Tranzatto vd., 2022b). Otomatik bırakmanın uygulanabilir olduğu daha önce gösterilmiş olsa da (Pezeshkian vd., 2012), farklı bırakma kurallarından hangisinin hangi ortamda daha az röleyle daha kesintisiz bağlantı sağladığı, aynı donanım üzerinde kontrollü ve tekrarlı deneylerle yeterince karşılaştırılmamıştır. Üstelik gerçek bir görevde ortam önceden bilinmez; tek bir ortamda ayarlanmış bir kuralın başka ortamlarda nasıl davrandığı ayrı bir sorudur.
+
+Bırakma kuralı tek başına da belirleyici değildir. Bağlantının en kırılgan olduğu an, robotun menzil sınırında yeni bir röle bıraktığı andır: bırakılan röle ağa katılana kadar robotun veri akışı kesilebilir. Kendini kuran mesh protokollerinde yeni düğüm ağa katılmadan önce çevredeki aday düğümleri tarar ve bu sırada robot ilerlemeye devam eder. Robotun bırakma sırasını bilmesi ise bu taramayı gereksiz kılabilir. Dolayısıyla bırakma anındaki kesintiyi hem rölenin ne zaman bırakıldığı hem de ağa ne kadar hızlı katıldığı belirler; erken bırakan bir kural, yavaş katılan bir protokolün açığını kapatabilir. Ayrıca aynı kanalı paylaşan 802.11 düğümleri birbiriyle yarıştığı için çok atlamalı zincirlerde atlama sayısı arttıkça verim düşer (Li vd., 2001); yani röle eklemek sorunu kendiliğinden çözmez ve gereksiz her röle bir maliyettir.
 
 Bu problemde düşük maliyet bir tercih değil, gerekliliktir. Afet ve keşif görevlerinde bırakılan düğümler çoğu zaman geri toplanamaz, kaybolabilir ya da zarar görebilir. CERBERUS ekibinin düğümleri ticari bir mesh radyosu taşıyan, 245 g ağırlığında ve 120 × 60 × 50 mm boyutunda birimlerdir ve bir robot bunlardan en fazla dördünü taşıyabilmiştir (Tranzatto vd., 2022b). Birim fiyatı birkaç yüz lira olan Wi-Fi mikrodenetleyicileri ise hafif, harcanabilir ve çok sayıda taşınabilir düğümler yapmaya olanak verir (Seeed Studio, t.y.); ancak bu donanımla kurulan zincirlerin hangi mesafeyi hangi veri kalitesiyle sağlayabildiği yeterince bilinmemektedir.
 
-Bu projede ESP32-C3 Wi-Fi mikrodenetleyicileriyle bir breadcrumbing sistemi kurulacak; üç bırakma kuralı (sabit mesafe, RSSI eşiği, RSSI eğilimine dayalı öngörü) ile üç ağ yaklaşımı (hazır ESP-WIFI-MESH, ham ESP-NOW zinciri ve bu projede geliştirilecek, bırakma sırasını bilen SBZ protokolü) üç farklı kapalı ortamda karşılaştırılacaktır (Espressif Systems, t.y.-a; Espressif Systems, t.y.-b). Projenin özgün yönleri; bırakma kurallarının harcanabilir, düşük maliyetli donanımda ve aynı deney düzeneğinde kontrollü ve tekrarlı deneylerle karşılaştırılması, robotun bırakma sırasını doğrudan ağ protokolüne aktaran SBZ protokolü, bırakma kuralı ile protokolün etkisinin birlikte ölçülmesi ve tüm ham verinin açık veri seti olarak paylaşılmasıdır.
+Bu projede ESP32-C3 Wi-Fi mikrodenetleyicileriyle bir breadcrumbing sistemi kurulacak; üç bırakma kuralı (sabit mesafe, RSSI eşiği, RSSI eğilimine dayalı öngörü) ile iki ağ yaklaşımı (hazır ESP-WIFI-MESH ve ESP-NOW üzerine bu projede geliştirilecek, bırakma sırasını bilen SBZ protokolü) iki farklı kapalı ortamda karşılaştırılacaktır (Espressif Systems, t.y.-a; Espressif Systems, t.y.-b). Projenin özgün yönleri; bırakma kurallarının harcanabilir, düşük maliyetli donanımda ve aynı deney düzeneğinde kontrollü ve tekrarlı deneylerle karşılaştırılması, kural ayarlarının ortam önceden bilinmeden tek bir kalibrasyon ortamında belirlenmesi, robotun bırakma sırasını doğrudan ağ protokolüne aktaran SBZ protokolü, bırakma kuralı ile protokolün etkileşiminin bırakma anı kesintisi üzerinden ölçülmesi ve tüm ham verinin açık veri seti olarak paylaşılmasıdır.
 
-Araştırma soruları: Projenin başarısı iki birincil soruyla ölçülecektir. (AS1) Aynı sabit röle zincirinde hangi ağ yaklaşımı paket teslimi, verim, gecikme ve arıza sonrası toparlanmayı en iyi dengeler? (AS2) Hangi bırakma kuralı en az röleyle en kesintisiz bağlantıyı sağlar ve bu sonuç ortama göre değişir mi? Bunlara ek olarak iki ikincil soru incelenecektir. (AS3) Bırakma kuralının etkisi protokole bağlı mıdır; öngörüye dayalı bırakma, yeni röleyi ağa yavaş katan bir protokolün açığını kapatabilir mi? (AS4) Atlama sayısı arttıkça zincirin taşıyabildiği en yüksek veri hızı nasıl düşer?
+Araştırma soruları: (AS1) Bırakılan yeni röle, kendini kuran ESP-WIFI-MESH'te ve bırakma sırasını bilen SBZ'de ağa ne kadar sürede katılır ve bu fark bırakma anındaki kesintiye nasıl yansır? (AS2) Ayarları tek bir kalibrasyon ortamında belirlenen bırakma kurallarından hangisi, farklı test ortamlarında daha kısa toplam kesinti ve daha az röleyle çalışır? (AS3) Bırakma kuralı ile protokol birbirini telafi eder mi; öngörüye dayalı erken bırakma, yeni röleyi ağa yavaş katan bir protokolün açığını kapatabilir mi?
 
-Hipotezler: (H1, AS1) SBZ'de yeni röleye bağlanma ve arıza sonrası toparlanma süreleri ESP-WIFI-MESH'tekinden kısadır; buna karşılık SBZ'nin uygulama düzeyindeki yeniden gönderimleri p95 gidiş-dönüş gecikmesini ham ESP-NOW zincirine göre artırır. (H2, AS2) RSSI eşiği ve eğilim kuralları, L dönüşlü koridorda ve beton bodrumda sabit mesafeye göre daha az röleyle daha kısa toplam kesinti sağlar; düz koridorda fark küçüktür. (H3, AS2) Eğilim kuralı, eşik kuralına göre daha kısa kesintiler üretir. (H4, AS3) Eğilim kuralının eşik kuralına göre sağladığı kesinti azalması ESP-WIFI-MESH'te SBZ'dekinden büyüktür; çünkü erken bırakma, yeni rölenin ağa yavaş katılmasını telafi eder. (H5, AS4) Altı atlamada en yüksek sürdürülebilir veri hızı, tüm protokollerde tek atlamadakinin yarısının altına düşer.
+Hipotezler: (H1, AS1) SBZ'de yeni rölenin ağa katılma süresi ve bırakma anı kesintisi ESP-WIFI-MESH'tekinden kısadır. (H2, AS2) RSSI eşiği ve eğilim kuralları, iki test ortamında da sabit mesafe kuralından daha kısa toplam kesinti sağlar; çünkü kalibrasyon ortamına göre ayarlanan sabit mesafe, ortam değiştiğinde röleyi gereğinden geç ya da gereğinden erken bırakır. (H3, AS3) Eğilim kuralının eşik kuralına göre sağladığı bırakma anı kesintisi azalması ESP-WIFI-MESH'te SBZ'dekinden büyüktür; çünkü erken bırakma, yeni rölenin ağa yavaş katılmasını telafi eder.
 
-Çalışmanın kapsamı 2,4 GHz Wi-Fi, en fazla beş röle ve kampüs içindeki kapalı ortamlarla sınırlıdır; kamera yükü sentetik paket trafiğiyle temsil edilecektir. Rotalar 40–60 m ile sınırlı olduğundan, gerektiğinde düşürülen verici gücü daha uzun rotaların ölçeklenmiş bir modeli olarak kullanılacaktır. Robot kablolu kumandayla sürüleceği için kumanda bağlantısı röle zincirinden geçmeyecek, zincir yalnızca robotun veri akışını taşıyacaktır. Bu sınırlılıklar sonuçlarla birlikte raporlanacaktır.
+Çalışmanın kapsamı 2,4 GHz Wi-Fi, en fazla beş röle ve kampüs içindeki kapalı ortamlarla sınırlıdır; kamera yükü sentetik paket trafiğiyle temsil edilecektir. Rotalar 40–60 m ile sınırlı olduğundan, gerektiğinde düşürülen verici gücü daha uzun rotaların ölçeklenmiş bir modeli olarak kullanılacaktır. Robot kablolu kumandayla sürüleceği için kumanda bağlantısı röle zincirinden geçmeyecek, zincir yalnızca robotun veri akışını taşıyacaktır. Röle arızası sonrası toparlanma ve zincirin atlama sayısına göre kapasite eğrisi bu projenin kapsamı dışındadır. Bu sınırlılıklar sonuçlarla birlikte raporlanacaktır.
 ```
 
 ### 1.2 Amaç ve Hedefler (en az 350 karakter)
 
 ```text
-Bu projenin amacı, düşük maliyetli Wi-Fi mikrodenetleyicilerle robottan bırakılan röle zincirlerinin (breadcrumbing) kapalı ve engelli ortamlarda bağlantıyı ne kadar uzağa ve hangi kalitede taşıyabildiğini ölçmek; bırakma kuralının ve ağ protokolünün bu başarıya etkisini kontrollü deneylerle ortaya koymaktır.
+Bu projenin amacı, düşük maliyetli Wi-Fi mikrodenetleyicilerle robottan bırakılan röle zincirlerinde (breadcrumbing) bağlantı kesintisini bırakma kuralının mı, ağ protokolünün mü belirlediğini ve ikisinin birbirini telafi edip etmediğini kapalı ve engelli ortamlarda kontrollü deneylerle ortaya koymaktır.
 
-Hedef 1 – Çalışan prototip: Beş röle düğümü, bırakıcı robot ve revolver tipi bırakma mekanizmasından oluşan sistemin kurulması. Doğrulama: üç protokolün beş rölelik zincirde veri iletmesi; mekanizmanın her bölmeden 20 olmak üzere 100 bırakmalık testte en az 95 bırakmada takılmadan ve düğümü düz bırakarak çalışması.
+Hedef 1 – Çalışan prototip: Beş röle düğümü, bırakıcı robot ve revolver tipi bırakma mekanizmasından oluşan sistemin kurulması. Doğrulama: iki protokolün beş rölelik zincirde veri iletmesi; mekanizmanın her bölmeden 20 olmak üzere 100 bırakmalık testte en az 95 bırakmada takılmadan ve düğümü düz bırakarak çalışması.
 
-Hedef 2 – Kapasite eğrisi (AS4, ikincil): Düz koridorda 1, 3 ve 6 atlamada her protokolün, paket teslim oranı %95'in altına düşmeden taşıyabildiği en yüksek veri hızının ölçülmesi ve bu hızların 360p ve 480p görüntü akışı için gereken tipik hızlarla karşılaştırılması (3 protokol × 3 atlama sayısı × 5 tekrar = 45 tarama). H5 bu ölçümle test edilecektir.
+Hedef 2 – Protokol karşılaştırması (AS1): Sabit röle zincirinde iki protokolün yeni röleye bağlanma süresinin ve kararlı durumda paket teslim oranı, goodput ve gidiş-dönüş gecikmesinin (p50, p95) iki test ortamında ölçülmesi (2 protokol × 2 ortam × 5 tekrar = 20 koşu). H1, bu ölçümle ve robotlu koşulardaki bırakma anı kesintisiyle test edilecektir.
 
-Hedef 3 – Protokol karşılaştırması (AS1, birincil): Aynı sabit zincirde üç protokolün bağlanma, toparlanma ve geri katılma sürelerinin; kararlı durumda paket teslim oranı, goodput ve gidiş-dönüş gecikmesinin (p50, p95) üç ortamda ölçülmesi (3 protokol × 3 ortam × 5 tekrar = 45 koşu). H1 karma etkili model, etki büyüklüğü ve %95 güven aralığıyla test edilecektir.
+Hedef 3 – Bırakma kuralı karşılaştırması ve etkileşim (AS2, AS3): Ayarları kalibrasyon ortamında dondurulan üç bırakma kuralının iki protokolle ve iki test ortamında robotla uygulanması (2 protokol × 3 kural × 2 ortam × 8 tekrar = 96 koşu); bırakma anı kesintisi, toplam kesinti süresi ve sayısı, kullanılan röle sayısı, görev başarısı ve ulaşılan mesafe bakımından karşılaştırılması. H2 ve H3 test edilecektir.
 
-Hedef 4 – Bırakma kuralı karşılaştırması (AS2 birincil, AS3 ikincil): Üç bırakma kuralının iki protokolle ve üç ortamda robotla uygulanması (2 × 3 × 3 × 5 = 90 koşu); kullanılan röle sayısı, kesinti sayısı ve toplam kesinti süresi, görev başarısı, ulaşılan mesafe ve aynı ortamda gözlenen en iyi yerleşime göre fazla röle sayısı bakımından karşılaştırılması. H2, H3 ve protokol × kural etkileşimine ilişkin H4 test edilecektir.
-
-Hedef 5 – Açık ve tekrarlanabilir çıktı: SBZ protokolünün, deney yazılımlarının ve 3D baskı dosyalarının açık kaynak olarak; yaklaşık 180 koşuluk ham ölçüm verisinin ve deney protokolünün başkalarının tekrarlayabileceği biçimde yayımlanması. Doğrulama: kod ve veri setinin proje sonunda herkese açık bir depoda erişilebilir olması.
+Hedef 4 – Açık ve tekrarlanabilir çıktı: SBZ protokolünün, deney yazılımlarının ve 3D baskı dosyalarının açık kaynak olarak; yaklaşık 120 koşuluk ham ölçüm verisinin ve deney protokolünün başkalarının tekrarlayabileceği biçimde yayımlanması. Doğrulama: kod ve veri setinin proje sonunda herkese açık bir depoda erişilebilir olması.
 ```
 
 ### 2. Yöntem (en az 350 karakter)
 
 ```text
 2.1 Araştırma tasarımı
-Çalışma, kampüs içindeki gerçek kapalı ortamlarda yürütülecek deneysel ve karşılaştırmalı bir saha araştırmasıdır. Bağımsız değişkenler ağ protokolü (3 düzey), bırakma kuralı (3 düzey), ortam (3 düzey) ve kapasite testinde atlama sayısı (1, 3, 6) ile veri yüküdür. Bağımlı değişkenler paket teslimi, verim, gecikme, bağlantı sürekliliği ve yerleştirme başarısıdır (2.8). Kart modeli, anten ve anten yönü, düğüm yüksekliği, kanal, verici gücü, fiziksel katman (PHY) veri hızı, paket boyutu, ortak veri yükü, robot hızı ve router durumu sabit tutulacaktır. Uyarlamalı kurallar her protokolde röleleri farklı konumlara bırakacağından protokol ve kural etkileri birbirine karışabilir. Bunu önlemek için önce protokoller sabit röle konumlarında (Aşama 1), ardından bırakma kuralları robotla (Aşama 2) karşılaştırılacaktır.
+Çalışma, kampüs içindeki gerçek kapalı ortamlarda yürütülecek deneysel ve karşılaştırmalı bir saha araştırmasıdır. Bağımsız değişkenler ağ protokolü (2 düzey), bırakma kuralı (3 düzey) ve test ortamıdır (2 düzey). Bağımlı değişkenler bırakma anı kesintisi, bağlantı sürekliliği, paket teslimi, verim, gecikme ve yerleştirme başarısıdır (2.8). Kart modeli, anten ve anten yönü, düğüm yüksekliği, kanal, verici gücü, fiziksel katman (PHY) veri hızı, paket boyutu, ortak veri yükü, robot hızı ve router durumu sabit tutulacaktır. Uyarlamalı kurallar her protokolde röleleri farklı konumlara bırakacağından, robotlu koşularda protokolün etkisi kuralın etkisiyle karışabilir. Bunu önlemek için protokoller önce sabit röle konumlarında (Aşama 1), ardından kurallarla birlikte robotla (Aşama 2) karşılaştırılacaktır. Kural ayarları yalnızca kalibrasyon ortamında belirlenecek, test ortamlarında değiştirilmeyecektir; böylece ortamın önceden bilinmediği gerçek görev koşulu taklit edilecektir.
 
 2.2 Donanım
 Tüm ağ uçlarında aynı kart kullanılacaktır: harici U.FL antenli ve dahili LiPo şarj devreli XIAO ESP32-C3 (Seeed Studio, t.y.). Sistemde 8 kart bulunur: bilgisayara USB ile bağlı merkez düğüm, beş röle, robot ağ kartı ve bir yedek. Böylece en fazla beş röleyle altı kablosuz atlamalı bir zincir kurulur. Her röle, 1000 mAh korumalı LiPo pil, aç/kapa anahtarı ve yaklaşık 60 × 40 × 15 mm boyutunda 3D baskı bir kutudan oluşur. Bırakıcı robot, iki enkoderli mikro DC motorla diferansiyel sürüşlü, 3D baskı şasili ve 3S Li-ion pilli bir araçtır; operatör robotu 2,4 GHz bandını kullanmayan kablolu bir kumandayla sürer. Robotta iki kart vardır: rölelerle aynı olan ağ kartı sentetik trafiği üretir ve bırakma kararını verir; Wi-Fi ve Bluetooth'u hiç açılmayan ESP32-S3 sürüş kartı ise motorları, enkoderleri ve bırakma mekanizmasını yönetir ve ağ kartıyla UART üzerinden haberleşir. Bu ayrım, robot ucundaki radyonun rölelerle aynı kalmasını ve motor kontrolünün ağ ölçümlerinin zamanlamasını etkilememesini sağlar. Bırakma mekanizması, NEMA 17 step motorla dönen, 6 bölmeli (5 röle + 1 boş) revolver tipi bir döner tabladır; altında tek açıklıklı sabit bir taban bulunur. Her bırakmada tabla 60° döner ve sıradaki röle açıklıktan zemine düz düşer; böylece anten yönelimi her bırakmada aynı kalır. Tabla her koşudan önce hizalama işaretiyle başlangıç konumuna getirilir; hedef açılar bu konuma göre mutlak adım sayısıyla hesaplanarak hata birikmesi önlenir.
 
 2.3 Karşılaştırılacak ağ yaklaşımları
-Üç yaklaşım aynı radyoyu kullanır; farkları ağ kurma ve veri aktarma yöntemindedir. ESP-NOW varsayılan olarak 1 Mbit/s hızında gönderirken ESP-WIFI-MESH daha yüksek 802.11n hızlarını kullandığından, fiziksel katman hızı üç yaklaşımda aynı değere sabitlenecektir. Sabitlemenin her yöntemde mümkün olduğu İP1'de doğrulanacak, kullanılan değer her koşuda kaydedilecektir. P1 ESP-WIFI-MESH, ebeveyn seçimini ve ağ onarımını kendisi yapan hazır mesh protokolüdür (Espressif Systems, t.y.-b); merkez sabit kök olarak atanacaktır. Bu protokolde kök normalde bir router'a bağlanır; router'sız çalışma ilk iş paketinde denenecek, gerekirse deneye özel bir router tüm protokollerin bütün koşularında açık tutulacaktır. P2 ham ESP-NOW zinciri, ESP-NOW bağlantısız çerçeveleriyle (Espressif Systems, t.y.-a) kurulan sade bir temel yöntemdir: robot her röleyi bıraktığında ona yalnızca üst düğümünü (k−1) bildirir, ağ keşfi yapılmaz ve her röle paketi bu üst düğüme iletir. ESP-NOW'un MAC katmanındaki onay ve yeniden deneme davranışı dışında uygulama düzeyinde yeniden gönderim ve düğüm atlama yoktur. P3 SBZ (Sıra Bilen Zincir) bu projede geliştirilecek protokoldür ve P2'ye üç özellik ekler: (i) robot bıraktığı röleye üst düğümünün yanı sıra onun bir üstündeki düğümü (k−2) de bildirir; (ii) atlama başına sınırlı sayıda uygulama düzeyi yeniden gönderim yapılır; (iii) düğüm atlama: üst düğüme art arda N gönderim başarısız olursa paket k−2 düğümüne gönderilir ve eski düğüm belirli aralıklarla yeniden denenir. P2 ve P3 aynı kod tabanından ayarla elde edileceğinden P2–P3 farkı yeniden gönderim ve düğüm atlamanın etkisini doğrudan ayrıştırır. P1–P2 farkı ise tek bir özelliğe indirgenemez; kendini kuran mesh yaklaşımı ile bırakma sırasını bilen keşifsiz zincir yaklaşımı arasındaki toplam farkı (keşif, ağaç yönetimi ve protokol yükü) gösterir. Tüm protokollerde uygulama verisi 160 bayttır ve aynı başlık alanları (koşu no, sıra no, kaynak, hedef, atlama sayısı, ömür) kullanılır. Tamburdaki röleler açık ama bekleme modundadır ve ağa katılmaz; bırakma anında robotun gönderdiği "aktif ol" komutuyla seçilen protokolü başlatır. Böylece henüz bırakılmamış röleler ağ topolojisini bozmaz.
+İki yaklaşım aynı radyoyu kullanır; farkları ağ kurma ve veri aktarma yöntemindedir. ESP-NOW varsayılan olarak 1 Mbit/s hızında gönderirken ESP-WIFI-MESH daha yüksek 802.11n hızlarını kullandığından, fiziksel katman hızı iki yaklaşımda aynı değere sabitlenecektir. ESP-NOW'da hız her eş için ayrı ayarlanabilmektedir (Espressif Systems, t.y.-a); ESP-WIFI-MESH'te sabitlemenin mümkün olduğu İP1'de doğrulanacaktır. Mesh'te hız doğrudan sabitlenemezse iki protokolün radyosu aynı 802.11 kipine (ör. yalnızca 802.11b) sınırlanacak ve kalan fark sınırlılık olarak raporlanacaktır. Kullanılan değer her koşuda kaydedilecektir. P1 ESP-WIFI-MESH, ebeveyn seçimini ve ağ onarımını kendisi yapan hazır mesh protokolüdür (Espressif Systems, t.y.-b); yeni bir düğüm ağa katılmadan önce çevredeki aday ebeveynleri tarar. Merkez sabit kök olarak atanacaktır. Bu protokolde kök normalde bir router'a bağlanır; router'sız çalışma ilk iş paketinde denenecek, gerekirse deneye özel bir router iki protokolün bütün koşularında açık tutulacaktır. P2 SBZ (Sıra Bilen Zincir), ESP-NOW bağlantısız çerçeveleri (Espressif Systems, t.y.-a) üzerine bu projede geliştirilecek protokoldür ve iki özelliğe dayanır: (i) keşifsiz bağlanma: robot bir röleyi bıraktığı anda ona üst düğümünü (k−1) bildirir ve röle ağ taraması yapmadan bu düğüme iletmeye başlar; (ii) sınırlı yeniden gönderim: ESP-NOW bir gönderimin MAC katmanında teslim edilemediğini bildirdiğinde (Espressif Systems, t.y.-a) paket, atlama başına en fazla birkaç kez uygulama düzeyinde yeniden gönderilir. İki protokol keşif, ağaç yönetimi ve protokol yükü bakımından birden çok yönde farklı olduğundan karşılaştırma tek bir özelliğin değil, hazır ve kendini kuran bir çözüm ile bırakma sırasını bilen bir zincirin toplam farkını ölçer. İki protokolde de uygulama verisi 160 bayttır ve aynı başlık alanları (koşu no, sıra no, kaynak, hedef, atlama sayısı, ömür) kullanılır. Tamburdaki röleler açık ama bekleme modundadır ve ağa katılmaz; bırakma anında robotun gönderdiği "aktif ol" komutuyla seçilen protokolü başlatır. Böylece henüz bırakılmamış röleler ağ topolojisini bozmaz.
 
 2.4 Bırakma kuralları
-S1 sabit mesafe: son bırakmadan sonra enkoder X metre gösterdiğinde röle bırakılır; mesafe temelli karşılaştırma yöntemidir (Abu-Aisheh vd., 2022). S2 RSSI eşiği: son röleden gelen yoklama paketlerinin 1 saniyelik ortalama RSSI değeri 3 saniye boyunca eşiğin altında kalırsa röle bırakılır (Pezeshkian vd., 2012). S3 eğilim: RSSI üstel ağırlıklı hareketli ortalamayla yumuşatılır, son 3–5 saniyedeki eğimden eşiğe ulaşma süresi tahmin edilir; bu süre T'nin altına inerse ya da paket kaybı artmaya başlarsa eşiğe gelmeden röle bırakılır. Başlangıç değerleri (X ≈ 12 m, eşik ≈ −75 dBm, T ≈ 3 s) pilotta önceden yazılmış kurallarla kesinleştirilecektir. Tüm kurallarda iki bırakma arasında asgari bir mesafe bulunur, tek bir ölçümle karar verilmez ve RSSI, son bırakılan rölenin çerçevelerinden her protokolde aynı yöntemle okunur. Kuralların röle kullanımındaki verimliliği ayrıca, aynı ortamda hedefe bağlantıyla ulaşan koşularda gözlenen en az röle sayısına (en iyi gözlenen yerleşim) göre fazla röle sayısıyla değerlendirilecektir.
+S1 sabit mesafe: son bırakmadan sonra enkoder X metre gösterdiğinde röle bırakılır; mesafe temelli karşılaştırma yöntemidir (Abu-Aisheh vd., 2022). S2 RSSI eşiği: son röleden gelen yoklama paketlerinin 1 saniyelik ortalama RSSI değeri 3 saniye boyunca eşiğin altında kalırsa röle bırakılır (Pezeshkian vd., 2012). S3 eğilim: RSSI üstel ağırlıklı hareketli ortalamayla yumuşatılır, son 3–5 saniyedeki eğimden eşiğe ulaşma süresi tahmin edilir; bu süre T'nin altına inerse ya da paket kaybı artmaya başlarsa eşiğe gelmeden röle bırakılır. Başlangıç değerleri (X ≈ 12 m, eşik ≈ −75 dBm, T ≈ 3 s) kalibrasyon ortamında önceden yazılmış kurallarla kesinleştirilecek ve iki test ortamında aynen kullanılacaktır. Tüm kurallarda iki bırakma arasında asgari bir mesafe bulunur, tek bir ölçümle karar verilmez ve RSSI, son bırakılan rölenin çerçevelerinden her protokolde aynı yöntemle okunur.
 
 2.5 Ortamlar ve veri yükü
-Üç ortam kullanılacaktır: O1 düz koridor (görüş hattı açık), O2 L dönüşlü koridor (köşede görüş hattı aniden kopar) ve O3 betonu yoğun bodrum ya da çok kapılı koridor (sürekli yüksek zayıflama). Rota uzunluğu 40–60 m hedeflenmektedir; sinyal beklenenden güçlü çıkarsa verici gücü tüm protokoller için eşit olarak düşürülecektir. Her ortamın rotası, engelleri, kanal durumu ve ortamdaki Wi-Fi ağları kaydedilecektir. Gerçek kamera kullanılmayacak; görüntü akışı 160 baytlık paketlerle üretilen, hızı ayarlanabilir sentetik trafikle temsil edilecektir (başlangıç değeri 128 kbit/s). Tüm protokoller ve kurallar aynı ortak yükle test edilecek; bu yük, Aşama 1A'da en zayıf protokolün altı atlamadaki en yüksek sürdürülebilir hızının yaklaşık %70'i olarak önceden belirlenen kuralla seçilecektir. İnsan vücudu 2,4 GHz sinyali zayıflattığından operatör robotun önünde ya da yanında yürüyecek, robot ile son röle arasına girmeyecektir.
+Üç ortam kullanılacaktır. K düz koridor (görüş hattı açık) yalnızca kalibrasyon ortamıdır. Ana deneyler iki test ortamında yapılacaktır: O1 L dönüşlü koridor (köşede görüş hattı aniden kopar) ve O2 betonu yoğun bodrum ya da çok kapılı koridor (sürekli yüksek zayıflama). Bu iki ortam, enkaz içindeki ani kırılmaları ve göçük altındaki yapılarda görülen sürekli zayıflamayı temsil eder. Rota uzunluğu 40–60 m hedeflenmektedir. Verici gücü, kalibrasyon ortamında tek bir bağlantının rotayı kapsayamayacağı biçimde iki protokol için eşit olarak belirlenecektir. Test ortamlarında yalnızca rotanın tek bağlantıyla kapsanamadığı doğrulanacak, kural ayarı yapılmayacaktır. Her ortamın rotası, engelleri, kanal durumu ve ortamdaki Wi-Fi ağları kaydedilecektir. Gerçek kamera kullanılmayacak; görüntü akışı 160 baytlık paketlerle üretilen, hızı ayarlanabilir sentetik trafikle temsil edilecektir (başlangıç değeri 128 kbit/s). Tüm protokoller ve kurallar aynı ortak yükle test edilecek; bu yük, kalibrasyon ortamında beş rölelik zincirde yapılan kapasite taramasında zayıf kalan protokolün en yüksek sürdürülebilir hızının yaklaşık %70'i olarak önceden belirlenen kuralla seçilecektir. İnsan vücudu 2,4 GHz sinyali zayıflattığından operatör robotun önünde ya da yanında yürüyecek, robot ile son röle arasına girmeyecektir.
 
 2.6 Deney aşamaları
-Aşama 0 – Kalibrasyon ve pilot (robotsuz): Her ortamda bir düğüm sabitken ikinci düğüm zemin seviyesinde metre metre uzaklaştırılarak mesafe–RSSI ve RSSI–paket teslim eğrileri çıkarılacaktır (ortam başına 2 tur). Eşik, X, ortak yük, kanal ve verici gücü bu eğrilerden önceden yazılmış kurallarla seçilecektir. Pilot verileri hipotez testlerinde kullanılmayacaktır.
-Aşama 1 – Statik zincir (robotsuz): Röleler, pilotta belirlenen ve komşu çiftlerin benzer sinyal seviyesinde olduğu konumlara lazer metreyle yerleştirilecek; aralık, düğüm atlamanın sınanabilmesi için her rölenin k−2 düğümüyle de bağlantı kurabileceği biçimde seçilecektir. Değişen tek şey protokol olacaktır. 1A Kapasite (yalnızca O1): 1, 3 ve 6 atlamada yük 32 kbit/s'den başlayarak 30 saniyede bir yaklaşık 1,4 katına çıkarılır. Taramanın üst sınırı, tek atlamada da paket teslim oranının %95'in altına düşeceği hıza göre pilotta belirlenir; böylece eğri tavana takılmaz. Paket teslim oranı %95'in altına düşmeden önceki son yük en yüksek sürdürülebilir hız kabul edilir. Atlama sayısının denetlenebilmesi için bu testte ESP-WIFI-MESH'te üst düğümler sabitlenecektir (3 protokol × 3 atlama sayısı × 5 tekrar = 45 tarama). 1B Birleşik test: Her 10 dakikalık koşuda olaylar röle yazılımına programlanır. 60. saniyede beşinci röle bekleme modundan çıkar (bağlanma süresi); 60–360 s arasında kararlı durum ölçülür; 360. saniyede üçüncü röle Wi-Fi'ını kapatarak arıza benzetir (toparlanma süresi) ve 480. saniyede yeniden açar (geri katılma süresi) (3 protokol × 3 ortam × 5 tekrar = 45 koşu). Böylece koşular elle müdahale olmadan, tek kişiyle yürütülebilir.
-Aşama 2 – Robotla dinamik deney: Robot beş röleyle merkezin yanından başlar. Operatör rotayı yazılımla sabitlenmiş hızla (~0,3 m/s) sürer; robot ağ kartı ortak yükte veri gönderirken seçili kural bırakma kararını verir. Karar çıkınca robot durur, tabla döner, röle düşer ve aktif edilir, bırakma konumu kaydedilir. Hedefe bağlantıyla ulaşılırsa koşu başarılı, beş röle kullanıldıktan sonra bağlantı koparsa başarısız sayılır ve ulaşılan mesafe kaydedilir. Bu aşamada hazır yöntem (P1) ile önerilen protokol (P3) üç kuralla, üç ortamda beşer kez denenecektir (90 koşu). P2, SBZ'nin ek özellikleri kapalı hâli olduğundan katkısı Aşama 1'de ayrıştırılmış olacaktır. Projede toplam yaklaşık 180 koşu yapılacaktır.
+Aşama 0 – Kalibrasyon ve pilot (K ortamı): Bir düğüm sabitken ikinci düğüm zemin seviyesinde metre metre uzaklaştırılarak mesafe–RSSI ve RSSI–paket teslim eğrileri çıkarılacaktır (2 tur). Beş rölelik zincirde iki protokol için kapasite taraması yapılacaktır: yük 32 kbit/s'den başlayarak 30 saniyede bir yaklaşık 1,4 katına çıkarılır ve paket teslim oranı %95'in altına düşmeden önceki son yük en yüksek sürdürülebilir hız kabul edilir (protokol başına 3 tarama). Eşik, X, T, ortak yük, kanal ve verici gücü bu ölçümlerden önceden yazılmış kurallarla seçilecek; birkaç robotlu deneme koşusuyla kuralların tekrarlanabilir karar ürettiği doğrulanacaktır. Pilot verileri hipotez testlerinde kullanılmayacaktır.
+Aşama 1 – Statik zincir (robotsuz, O1 ve O2): Röleler her test ortamında, komşu çiftlerin benzer sinyal seviyesinde olduğu konumlara lazer metreyle yerleştirilecek; değişen tek şey protokol olacaktır. Her 6 dakikalık koşuda olaylar röle yazılımına programlanır: ilk dört röle açıkken 60. saniyede beşinci röle bekleme modundan çıkar (bağlanma süresi), 60–360 s arasında kararlı durum ölçülür (2 protokol × 2 ortam × 5 tekrar = 20 koşu). Böylece koşular elle müdahale olmadan, tek kişiyle yürütülebilir.
+Aşama 2 – Robotla dinamik deney (O1 ve O2): Robot beş röleyle merkezin yanından başlar. Operatör rotayı yazılımla sabitlenmiş hızla (~0,3 m/s) sürer; robot ağ kartı ortak yükte veri gönderirken seçili kural bırakma kararını verir. Karar çıkınca robot durur, tabla döner, röle düşer ve aktif edilir; bırakma konumu ve zamanı kaydedilir. Gerçek görevdeki gibi robot, rölenin ağa katılmasını beklemeden yoluna devam eder. Hedefe bağlantıyla ulaşılırsa koşu başarılı, beş röle kullanıldıktan sonra bağlantı koparsa başarısız sayılır ve ulaşılan mesafe kaydedilir. İki protokol üç kuralla, iki ortamda sekizer kez denenecektir (96 koşu). Projede kalibrasyon taramaları dâhil toplam yaklaşık 120 koşu yapılacaktır.
 
 2.7 Ayarların dondurulması
-Pilotta belirlenen tüm ayarlar, ana deneylerden önce tarihli bir ayar belgesine yazılacak ve ana deneyler boyunca değiştirilmeyecektir. Ana deneyde bir yöntemin kötü sonuç vermesi ayar değişikliği gerekçesi değil, bulgu sayılacaktır. Zorunlu bir değişiklik gerekirse ilgili bloktaki tüm koşullara uygulanacak, blok yeniden yapılacak ve raporlanacaktır.
+Kalibrasyon ve pilotta belirlenen tüm ayarlar, ana deneylerden önce tarihli bir ayar belgesine yazılacak ve ana deneyler boyunca değiştirilmeyecektir. Ana deneyde bir yöntemin kötü sonuç vermesi ayar değişikliği gerekçesi değil, bulgu sayılacaktır. Zorunlu bir değişiklik gerekirse ilgili bloktaki tüm koşullara uygulanacak, blok yeniden yapılacak ve raporlanacaktır.
 
 2.8 Ölçütler
-Her paket benzersiz bir sıra numarası ve zaman damgası taşır; merkez tüm paketleri kaydeder, koşu özeti betikle hesaplanır. Paket teslim oranı, merkeze ulaşan benzersiz paketlerin gönderilenlere oranıdır; tanım, RFC 7680 kayıp ölçütünün uygulama katmanına uyarlamasıdır (Almes vd., 2016). Goodput, merkeze ulaşan uygulama verisinin süreye oranıdır. Kartların saatleri eş zamanlı olmadığından tek yönlü gecikme iddia edilmeyecek; yankı paketleriyle gidiş-dönüş süresi (RTT; p50 ve p95) ve ardışık RTT farklarından gecikme değişkenliği (Demichelis ve Chimento, 2002) ölçülecektir. 500 ms'den uzun süre paket gelmeyen aralıklar kesinti sayılacak, kesinti sayısı ve toplam süresi hesaplanacaktır. Aşama 1B'de bağlanma, toparlanma ve geri katılma süreleri; Aşama 2'de kullanılan röle sayısı, bırakma konumları, görev başarısı, ulaşılan en uzak mesafe, röle başına mesafe ve en iyi gözlenen yerleşime göre fazla röle sayısı raporlanacaktır. Her hipotezin birincil ölçütü önceden belirlenmiştir: H1 için bağlanma ve toparlanma süreleri ile p95 RTT, H2 ve H3 için toplam kesinti süresi, H4 için eğilim ve eşik kuralları arasındaki toplam kesinti farkı, H5 için en yüksek sürdürülebilir hız. Yeniden gönderim sayısı, ebeveyn değişimi ve gerçekleşen topoloji sonuçları açıklamak için ikincil olarak kaydedilecektir.
+Her paket benzersiz bir sıra numarası ve zaman damgası taşır; merkez tüm paketleri kaydeder, koşu özeti betikle hesaplanır. Paket teslim oranı, merkeze ulaşan benzersiz paketlerin gönderilenlere oranıdır; tanım, RFC 7680 kayıp ölçütünün uygulama katmanına uyarlamasıdır (Almes vd., 2016). Goodput, merkeze ulaşan uygulama verisinin süreye oranıdır. Kartların saatleri eş zamanlı olmadığından tek yönlü gecikme iddia edilmeyecek; yankı paketleriyle gidiş-dönüş süresi (RTT; p50 ve p95) ve ardışık RTT farklarından gecikme değişkenliği (Demichelis ve Chimento, 2002) ölçülecektir. 500 ms'den uzun süre paket gelmeyen aralıklar kesinti sayılacak, kesinti sayısı ve toplam süresi hesaplanacaktır. Ana ölçüt olan bırakma anı kesintisi, her bırakmanın 5 saniye öncesi ile 10 saniye sonrası arasındaki toplam kesinti süresidir ve koşu başına ortalaması alınır. Bağlanma süresi, yeni rölenin aktif olmasından üzerinden geçen ilk paketin merkeze ulaşmasına kadar geçen süredir. Aşama 2'de ayrıca kullanılan röle sayısı, bırakma konumları, görev başarısı, ulaşılan en uzak mesafe ve röle başına mesafe raporlanacaktır. Her hipotezin birincil ölçütü önceden belirlenmiştir: H1 için bağlanma süresi ve bırakma anı kesintisi, H2 için toplam kesinti süresi, H3 için eğilim ve eşik kuralları arasındaki bırakma anı kesintisi farkı. Yeniden gönderim sayısı, ebeveyn değişimi ve gerçekleşen topoloji sonuçları açıklamak için ikincil olarak kaydedilecektir.
 
 2.9 Analiz
-Aşama 1'de protokol × ortam, Aşama 2'de protokol × kural × ortam etkileri incelenecektir. Koşular farklı günlere yayıldığından gün, karma etkili modelde rastgele etki olarak ele alınacaktır. Gün etkisinin koşullarla karışmaması için her deney gününde bir ortamdaki tüm koşulların birer tekrarı rastgele sırayla yürütülecek, böylece her gün bir tam blok oluşturacaktır. Ölçütün türüne uygun genelleştirilmiş karma modeller kullanılacaktır: süreler için log dönüşümü, röle ve kesinti sayıları için Poisson, görev başarısı için binom dağılımı. Birincil ölçütlerdeki karşılaştırmalarda Holm düzeltmesi uygulanacak, diğer karşılaştırmalar keşif amaçlı raporlanacaktır. Her sonuç p değerinin yanında etki büyüklüğü ve %95 güven aralığıyla verilecektir. Kapasite sonuçları atlama sayısına göre çizilecek ve çok atlamalı ağlarda beklenen verim düşüşüyle (Li vd., 2001) karşılaştırılacaktır. Protokol ve kural etkileşimi her ortam için etkileşim grafiğiyle gösterilecektir.
+Aşama 1'de protokol × ortam, Aşama 2'de protokol × kural × ortam etkileri incelenecektir. Koşular farklı günlere yayıldığından gün, karma etkili modelde rastgele etki olarak ele alınacaktır. Gün etkisinin koşullarla karışmaması için her deney gününde bir ortamdaki tüm koşulların (Aşama 2'de 2 protokol × 3 kural) birer tekrarı rastgele sırayla yürütülecek, böylece her gün bir tam blok oluşturacaktır. Ölçütün türüne uygun genelleştirilmiş karma modeller kullanılacaktır: süreler için log dönüşümü, röle ve kesinti sayıları için Poisson, görev başarısı için binom dağılımı. H3, protokol × kural etkileşim terimiyle test edilecektir; robotlu koşullarda tekrar sayısı, bu etkileşim testinin gücünü artırmak için 8 olarak seçilmiştir. Birincil ölçütlerdeki karşılaştırmalarda Holm düzeltmesi uygulanacak, diğer karşılaştırmalar keşif amaçlı raporlanacaktır. Her sonuç p değerinin yanında etki büyüklüğü ve %95 güven aralığıyla verilecek; protokol ve kural etkileşimi her ortam için etkileşim grafiğiyle gösterilecektir.
 
 2.10 Tekrarlanabilirlik ve iş paketleriyle ilişki
-Tüm kartlar aynı ESP-IDF sürümüyle programlanacak; kanal, verici gücü, PHY hızı, router durumu, anten yönü, pil durumu ve ortam bilgileri her koşuda kaydedilecek; ham kayıtlar ve betikler korunacaktır. Ön testler, ölçüm altyapısı ve robotun temel sürüşü İP1'de; protokoller ve bırakma mekanizması İP2'de; bırakma kuralları ve pilot İP3'te; Aşama 1 İP4'te; Aşama 2 İP5'te; analiz İP6'da yürütülecektir. Projede henüz ön çalışma sonucu bulunmamaktadır; ilk ölçümler İP1'de alınacaktır.
+Tüm kartlar aynı ESP-IDF sürümüyle programlanacak; kanal, verici gücü, PHY hızı, router durumu, anten yönü, pil durumu ve ortam bilgileri her koşuda kaydedilecek; ham kayıtlar ve betikler korunacaktır. Ön testler, ölçüm altyapısı ve robotun temel sürüşü İP1'de; protokoller ve bırakma mekanizması İP2'de; bırakma kuralları, kalibrasyon ve pilot İP3'te; Aşama 1 İP4'te; Aşama 2 İP5'te; analiz İP6'da yürütülecektir. Projede henüz ön çalışma sonucu bulunmamaktadır; ilk ölçümler İP1'de alınacaktır.
 ```
 
 ### 3.1 Çalışma Takvimi
 
-Her satır için kırmızı **+ Add** düğmesine basın. Süreler 2 + 2 + 1 + 2 + 3 + 2 = **12 ay**, katkılar toplamı **%100**. Literatür taraması, malzeme alımı ve rapor yazımı ayrı satır olarak yazılmadı; kurallar bunu istemiyor.
+Her satır için kırmızı **+ Add** düğmesine basın. Süreler 2 + 2 + 1 + 1 + 4 + 2 = **12 ay**, katkılar toplamı **%100**. Literatür taraması, malzeme alımı ve rapor yazımı ayrı satır olarak yazılmadı; kurallar bunu istemiyor.
 
 **İP1**
 - Proje Süresi (Ay): `1–2`
 - Faaliyetler:
 ```text
-Donanım ön testi ve ortak ölçüm altyapısı: İki kartla ESP-NOW ve ESP-WIFI-MESH ön testleri (router'sız sabit kök denemesi dâhil) ve ESP-IDF sürümünün sabitlenmesi; fiziksel katman hızının üç yöntemde aynı değere sabitlenebildiğinin doğrulanması; deney ortamları için erişim izninin alınması; ortak paket biçimi, merkezde paket kaydı, RTT ölçümü ve koşu özetini üreten betiklerin yazılması; RSSI'nin tüm protokollerde aynı yöntemle okunabildiğinin doğrulanması; 3D baskı robot şasisinin enkoderli motorlar, motor sürücü, sürüş kartı, güç sistemi ve kablolu kumandayla kurulup ilk sürüş testlerinin ve enkoder kalibrasyonunun yapılması.
+Donanım ön testi ve ortak ölçüm altyapısı: İki kartla ESP-NOW ve ESP-WIFI-MESH ön testleri (router'sız sabit kök denemesi dâhil) ve ESP-IDF sürümünün sabitlenmesi; fiziksel katman hızının iki yöntemde aynı değere sabitlenebildiğinin doğrulanması; deney ortamları için erişim izninin alınması; ortak paket biçimi, merkezde paket kaydı, RTT ölçümü ve koşu özetini üreten betiklerin yazılması; RSSI'nin iki protokolde aynı yöntemle okunabildiğinin doğrulanması; 3D baskı robot şasisinin enkoderli motorlar, motor sürücü, sürüş kartı, güç sistemi ve kablolu kumandayla kurulup ilk sürüş testlerinin ve enkoder kalibrasyonunun yapılması.
 ```
 - Kim(ler): `Aleyna (ESP-NOW ön testleri ve ortak paket biçimi), Hatice (ESP-WIFI-MESH ön testi), Hacer (robot şasisi ve sürüş testleri), Mustafa (paket kaydı ve koşu betikleri)`
 - Başarı ölçütü ve katkı:
@@ -186,60 +198,60 @@ Donanım ön testi ve ortak ölçüm altyapısı: İki kartla ESP-NOW ve ESP-WIF
 - Proje Süresi (Ay): `3–4`
 - Faaliyetler:
 ```text
-Ağ protokolleri ve bırakma mekanizması: SBZ protokolünün (ham ESP-NOW zinciri ayarı dâhil) ve ESP-WIFI-MESH uygulamasının yazılması; bekleme modu ve "aktif ol" komutunun eklenmesi; revolver tipi bırakma mekanizmasının ve düğüm kutularının 3D tasarımı ve baskısı; mekanizmanın step motor ve sürücüsüyle robota monte edilmesi ve kabul testi.
+Ağ protokolleri ve bırakma mekanizması: SBZ protokolünün ve ESP-WIFI-MESH uygulamasının yazılması; bekleme modu ve "aktif ol" komutunun eklenmesi; revolver tipi bırakma mekanizmasının ve düğüm kutularının 3D tasarımı ve baskısı; mekanizmanın step motor ve sürücüsüyle robota monte edilmesi ve kabul testi.
 ```
 - Kim(ler): `Aleyna (SBZ protokolü), Hatice (ESP-WIFI-MESH uygulaması ve bekleme modu), Hacer (mekanizmanın elektroniği, montajı ve kabul testi), Mustafa (mekanizma ve düğüm kutularının 3D tasarımı ve baskısı)`
 - Başarı ölçütü ve katkı:
 ```text
-Üç protokol beş rölelik zincirde veri iletiyor; bekleme modu ve "aktif ol" komutu üç protokolde çalışıyor; mekanizma her bölmeden 20 olmak üzere 100 bırakmanın en az 95'inde takılmadan çalışıyor. Katkı: %20
+İki protokol beş rölelik zincirde veri iletiyor; bekleme modu ve "aktif ol" komutu iki protokolde çalışıyor; mekanizma her bölmeden 20 olmak üzere 100 bırakmanın en az 95'inde takılmadan çalışıyor. Katkı: %20
 ```
 
 **İP3**
 - Proje Süresi (Ay): `5`
 - Faaliyetler:
 ```text
-Yerleştirme kuralları, kalibrasyon ve pilot: Sabit mesafe, RSSI eşiği ve eğilim kurallarının robot ağ kartına uygulanması; üç ortamda mesafe–RSSI ve RSSI–paket teslim eğrilerinin çıkarılması; ortak yük, eşik, X, kanal ve verici gücü ayarlarının ve kapasite taramasının üst sınırının kurallarla belirlenip tarihli ayar belgesinde dondurulması.
+Yerleştirme kuralları, kalibrasyon ve pilot: Sabit mesafe, RSSI eşiği ve eğilim kurallarının robot ağ kartına uygulanması; kalibrasyon ortamında mesafe–RSSI ve RSSI–paket teslim eğrilerinin çıkarılması ve beş rölelik zincirde kapasite taramalarının yapılması; ortak yük, eşik, X, T, kanal ve verici gücü ayarlarının kurallarla belirlenip tarihli ayar belgesinde dondurulması; test ortamlarında rotanın tek bağlantıyla kapsanamadığının doğrulanması.
 ```
-- Kim(ler): `Hatice (kurallar ve sinyal haritası), Hacer (kuralların robota entegrasyonu), Aleyna (ayar belgesi)`
+- Kim(ler): `Hatice (kurallar ve kalibrasyon), Hacer (kuralların robota entegrasyonu), Aleyna (ayar belgesi)`
 - Başarı ölçütü ve katkı:
 ```text
-Üç ortamın eğrileri çıkarıldı ve ayarlar donduruldu; üç kural robotta tekrarlanabilir bırakma kararı üretiyor. Katkı: %15
+Kalibrasyon eğrileri ve kapasite taramaları tamamlandı, ayarlar donduruldu; üç kural robotta tekrarlanabilir bırakma kararı üretiyor. Katkı: %15
 ```
 
 **İP4**
-- Proje Süresi (Ay): `6–7`
+- Proje Süresi (Ay): `6`
 - Faaliyetler:
 ```text
-Aşama 1 statik zincir deneyleri: Düz koridorda 1, 3 ve 6 atlamada kapasite taramaları (45) ve üç ortamda bağlanma, kararlı durum, arıza ve geri katılma olaylarını içeren otomatik birleşik testler (45).
+Aşama 1 statik zincir deneyleri: İki test ortamında iki protokolle yeni röleye bağlanma ve kararlı durum ölçümlerini içeren otomatik koşular (20); analiz betiklerinin bu verilerle sınanması.
 ```
 - Kim(ler): `Aleyna, Hatice, Mustafa`
 - Başarı ölçütü ve katkı:
 ```text
-90 koşu tamamlandı; ham kayıtlar ve koşu özetleri kontrol edildi; en yüksek sürdürülebilir hızlar ile bağlanma ve toparlanma süreleri hesaplandı. Katkı: %20
+20 koşu tamamlandı; ham kayıtlar ve koşu özetleri kontrol edildi; bağlanma süreleri ve kararlı durum ölçütleri hesaplandı; analiz betikleri çalışıyor. Katkı: %10
 ```
 
 **İP5**
-- Proje Süresi (Ay): `8–10`
+- Proje Süresi (Ay): `7–10`
 - Faaliyetler:
 ```text
-Aşama 2 robotlu dinamik deneyler: İki protokol (ESP-WIFI-MESH, SBZ) × üç bırakma kuralı × üç ortam × beş tekrar.
+Aşama 2 robotlu dinamik deneyler: İki protokol (ESP-WIFI-MESH, SBZ) × üç bırakma kuralı × iki test ortamı × sekiz tekrar (96 koşu); her deney gününde bir ortamın altı koşulu rastgele sırayla yürütülür.
 ```
 - Kim(ler): `Hacer, Hatice (robot sürüşü ve bırakma), Aleyna, Mustafa (merkez kaydı ve ağ izleme)`
 - Başarı ölçütü ve katkı:
 ```text
-90 koşu tamamlandı; her koşuda bırakma konumları, kesintiler, kullanılan röle sayısı ve görev sonucu kaydedildi. Katkı: %25
+96 koşu tamamlandı; her koşuda bırakma konumları ve zamanları, kesintiler, kullanılan röle sayısı ve görev sonucu kaydedildi. Katkı: %35
 ```
 
 **İP6**
 - Proje Süresi (Ay): `11–12`
 - Faaliyetler:
 ```text
-İstatistiksel analiz ve açık veri: Karma etkili modellerle hipotez testleri, etki büyüklükleri ve güven aralıkları; kuralların en iyi gözlenen yerleşimle karşılaştırılması; veri seti, kod, 3D baskı dosyaları ve deney protokolünün belgelenerek herkese açık depoda yayımlanması.
+İstatistiksel analiz ve açık veri: Genelleştirilmiş karma modellerle hipotez testleri, etki büyüklükleri ve güven aralıkları; protokol × kural etkileşim analizi; veri seti, kod, 3D baskı dosyaları ve deney protokolünün belgelenerek herkese açık depoda yayımlanması.
 ```
 - Kim(ler): `Aleyna (analiz, kod ve veri setinin yayımı), Hatice (analiz), Hacer (donanım belgeleri), Mustafa (3D baskı dosyaları)`
 - Başarı ölçütü ve katkı:
 ```text
-H1–H5 test edildi, etki büyüklükleri raporlandı; veri seti, kod ve tasarım dosyaları herkese açık depoda erişilebilir. Katkı: %10
+H1–H3 test edildi, etki büyüklükleri raporlandı; veri seti, kod ve tasarım dosyaları herkese açık depoda erişilebilir. Katkı: %10
 ```
 
 ### 3.2 Risk Yönetimi
@@ -248,14 +260,14 @@ Her satır için **+ Add** düğmesine basın.
 
 | En Önemli Riskler | Alınacak Tedbirler (B Planı) |
 |---|---|
-| ESP-WIFI-MESH'in router olmadan, sabit kökle kararlı çalışmaması | Deneye özel bir router merkezin yanına konur ve adillik için üç protokolün bütün koşularında açık tutulur. Mesh yine kararlı çalışmazsa aynı rolü üstlenen ESP-Mesh-Lite'a geçilir (Espressif Systems, t.y.-c); karşılaştırmanın yapısı değişmez. |
+| ESP-WIFI-MESH'in router olmadan, sabit kökle kararlı çalışmaması | Deneye özel bir router merkezin yanına konur ve adillik için iki protokolün bütün koşularında açık tutulur. Mesh yine kararlı çalışmazsa aynı rolü üstlenen ESP-Mesh-Lite'a geçilir (Espressif Systems, t.y.-c); karşılaştırmanın yapısı değişmez. |
 | Bırakma mekanizmasının veya robotun çalışmaması ya da gecikmesi (3D baskı erişiminin aksaması dâhil) | 3D yazıcıya erişilemezse parçalar başka bir atölyede basılır; filament bütçede yer aldığından maliyet değişmez. Mekanizma yine de çalışmazsa robot durur ve düğüm aynı noktaya elle bırakılır; bırakma kararı ve kayıt değişmediği için araştırma sorusu etkilenmez. Robot tamamen arızalanırsa ağ kartı aynı yükseklikte elle itilen bir arabaya taşınır. Statik deneyler (İP4) robottan bağımsız olduğu için bekletilmez. |
-| Ölçümlerde ortam kaynaklı yüksek değişkenlik (çevredeki Wi-Fi ağları, insan hareketi) | En az kullanılan kanal seçilir; her koşul 5 kez tekrarlanır; gün etkisi karma etkili modelle hesaba katılır; operatör konumu kuralı uygulanır; koşu saati ve ortamdaki ağlar kaydedilir. |
-| Kampüs koridorlarının kısa kalması veya sinyalin röle gerektirmeyecek kadar güçlü çıkması | Verici gücü tüm protokoller için eşit olarak düşürülür; ayar pilotta belirlenip dondurulur. |
-| Pilotta bir protokolün çok atlamada kararlı çalışmaması | Ayarlar pilotta kurallarla belirlenir; ana deneyde kötü sonuç bulgu olarak raporlanır. Protokol hiç çalışmazsa önceden belirlenen yedek yönteme geçilir; bu da olmazsa karşılaştırma kalan yöntemlerle sürdürülür ve sınırlılık olarak raporlanır. |
-| Bırakma sırasında röle kutusunun veya kartın zarar görmesi (proje boyunca yaklaşık 450 bırakma) | Bırakma yüksekliği düşük tutulur, kutu darbeye dayanıklı basılır ve her koşudan sonra röleler kontrol edilir. Kırılan kutu bütçedeki filamentle yeniden basılır; kart arızalanırsa yedek kart devreye alınır. |
+| Ölçümlerde ortam kaynaklı yüksek değişkenlik (çevredeki Wi-Fi ağları, insan hareketi) | En az kullanılan kanal seçilir; robotlu koşullar 8, statik koşullar 5 kez tekrarlanır; her gün tam blok olarak yürütülür ve gün etkisi karma etkili modelle hesaba katılır; operatör konumu kuralı uygulanır; koşu saati ve ortamdaki ağlar kaydedilir. |
+| Kampüs koridorlarının kısa kalması veya sinyalin röle gerektirmeyecek kadar güçlü çıkması | Verici gücü iki protokol için eşit olarak düşürülür; ayar kalibrasyonda belirlenip dondurulur ve test ortamlarında rotanın tek bağlantıyla kapsanamadığı doğrulanır. |
+| Pilotta bir protokolün çok atlamada kararlı çalışmaması | Ayarlar pilotta kurallarla belirlenir; ana deneyde kötü sonuç bulgu olarak raporlanır. ESP-WIFI-MESH çok atlamada hiç çalışmazsa ESP-Mesh-Lite'a geçilir (ilk satır); SBZ'deki hatalar ayarlar dondurulmadan önce İP3'te giderilir. |
+| Bırakma sırasında röle kutusunun veya kartın zarar görmesi (proje boyunca yaklaşık 500 bırakma) | Bırakma yüksekliği düşük tutulur, kutu darbeye dayanıklı basılır ve her koşudan sonra röleler kontrol edilir. Kırılan kutu bütçedeki filamentle yeniden basılır; kart arızalanırsa yedek kart devreye alınır. |
 | Deney ortamlarına (koridor, bodrum) erişim izninin alınamaması ya da ortamın kullanıma kapanması | Erişim izni İP1'de fakülte yönetiminden yazılı olarak alınır; her ortam türü için kampüste bir yedek bina önceden belirlenir. |
-| Bir ekip üyesinin projeden ayrılması veya robotlu koşuların (İP5) gecikmesi | Her görev için bir yedek sorumlu belirlenir; kod, kayıtlar ve belgeler ortak depoda tutulur. Koşular haftalık hedef sayıyla izlenir; analiz betikleri İP4'te hazır olduğundan İP6'nın ilk ayı gerekirse tampon olarak kullanılır. |
+| Bir ekip üyesinin projeden ayrılması veya robotlu koşuların (İP5) gecikmesi | Her görev için bir yedek sorumlu belirlenir; kod, kayıtlar ve belgeler ortak depoda tutulur. Koşular haftalık hedef sayıyla izlenir; analiz betikleri İP4'te sınandığından İP6'nın ilk ayı gerekirse tampon olarak kullanılır. |
 
 ### 3.3 Araştırma Olanakları
 
@@ -267,14 +279,14 @@ Her satır için **+ Add** düğmesine basın.
 |---|---|
 | 3D yazıcı – [marka/model] | Bırakma mekanizması, düğüm kutuları ve montaj parçalarının basılması |
 | [Bölüm] elektronik laboratuvarı (lehim istasyonu, güç kaynağı, multimetre) | Pil bağlantıları, robot elektroniğinin montajı ve testleri |
-| [Bina] düz ve L dönüşlü koridorları, [bina] bodrum katı | Deney ortamları (O1, O2, O3) |
+| [Bina] düz koridoru, [bina] L dönüşlü koridoru, [bina] bodrum katı | Kalibrasyon ortamı (K) ve test ortamları (O1, O2) |
 | Ekip üyelerinin dizüstü bilgisayarları; açık kaynak ESP-IDF, Python ve 3D tasarım yazılımı | Yazılım geliştirme, mekanik tasarım, merkez düğüm kaydı ve veri analizi |
 
 ### 4. Yaygın Etki
 
 **Bilimsel/Akademik Çıktılar**
 ```text
-Protokol ve bırakma kuralı karşılaştırmasının sonuçlarının ulusal bir kongrede bildiri olarak sunulmak üzere raporlanması; sonuçlar yeterli görülürse kablosuz ağlar veya robotik alanında hakemli bir dergiye makale taslağı hazırlanması. Yaklaşık 180 koşuluk ham ölçüm verisi ve deney protokolü, düşük maliyetli donanımda breadcrumbing üzerine tekrarlanabilir bir karşılaştırma tabanı olarak açık erişimle paylaşılacaktır.
+Protokol ve bırakma kuralı karşılaştırmasının ve bırakma anı kesintisine ilişkin bulguların ulusal bir kongrede bildiri olarak sunulmak üzere raporlanması; sonuçlar yeterli görülürse kablosuz ağlar veya robotik alanında hakemli bir dergiye makale taslağı hazırlanması. Yaklaşık 120 koşuluk ham ölçüm verisi ve deney protokolü, düşük maliyetli donanımda breadcrumbing üzerine tekrarlanabilir bir karşılaştırma tabanı olarak açık erişimle paylaşılacaktır.
 ```
 
 **Ekonomik/Ticari/Sosyal Çıktılar**
@@ -284,7 +296,7 @@ Düğüm başına yaklaşık 650 TL malzeme maliyetiyle çalışan bir breadcrum
 
 **Yeni Proje(ler) Oluşturulmasına Yönelik Çıktılar**
 ```text
-Bulgulara göre karşılaştırmanın ESP-NOW kontrollü yayma ve ESP-Mesh-Lite gibi ek protokollerle genişletilmesi; robot hızının ve kontrollü girişim düzeylerinin öngörüye dayalı bırakma kuralına etkisinin incelenmesi; sistemin arama-kurtarma eğitim sahaları gibi gerçek enkaz benzetim alanlarında denenmesi; Wi-Fi uzun menzil (LR) kipi, enerji verimliliği ve otonom navigasyonla birleşik bırakma kararı konularında bitirme projesi veya yeni bir araştırma projesi önerisinin çerçevesinin çıkarılması.
+Bulgulara göre karşılaştırmanın ESP-Mesh-Lite gibi ek protokollerle genişletilmesi; bu projede kapsam dışında bırakılan röle arızası sonrası düğüm atlama ve toparlanma ile zincirin atlama sayısına göre kapasite eğrisinin incelenmesi; robot hızının ve kontrollü girişim düzeylerinin öngörüye dayalı bırakma kuralına etkisinin araştırılması; sistemin arama-kurtarma eğitim sahaları gibi gerçek enkaz benzetim alanlarında denenmesi; Wi-Fi uzun menzil (LR) kipi, enerji verimliliği ve otonom navigasyonla birleşik bırakma kararı konularında bitirme projesi veya yeni bir araştırma projesi önerisinin çerçevesinin çıkarılması.
 ```
 
 ### 5. Belirtmek İstediğiniz Diğer Konular
@@ -342,23 +354,25 @@ Pezeshkian, N., Nguyen, H. G. ve Burmeister, A. (2007). Unmanned ground vehicle 
 
 Seeed Studio. (t.y.). Getting started with Seeed Studio XIAO ESP32C3. Erişim adresi: https://wiki.seeedstudio.com/XIAO_ESP32C3_Getting_Started/ (Erişim tarihi: 6 Kasım 2026)
 
+Strateji ve Bütçe Başkanlığı. (2023). On İkinci Kalkınma Planı (2024–2028). T.C. Cumhurbaşkanlığı Strateji ve Bütçe Başkanlığı. Erişim adresi: https://www.sbb.gov.tr/wp-content/uploads/2023/11/On-Ikinci-Kalkinma-Plani_2024-2028_17112023.pdf (Erişim tarihi: 6 Kasım 2026)
+
 Tranzatto, M., Miki, T., Dharmadhikari, M., Bernreiter, L. vd. (2022a). CERBERUS in the DARPA Subterranean Challenge. Science Robotics, 7(66), eabp9742. DOI: 10.1126/scirobotics.abp9742
 
 Tranzatto, M., Dharmadhikari, M., Bernreiter, L., Camurri, M. vd. (2022b). Team CERBERUS wins the DARPA Subterranean Challenge: Technical overview and lessons learned. arXiv ön baskısı, arXiv:2207.04914. DOI: 10.48550/arXiv.2207.04914
 ```
 
-**Atıf kontrolü (17 kaynak, hepsi metinde):**
+**Atıf kontrolü (18 kaynak, hepsi metinde):**
 
 | Kaynak | Geçtiği yer |
 |---|---|
 | Abu-Aisheh vd., 2022 · Pezeshkian vd., 2012 | 1.1, Yöntem 2.4 |
 | Almes vd., 2016 · Demichelis ve Chimento, 2002 | Yöntem 2.8 |
-| Chung vd., 2023 · Gao vd., 2017 · Imaizumi vd., 2013 · Kim vd., 2013 · Kim vd., 2026 · Pezeshkian vd., 2007 · Tranzatto vd., 2022a | 1.1 |
+| Chung vd., 2023 · Gao vd., 2017 · Imaizumi vd., 2013 · Kim vd., 2013 · Kim vd., 2026 · Li vd., 2001 · Pezeshkian vd., 2007 · Tranzatto vd., 2022a | 1.1 |
 | Tranzatto vd., 2022b | 1.1 (iki kez) |
 | Espressif Systems, t.y.-a / -b | 1.1, Yöntem 2.3 |
 | Espressif Systems, t.y.-c | 3.2 Risk |
-| Li vd., 2001 | 1.1, Yöntem 2.9 |
 | Seeed Studio, t.y. | 1.1, Yöntem 2.2 |
+| Strateji ve Bütçe Başkanlığı, 2023 | 1.1 (madde 840; bölüm 3.4.1 Afet Yönetimi, PDF s. 210 civarı) |
 
 ---
 
@@ -383,12 +397,12 @@ Etik kurul belgesi gerekmiyor: insan katılımcı, anket ya da kişisel veri yok
 | Alan | Sınır | Bu metin |
 |---|---|---|
 | Başlık | ≤ 495 karakter | 167 karakter ✓ |
-| Özet | 25–450 kelime | 404 kelime ✓ |
+| Özet | 25–450 kelime | 403 kelime ✓ |
 | Anahtar kelime | 3–5, virgülle ayrılmış | 5 ✓ |
-| 1.1 | ≥ 350 karakter | 6.854 karakter ✓ |
-| 1.2 | ≥ 350 karakter | 2.112 karakter ✓ |
-| 2. Yöntem | ≥ 350 karakter | 12.109 karakter ✓ |
-| Kaynakça | ≤ 32.000 karakter | 3.620 karakter ✓ |
+| 1.1 | ≥ 350 karakter | 7.565 karakter ✓ |
+| 1.2 | ≥ 350 karakter | 1.722 karakter ✓ |
+| 2. Yöntem | ≥ 350 karakter | 12.249 karakter ✓ |
+| Kaynakça | ≤ 32.000 karakter | 3.892 karakter ✓ |
 | İş paketi süreleri | ≤ 12 ay | 12 ay ✓ |
 | Katkı toplamı | %100 | %100 ✓ |
 
@@ -398,9 +412,9 @@ Bir kutunun **üst** karakter sınırı çıkarsa (rehberde yalnızca alt sını
 
 1. **Aleyna:** TYBS'de *Institution Official Information* tablosunda kuruluş yetkilisinin tanımlı olduğunu hemen kontrol et. Tanımlı değilse danışman onay veremez.
 2. **Hacer, Hatice, Mustafa:** ARBİS kayıtlarınızı güncelleyin. Aleyna sizi **Öğrenci Bilgileri → Ekle** ile eklesin; yalnızca arama yapmak yetmez.
-3. **3.3'ü** gerçek bilgilerle doldurun (3D yazıcı, laboratuvar, binalar).
+3. **3.3'ü** gerçek bilgilerle doldurun (3D yazıcı, laboratuvar, üç ortamın binaları).
 4. **NovaMax motorun kilitlenme akımını** ve pil yuvasının akım sınırını satıcıdan doğrulayın.
 5. Faaliyet alanını ve öncelikli alanı danışmanla seçin.
-6. **12. Kalkınma Planı'nda "afet" aratın.** İlgili bir hedef bulursanız 1.1'deki Türkiye paragrafına bir cümleyle ekleyin (bilgi notu bu ilişkiyi soruyor). Metni görmeden madde numarası yazmayın.
+6. ~~12. Kalkınma Planı'nda "afet" aratın.~~ ✅ Yapıldı: madde 840 1.1'e eklendi ve kaynakçaya girdi. Madde metni: "Afet risklerinin azaltılması ve afet sonrası müdahalenin daha hızlı ve etkin yapılmasını sağlayacak yeni teknik ve teknolojilerin geliştirilmesine yönelik Ar-Ge çalışmaları artırılacaktır." İlgili diğer madde 834: "Afet ve acil durumlara müdahale kapasitesi artırılarak..."
 7. **İsteğe bağlı ön ölçüm:** İki kartla bir akşam koridorda ESP-NOW menzil ve RSSI ölçümü yapılırsa 2.10'daki "henüz ön çalışma sonucu bulunmamaktadır" cümlesi gerçek bir sonuçla değiştirilir ("Ön denemede düz koridorda X m'de RSSI −75 dBm ölçülmüştür" gibi). Yapılabilirlik puanına iyi gelir.
 8. Kaydet → **Preview Research Proposal** → **Preview Application** ile kontrol edin. Sonra Aleyna son onayı versin. Danışmana en geç **10 Kasım**'da haber verin.

@@ -154,7 +154,7 @@ Hız kontrolü: 250 rpm'lik motor ve 43 mm'lik tekerle yüksüz hız ~0,56 m/s'd
 
 - XIAO ESP32-C3, dizüstü bilgisayara USB ile bağlı. Gelen paketleri seri port üzerinden bilgisayara aktarır.
 - Bilgisayarda kayıt betiği çalışır ([olcum_ve_analiz.md](olcum_ve_analiz.md)).
-- **Router:** ESP-WIFI-MESH router olmadan çalışmazsa deneye özel 2,4 GHz router merkezin yanına konur. Kullanılırsa **üç protokolün bütün koşularında açık** tutulur (adillik için).
+- **Router:** ESP-WIFI-MESH router olmadan çalışmazsa deneye özel 2,4 GHz router merkezin yanına konur. Kullanılırsa **iki protokolün bütün koşularında açık** tutulur (adillik için).
 
 ## 5. Ölçüm araçları
 

@@ -69,19 +69,20 @@ Sistem üç parçadan oluşur: **merkez**, **röleler** ve **bırakıcı robot**
    │ BIRAK k ───────────► robotu durdur
    │                      tablayı 60° döndür ──► röle düşer
    │ ◄──── TAMAM, mesafe ─┘
-   │ "aktif ol" (k, üst = k−1, üstün üstü = k−2) ─────────────────► protokolü başlat
+   │ "aktif ol" (k, üst = k−1) ────────────────────────────────────► protokolü başlat
    │ ◄─────────────────────────────────────────────────────────────  aktif oldum
    │ bırakma konumunu ve zamanını kaydet
    │ DEVAM ─────────────► robot yoluna devam eder
+                          (rölenin ağa katılmasını beklemez)
 ```
 
 ## Ağ yaklaşımları ve bırakma kuralları (özet)
 
 | | Seçenekler | Ayrıntı |
 |---|---|---|
-| **Ağ yaklaşımı** | P1 ESP-WIFI-MESH · P3 ham ESP-NOW zinciri · P5 SBZ | [protokoller_ve_stratejiler.md](protokoller_ve_stratejiler.md) |
-| **Bırakma kuralı** | S1 sabit mesafe · S2 RSSI eşiği · S3 eğilim · (S★ ideal, hesapla) | [protokoller_ve_stratejiler.md](protokoller_ve_stratejiler.md) |
-| **Ortam** | O1 düz koridor · O2 L koridor · O3 beton bodrum | [deney_plani.md](deney_plani.md) |
+| **Ağ yaklaşımı** | P1 ESP-WIFI-MESH · P2 SBZ | [protokoller_ve_stratejiler.md](protokoller_ve_stratejiler.md) |
+| **Bırakma kuralı** | S1 sabit mesafe · S2 RSSI eşiği · S3 eğilim (ayarlar yalnızca K'de) | [protokoller_ve_stratejiler.md](protokoller_ve_stratejiler.md) |
+| **Ortam** | K düz koridor (yalnızca kalibrasyon) · O1 L koridor · O2 beton bodrum | [deney_plani.md](deney_plani.md) |
 
 ## Kapsam dışı
 

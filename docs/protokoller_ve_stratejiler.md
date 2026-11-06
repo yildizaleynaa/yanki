@@ -1,8 +1,10 @@
 # Ağ Protokolleri ve Bırakma Kuralları
 
-**Son güncelleme:** 6 Kasım 2026  
-**Sorumlular:** Aleyna (SBZ ve ham ESP-NOW zinciri), Hatice (ESP-WIFI-MESH ve bırakma kuralları)  
-**Durum:** Tasarım. Burada "başlangıç değeri" yazan sayılar pilotta kesinleşir ve [deney_ayarlari.md](deney_ayarlari.md)'ye yazılır.
+**Son güncelleme:** 6 Kasım 2026 (sade tasarım, [kararlar.md](kararlar.md) K-42)  
+**Sorumlular:** Aleyna (SBZ), Hatice (ESP-WIFI-MESH ve bırakma kuralları)  
+**Durum:** Tasarım. "Başlangıç değeri" yazan sayılar kalibrasyonda kesinleşir ve [deney_ayarlari.md](deney_ayarlari.md)'ye yazılır.
+
+> **Eski numaralar:** Bu belgenin önceki sürümünde P1 ESP-WIFI-MESH, P3 ham ESP-NOW zinciri ve P5 SBZ vardı. Ham ESP-NOW zinciri ve SBZ'nin düğüm atlama özelliği çıkarıldı; SBZ artık **P2**.
 
 ---
 
@@ -10,29 +12,31 @@
 
 ## A1. Genel bakış
 
-Üç yaklaşım aynı radyoyu kullanır; farkları ağ kurma ve veri aktarma yöntemindedir. İki kod tabanı yazılır: ESP-WIFI-MESH entegrasyonu ve ESP-NOW üzerinde kendi kodumuz. P3 ve P5 aynı kodun iki ayarıdır.
+İki yaklaşım aynı radyoyu kullanır; farkları ağ kurma ve veri aktarma yöntemindedir. İki kod tabanı yazılır: ESP-WIFI-MESH entegrasyonu ve ESP-NOW üzerinde kendi kodumuz.
 
 | Kod | Protokol | Rolü | Kodu |
 |---|---|---|---|
-| **P1** | ESP-WIFI-MESH | Hazır, kendini kuran ve onaran mesh | Entegrasyon ve ayar |
-| **P3** | Ham ESP-NOW zinciri | Sade temel: sabit sıra, uygulama düzeyinde tekrar yok, atlama yok | SBZ kodu, özellikler kapalı |
-| **P5** | **SBZ (Sıra Bilen Zincir)** | Bizim protokolümüz | Asıl geliştirme |
+| **P1** | ESP-WIFI-MESH | Hazır, kendini kuran ve onaran mesh. Yeni düğüm ağa katılmadan önce aday ebeveynleri tarar. | Entegrasyon ve ayar |
+| **P2** | **SBZ (Sıra Bilen Zincir)** | Bizim protokolümüz. Robot bırakma sırasını bildirir, tarama yapılmaz. | Asıl geliştirme |
 
-**Bu ayrımın değeri:** P1 → P3 farkı **keşifsiz bağlanmanın**, P3 → P5 farkı ise **yeniden gönderim ve atlamanın** etkisini gösterir. Böylece SBZ'nin hangi özelliğinin ne kazandırdığı ayrıştırılır.
+**Karşılaştırmanın anlamı:** P1 ile P2 keşif, ağaç yönetimi ve protokol yükü bakımından birden çok yönde farklıdır. Bu yüzden ölçülen şey tek bir özelliğin değil, "hazır ve kendini kuran çözüm" ile "bırakma sırasını bilen zincir" arasındaki **toplam farktır**. Başvuruda da böyle yazılıyor; tek bir özelliği ayrıştırdığımızı iddia etmiyoruz.
 
-## A2. Ortak kurallar (üç protokolde aynı)
+**Projenin ana sorusu bırakma anıdır:** Yeni röle ağa ne kadar hızlı katılırsa bırakma anındaki kesinti o kadar kısa olur. Hipotezler: [olcum_ve_analiz.md](olcum_ve_analiz.md).
+
+## A2. Ortak kurallar (iki protokolde aynı)
 
 | Konu | Kural |
 |---|---|
-| Kanal | Tek sabit kanal (1, 6 veya 11; pilotta en az kullanılan seçilir) |
-| Verici gücü | Tüm kartlarda aynı; gerekirse pilotta eşit olarak düşürülür |
+| Kanal | Tek sabit kanal (1, 6 veya 11; kalibrasyonda en az kullanılan seçilir) |
+| Verici gücü | Tüm kartlarda aynı; gerekirse kalibrasyonda eşit olarak düşürülür |
+| **PHY hızı** | İki protokolde aynı değere sabitlenir. ESP-NOW'un varsayılanı 1 Mbps'tir; hız her eş için `esp_now_set_peer_rate_config()` ile ayarlanır (`esp_wifi_start()` ve `esp_now_add_peer()` sonrasında). Mesh'te `esp_wifi_config_80211_tx_rate()` İP1'de denenir. Mesh trafiğine uygulanamazsa iki protokolün radyosu aynı kipe (ör. yalnızca 802.11b, `esp_wifi_set_protocol`) sınırlanır ve kalan fark sınırlılık olarak raporlanır ([kararlar.md](kararlar.md) K-43). |
 | Uygulama verisi | **160 bayt**: ilk 16 bayt robot telemetrisi (son RTT, RSSI, yol, bırakma sayısı; bkz. [olcum_ve_analiz.md](olcum_ve_analiz.md) 3.1), kalanı kamera yükünü temsil eden sentetik doldurma |
 | Paket başlığı | Bölüm A3'teki ortak başlık. P1'de mesh yükünün içine konur. |
 | Tekrarlı paket | Merkezde `(src, seq)` ile elenir |
 | Bekleme modu | Tamburdaki röle ağa katılmaz; "aktif ol" komutunu bekler (A6) |
 | Düğüm kimliği | 0 = merkez, 1–5 = röleler, 6 = robot ağ kartı, 7 = yedek. 8 kartın MAC adresleri ortak bir yapılandırma tablosunda tutulur. |
 
-## A3. Ortak paket başlığı (P3, P5; P1'de yük içinde)
+## A3. Ortak paket başlığı (P2'de doğrudan, P1'de yük içinde)
 
 Tüm alanlar little-endian. Başlık 16 bayt, veri 160 bayt; toplam **176 bayt**. Bu, ESP-NOW v1'in 250 bayt sınırının altındadır.
 
@@ -45,7 +49,7 @@ Tüm alanlar little-endian. Başlık 16 bayt, veri 160 bayt; toplam **176 bayt**
 | 8 | `dst` | u8 | Hedef düğüm kimliği (0 = merkez) |
 | 9 | `hop` | u8 | Geçilen atlama sayısı; her iletimde +1 |
 | 10 | `ttl` | u8 | Kalan ömür; her iletimde −1, 0 olunca atılır (başlangıç 8) |
-| 11 | `flags` | u8 | bit0: uygulama düzeyinde tekrar edildi · bit1: atlama (bypass) kullanıldı |
+| 11 | `flags` | u8 | bit0: uygulama düzeyinde yeniden gönderildi · diğer bitler rezerv |
 | 12–15 | `t_src` | u32 | Kaynağın gönderim anındaki yerel zamanı (ms). RTT için yankıda geri döner. |
 
 | `type` | Ad | Yön | İçerik |
@@ -55,27 +59,68 @@ Tüm alanlar little-endian. Başlık 16 bayt, veri 160 bayt; toplam **176 bayt**
 | 0x03 | `PROBE` | son röle → robot | Yoklama; yalnızca RSSI ölçümü için |
 | 0x04 | `ACTIVATE` | robot → bırakılan röle | "Aktif ol" komutu (A6) |
 | 0x05 | `ACT_ACK` | röle → robot | Aktif oldum |
-| 0x06 | `EVENT` | merkez → röleler | Aşama 1B olaylarını zamanlamak için koşu başlangıcı |
+| 0x06 | `EVENT` | merkez → röleler | Aşama 1'de koşu başlangıcı; röleler zamanlayıcılarını buna göre kurar |
 
 **Yankı oranı:** Her 10 `DATA` paketinden birine yankı verilir (100 paket/s'de 10 yankı/s). Aşağı yön trafiği böylece küçük kalır.
 
 ## A4. P1 — ESP-WIFI-MESH
 
 - ESP-IDF `esp_mesh_*` arayüzleri kullanılır. Merkez **sabit kök** olarak atanır (`esp_mesh_fix_root`), diğer düğümler kök seçimine katılmaz.
-- **Router sorunu:** ESP-WIFI-MESH normalde kökün bir router'a bağlanmasını bekler. Router'sız sabit kök çalışması İP1'deki ön testte denenir. Çalışmazsa deneye özel router merkezin yanına konur ve **üç protokolün bütün koşularında açık** tutulur. Veri router'dan geçmez; merkez veriyi USB ile bilgisayara aktarır.
-- Ebeveynini mesh kendisi seçer. Gerçekleşen ebeveyn ilişkileri ve değişimleri kaydedilir.
-- **Bekleme modundan geçiş:** Röle bekleme modunda yalnızca ESP-NOW ile `ACTIVATE` dinler. Komut gelince ESP-NOW'u kapatıp mesh'i başlatır. Bu geçişin süresi bağlanma süresine dahildir. Geçişin sorunsuz çalıştığı ön testte doğrulanır.
-- **Yoklama:** Son röle `PROBE` paketlerini aynı kanalda ESP-NOW ile göndermeye devam eder. Mesh ile birlikte çalışmazsa robot, rölenin mesh çerçevelerinin RSSI'sini promiscuous modda okur. Hangisinin kullanılacağı ön testte belirlenir; üç protokolde aynı yöntem kullanılır.
+- **Router sorunu:** ESP-WIFI-MESH normalde kökün bir router'a bağlanmasını bekler. Router'sız sabit kök çalışması İP1'deki ön testte denenir. Çalışmazsa deneye özel router merkezin yanına konur ve **iki protokolün bütün koşularında açık** tutulur. Veri router'dan geçmez; merkez veriyi USB ile bilgisayara aktarır.
+- Ebeveynini mesh kendisi seçer. Gerçekleşen ebeveyn ilişkileri ve değişimleri kaydedilir. Mesh'in kısa yol olarak bir röleyi atlaması meşru bir protokol davranışıdır; engellenmez, kaydedilir.
+- **Bekleme modundan geçiş:** Röle bekleme modunda yalnızca ESP-NOW ile `ACTIVATE` dinler. Komut gelince ESP-NOW'u kapatıp mesh'i başlatır. Bu geçişin süresi bağlanma süresine dahildir; mesh'in gerçek görevde de ödeyeceği bir bedeldir. Geçişin sorunsuz çalıştığı ön testte doğrulanır.
+- **Yoklama:** Son röle `PROBE` paketlerini aynı kanalda ESP-NOW ile göndermeye devam eder. Mesh ile birlikte çalışmazsa robot, rölenin mesh çerçevelerinin RSSI'sini promiscuous modda okur. Hangisinin kullanılacağı ön testte belirlenir; iki protokolde aynı yöntem kullanılır.
 - **B planı:** Mesh hiç kararlı çalışmazsa ESP-Mesh-Lite'a geçilir.
 
-## A5. P3 — Ham ESP-NOW zinciri
+## A5. P2 — SBZ (Sıra Bilen Zincir)
 
-- Sabit kanal, tanımlı eş MAC adresleri, `esp_now_send()` ve alım callback'leri.
+ESP-NOW üzerinde, bırakma sırasını bilen sade bir zincir. İki özelliğe dayanır.
+
+### A5.1. Keşifsiz bağlanma
+
+- Sabit kanal, tanımlı eş MAC adresleri, `esp_now_send()` ve alım callback'leri kullanılır.
+- Robot röleyi bıraktığı anda ona üst düğümünü (k−1) `ACTIVATE` içinde bildirir. Röle ağ keşfi, kök seçimi ya da ebeveyn araması yapmaz; ilk paketi hemen iletebilir. Robot da kendi üst düğümünü k olarak günceller.
 - Röle k, `DATA` paketini **üst düğümüne (k−1)** gönderir; röle 1'in üstü merkezdir.
 - `ECHO` paketini **alt düğümüne** gönderir. Alt düğüm, kendisine en son `DATA` gönderen düğümdür (ilk paketle öğrenilir).
-- **Uygulama düzeyinde yeniden gönderim yok, atlama yok.** ESP-NOW'un kendi MAC katmanı onayı ve tekrarı açık kalır; bu ayar P3 ve P5'te aynıdır.
 
-## A6. Bekleme modu ve "aktif ol" komutu (üç protokolde ortak)
+### A5.2. Atlama başına sınırlı yeniden gönderim
+
+ESP-NOW gönderim callback'i başarısız dönerse, yani gönderim MAC katmanında teslim edilemediyse, paket uygulama düzeyinde **en fazla R kez** daha gönderilir. ESP-NOW belgesi uygulama katmanına ulaşmayı garanti etmez ve gerekirse uygulama düzeyinde yeniden gönderimi önerir.
+
+### A5.3. Röle durum makinesi
+
+```text
+          açılış
+            │
+            ▼
+      ┌───────────┐   ACTIVATE (proto=2)   ┌──────────┐
+      │  BEKLEME  │ ─────────────────────► │  NORMAL  │  (üst = k−1'e ilet)
+      └───────────┘                        └──────────┘
+```
+
+Düğüm atlama (k−2'ye geçiş) yoktur. Bir röle bozulursa zincir o noktada kopar. Bu durum kapsam dışıdır; gelecek çalışma olarak raporlanır.
+
+### A5.4. Sözde kod (röle, P2)
+
+```text
+iletim(paket):
+    paket.hop += 1; paket.ttl -= 1
+    eğer paket.ttl == 0: at
+    tekrar R+1 kez:
+        gönder(üst, paket)
+        eğer başarılı: dön
+        paket.flags |= TEKRAR
+    kayıp_sayacı += 1
+```
+
+### A5.5. Parametreler
+
+| Parametre | Başlangıç değeri | Not |
+|---|---|---|
+| R (yeniden gönderim) | 2 | Çok büyük olursa gecikme ve kanal yükü artar |
+| Tekrar eleme tamponu | Kaynak başına son 64 `seq` | |
+
+## A6. Bekleme modu ve "aktif ol" komutu (iki protokolde ortak)
 
 Tamburdaki röleler açıktır ama **bekleme modundadır**: ağa katılmaz, paket iletmez, yalnızca robottan gelecek `ACTIVATE` komutunu dinler. Bu olmazsa ESP-WIFI-MESH'te röleler daha robotun üstündeyken ağa katılır ve topolojiyi bozar.
 
@@ -85,82 +130,21 @@ Tamburdaki röleler açıktır ama **bekleme modundadır**: ağa katılmaz, pake
 |---:|---|---|
 | 0 | `k` | Bu rölenin sıra numarası (1–5) |
 | 1 | `parent` | Üst düğüm kimliği (k−1; k=1 ise 0 = merkez) |
-| 2 | `grandparent` | Bir üstteki düğüm (k−2; yoksa 0xFF) |
-| 3 | `proto` | 1 = P1, 3 = P3, 5 = P5 |
-| 4 | `channel` | Kanal |
-| 5 | `R` | SBZ yeniden gönderim sayısı |
-| 6 | `N` | SBZ atlama eşiği |
-| 7 | rezerv | 0 |
+| 2 | `proto` | 1 = P1 (mesh), 2 = P2 (SBZ) |
+| 3 | `channel` | Kanal |
+| 4 | `R` | SBZ yeniden gönderim sayısı |
+| 5–7 | rezerv | 0 |
 
 **Akış:** Robot `ACTIVATE` gönderir → röle `ACT_ACK` döner → röle protokolü başlatır. `ACT_ACK` 200 ms içinde gelmezse komut en fazla 5 kez tekrarlanır. Hiç gelmezse olay kaydedilir, robot yine devam eder.
 
-Aşama 1B'deki "yeni röle açılır" olayı aynı mekanizmayı bir zamanlayıcıyla tetikler.
+`ACT_ACK` yalnızca komutun alındığını gösterir; rölenin ağa katıldığını göstermez. **Robot `ACT_ACK`'ten sonra rölenin ağa katılmasını beklemeden yoluna devam eder.** Bırakma anı kesintisi bu yüzden anlamlı bir ölçüttür.
 
-## A7. P5 — SBZ (Sıra Bilen Zincir)
+Aşama 1'deki "beşinci röle aktif olur" olayı aynı mekanizmayı bir zamanlayıcıyla tetikler.
 
-P3'ün üzerine üç özellik ekler.
+## A7. Çıkarılan ve yedek yöntemler
 
-### A7.1. Keşifsiz bağlanma
-
-Robot röleyi bıraktığı anda ona üst düğümünü (k−1) ve bir üstünü (k−2) `ACTIVATE` içinde bildirir. Röle ağ keşfi, kök seçimi ya da ebeveyn araması yapmaz; ilk paketi hemen iletebilir. Robot da kendi üst düğümünü k olarak günceller.
-
-### A7.2. Atlama başına sınırlı yeniden gönderim
-
-ESP-NOW gönderim callback'i başarısız dönerse (MAC katmanı tekrarlarına rağmen onay gelmediyse) paket uygulama düzeyinde **en fazla R kez** daha gönderilir.
-
-### A7.3. Atlama (bypass)
-
-Üst düğüme **art arda N** paket (tekrarlar dahil) başarısız olursa röle **ATLAMA** durumuna geçer ve paketleri k−2'ye gönderir. Her T_dene süresinde bir paket eski üst düğüme denenir; başarılı olursa **NORMAL** duruma dönülür.
-
-### A7.4. Röle durum makinesi
-
-```text
-            açılış
-              │
-              ▼
-        ┌───────────┐   ACTIVATE (proto=5)   ┌──────────┐
-        │  BEKLEME  │ ─────────────────────► │  NORMAL  │ ◄─────────────┐
-        └───────────┘                        └──────────┘               │
-                                                  │ üst düğüme art arda │ T_dene'de bir
-                                                  │ N başarısız         │ eski üste deneme
-                                                  ▼                     │ başarılı
-                                             ┌──────────┐               │
-                                             │  ATLAMA  │ ──────────────┘
-                                             │ (k−2'ye) │
-                                             └──────────┘
-```
-
-### A7.5. Sözde kod (röle, P5)
-
-```text
-iletim(paket):
-    paket.hop += 1; paket.ttl -= 1
-    eğer paket.ttl == 0: at
-    hedef = (durum == NORMAL) ? üst : üstün_üstü
-    eğer durum == ATLAMA ve şimdi - son_deneme > T_dene:
-        hedef = üst; son_deneme = şimdi
-    tekrar R+1 kez:
-        gönder(hedef, paket)
-        eğer başarılı:
-            eğer hedef == üst: ardışık_hata = 0; durum = NORMAL
-            dön
-        paket.flags |= TEKRAR
-    eğer hedef == üst:
-        ardışık_hata += 1
-        eğer ardışık_hata >= N ve üstün_üstü varsa: durum = ATLAMA
-```
-
-### A7.6. Parametreler
-
-| Parametre | Başlangıç değeri | Not |
-|---|---|---|
-| R (yeniden gönderim) | 2 | Çok büyük olursa gecikme artar |
-| N (atlama eşiği) | 3 | Çok küçük olursa anlık kayıpta gereksiz atlama yapılır |
-| T_dene | 1 s | Eski üst düğümün yeniden denenme aralığı |
-| Tekrar eleme tamponu | Kaynak başına son 64 `seq` | |
-
-## A8. Çıkarılan ve yedek yöntemler
-
+- **Ham ESP-NOW zinciri (eski P3) çıkarıldı** (K-42). SBZ'den düğüm atlama da çıkınca ikisi arasındaki tek fark yeniden gönderim kalıyordu.
+- **SBZ'nin düğüm atlama (k−2) özelliği çıkarıldı** (K-42). Arıza sonrası toparlanma kapsam dışı; gelecek çalışma.
 - **Kendi SoftAP+STA/UDP zinciri çıkarıldı.** Gerekçesi [kararlar.md](kararlar.md)'de.
 - **ESP-Mesh-Lite:** P1 çalışmazsa B planı (ESP32-C3 desteği ESP-IDF v5.0+).
 - **ESP-NOW yayma (flooding), Mesh-Lite karşılaştırması:** Gelecek çalışma.
@@ -176,11 +160,12 @@ iletim(paket):
 | **S1** | Sabit mesafe | Son bırakmadan beri **X metre** gidilince | X ≈ 12 m |
 | **S2** | RSSI eşiği | 1 s ortalama RSSI **3 s boyunca eşiğin altında** kalırsa | Eşik ≈ −75 dBm |
 | **S3** | Eğilim | Yumuşatılmış RSSI'nin eğimine göre eşiğe ulaşma süresi **T'den kısa** ise ya da paket kaybı artıyorsa | Pencere 3–5 s, T ≈ 3 s |
-| **S★** | İdeal yerleşim | Koşu değil; Aşama 0 verisinden hesaplanır | — |
+
+**Ortam bilinmeden ayar:** Üç kuralın **bütün** ayarları (X, eşik, T ve diğerleri) yalnızca kalibrasyon ortamı **K**'de (düz koridor) belirlenir. Test ortamları O1 ve O2'de değiştirilmez. Böylece ortamın önceden bilinmediği gerçek görev taklit edilir. Yalnızca X'i değil, bütün kuralların ayarını K'de yapmak karşılaştırmayı adil tutar.
 
 ## B2. Ortak kurallar
 
-- **RSSI kaynağı:** Son bırakılan rölenin robota gönderdiği `PROBE` paketleri (10 Hz). Robot, alınan çerçevenin RSSI'sini (ESP-NOW alım bilgisi) kaydeder. Üç protokolde **aynı yöntem** kullanılır (A4'e bakın).
+- **RSSI kaynağı:** Son bırakılan rölenin robota gönderdiği `PROBE` paketleri (10 Hz). Robot, alınan çerçevenin RSSI'sini (ESP-NOW alım bilgisi) kaydeder. İki protokolde **aynı yöntem** kullanılır (A4'e bakın).
 - İlk röle bırakılmadan önce RSSI merkezden gelen yoklamalardan ölçülür.
 - **Asgari mesafe:** İki bırakma arasında en az `d_min` (başlangıç 3 m) olmalı. Art arda bırakmayı önler.
 - **Tek ölçümle karar verilmez.** S2 ve S3 pencere kullanır.
@@ -194,7 +179,7 @@ her 100 ms:
     eğer (yol - son_bırakma_yolu) >= X: BIRAK
 ```
 
-**X nasıl seçilir?** Ana karşılaştırmada **tek X** kullanılır: pilotta O1'de sinyalin eşiğe düştüğü mesafenin biraz altında bir değer. O2'de ek kıyas olarak ortama göre ayarlanmış bir X de denenebilir (ana analize girmez). Sabit mesafenin neden şart olduğu: [kararlar.md](kararlar.md).
+**X nasıl seçilir?** **Tek X** kullanılır: K'de sinyalin eşiğe düştüğü mesafenin biraz altında bir değer. Test ortamlarına göre ayrı X denenmez. H2'nin mantığı da bu: K'ye göre ayarlanan X, köşeli koridorda geç, açık alanda erken bırakabilir. Sabit mesafenin neden şart olduğu: [kararlar.md](kararlar.md).
 
 ## B4. S2 — RSSI eşiği
 
@@ -226,14 +211,16 @@ her 100 ms:
 
 Son satırdaki `r_ewma < eşik` koşulu bir güvenlik ağıdır: eğilim yakalanamasa bile S3, S2'den daha geç bırakmaz.
 
-## B6. S★ — İdeal yerleşim
+**H3'ün mantığı:** S3 röleyi sınıra gelmeden, erken bırakır. Erken bırakılan röle, robot menzilden çıkmadan ağa katılmak için daha fazla zaman bulur. Bu, yavaş katılan mesh'te (P1) hızlı katılan SBZ'den (P2) daha çok fark yaratmalıdır.
 
-Aşama 0'da her ortamda **açgözlü yerleşim yürüyüşü** yapılır:
+## B6. Kalibrasyon yürüyüşü (K ortamı)
 
-1. Bir düğüm başlangıçta sabit durur, ikinci düğüm rota boyunca metre metre uzaklaşır; her noktada 20–30 s RSSI ve teslim oranı ölçülür.
-2. Bağlantının hâlâ iyi olduğu (RSSI ≥ eşik + güvenlik payı ve teslim ≥ %95) **en uzak nokta** bulunur; sabit düğüm oraya taşınır.
-3. Rota bitene kadar tekrarlanır.
+Aşama 0'da yalnızca K'de yapılır (2 tur):
 
-Bu yürüyüşte kullanılan düğüm sayısı ve konumları **S★**'dır: o gün, o ortamda, duraklayarak ölçen biri için rotayı kapsayan en az röle sayısı. Kuralların başarısı "S★'a göre kaç fazla röle kullandı" ile de değerlendirilir.
+1. Bir düğüm başlangıçta sabit durur, ikinci düğüm zemin seviyesinde rota boyunca metre metre uzaklaşır; her noktada 20–30 s RSSI ve teslim oranı ölçülür.
+2. Çıktılar: mesafe–RSSI eğrisi, RSSI–teslim eğrisi ve teslimin birden düştüğü "uçurum" noktası.
+3. Eşik, X ve T bu eğrilerden [deney_ayarlari.md](deney_ayarlari.md)'deki kurallarla seçilir.
 
-Aynı yürüyüş, mesafe–RSSI ve RSSI–teslim eğrilerini de verir (Aşama 0'ın diğer çıktısı).
+Test ortamlarında (O1, O2) yalnızca rotanın tek bağlantıyla kapsanamadığı kontrol edilir. Bu ortamlarda kural ayarı yapılmaz.
+
+S★ (ideal yerleşim) hesabı çıkarıldı (K-34, K-42): tek referanslı yürüyüş, rota üzerindeki iki nokta arasındaki bağlantıyı vermiyordu.

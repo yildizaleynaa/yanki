@@ -1,7 +1,18 @@
 # Sadeleştirme Önerisi (uygulanmadı)
 
 **Tarih:** 6 Kasım 2026
-**Durum:** ⏸️ **Rafta.** 2209-A başvurusu mevcut tasarımla (v2.1) yapılıyor. Bu belge, proje sırasında zaman daralırsa ya da sonraki bir çalışma için aklımızın bir köşesinde dursun diye yazıldı.
+**Durum:** ✅ **Uygulandı (6 Kasım 2026).** Önce rafa kaldırılmıştı (K-41). Aynı gün başvuru metni bu tasarımla yeniden yazıldı (K-42): [TYBS_Basvuru_Metinleri.md](tubitak/TYBS_Basvuru_Metinleri.md).
+
+Uygulamada netleşen noktalar:
+
+- **Ham ESP-NOW tamamen çıktı.** Statik aşamada bile tutulmadı; düğüm atlama çıkınca SBZ ile arasındaki tek fark yeniden gönderim kalıyordu.
+- **Kalibrasyon ortamı K (düz koridor).** Kuralların bütün ayarları (X, eşik, T) burada belirlenir ve test ortamlarında değiştirilmez. Bu sadece X için değil, üç kural için de geçerli; böylece karşılaştırma adil kalır.
+- **Ortak yük:** K'de beş rölelik zincirde yapılan kapasite taramasıyla belirlenir (protokol başına 3 tarama).
+- **Statik koşu:** 6 dakika. 60. saniyede 5. röle katılır, 60–360 s arası kararlı durum ölçülür. Arıza olayı yok.
+- **Robot bırakmadan sonra beklemez.** Röle düşer ve robot hemen yoluna devam eder. "Bırakma anı kesintisi" hikâyesi buna dayanıyor.
+- **Takvim:** İP4 1 ay (6. ay), İP5 4 ay (7–10. aylar). Katkılar %10 / 20 / 15 / 10 / 35 / 10.
+
+Aşağıdaki metin önerinin ilk hâlidir.
 
 ---
 
